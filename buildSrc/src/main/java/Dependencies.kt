@@ -5,7 +5,7 @@ object Versions {
 
     const val gradle = "4.1.3"
     const val kotlin = "1.4.31"
-    const val detekt = "1.16.0"
+    const val detekt = "1.14.0"
     const val ktlint = "0.41.0"
     const val koin = "2.2.2"
 

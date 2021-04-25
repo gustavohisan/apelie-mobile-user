@@ -7,7 +7,7 @@ import org.koin.core.context.startKoin
 /**
  * Application class used for dependency injection.
  */
-internal class ApelieUserApp: Application() {
+internal class ApelieUserApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
@@ -17,5 +17,4 @@ internal class ApelieUserApp: Application() {
             modules()
         }
     }
-
 }
