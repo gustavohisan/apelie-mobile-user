@@ -1,6 +1,6 @@
-include ':libraries:core'
 rootProject.name = "ApelieUser"
+include ':app'
 include ':data:repository'
 include ':data:domain'
-include ':app'
 include ':features:main'
+include ':libraries:core'

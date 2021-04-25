@@ -1,0 +1,24 @@
+configurations {
+    detekt
+}
+
+dependencies {
+    detekt Deps.detekt
+}
+
+task detekt(type: JavaExec) {
+
+    description = "Check Kotlin code smells, code complexity based on detekt-config.yml."
+
+    main = "io.gitlab.arturbosch.detekt.cli.Main"
+    classpath = configurations.detekt
+
+    def input = "$projectDir"
+    def config = "$rootDir/config/detekt/detekt_config.yml"
+    def exclude = "**/resources/**,**/build/**"
+    def report = "html:$buildDir/reports/detekt.html"
+    def params = ['-i', input, '-c', config, '-ex', exclude, '-r', report, '--fail-fast']
+    args(params)
+}
+
+check.dependsOn detekt
