@@ -1,1 +1,13 @@
-<manifest package="com.gustavohisan.apelieuser.splash" />
+<manifest package="com.gustavohisan.apelieuser.splash"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="true"
+        android:supportsRtl="false">
+        <activity
+            android:name=".presentation.SplashActivity"
+            android:resizeableActivity="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+    </application>
+</manifest>

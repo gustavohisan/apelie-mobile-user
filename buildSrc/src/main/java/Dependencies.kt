@@ -11,6 +11,7 @@ object Versions {
 
     const val ktx = "1.3.2"
     const val appcompat = "1.2.0"
+    const val constraintLayout = "2.0.4"
 
     const val material = "1.2.1"
 }
@@ -29,6 +30,7 @@ object Deps {
 object JetpackDeps {
     val ktx = "androidx.core:core-ktx:${Versions.ktx}"
     val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
+    val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
 }
 
 object GoogleDeps {

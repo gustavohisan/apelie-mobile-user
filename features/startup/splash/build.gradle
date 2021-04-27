@@ -1,3 +1,10 @@
+apply plugin: 'com.android.library'
 apply from: "$rootDir/config/android_dependencies.gradle"
 
-dependencies {}
+dependencies {
+    implementation Deps.google.material
+    implementation Deps.jetpack.appcompat
+    implementation Deps.jetpack.constraintLayout
+    implementation Deps.koin.core
+    implementation Deps.koin.viewModel
+}

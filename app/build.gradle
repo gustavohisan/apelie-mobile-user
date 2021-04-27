@@ -1,3 +1,4 @@
+apply plugin: "com.android.application"
 apply from: "$rootDir/config/android_dependencies.gradle"
 
 android {
@@ -18,6 +19,8 @@ android {
 }
 
 dependencies {
+    implementation project(":features:startup:splash")
+
     implementation Deps.kotlin
     implementation Deps.jetpack.ktx
     implementation Deps.jetpack.appcompat
