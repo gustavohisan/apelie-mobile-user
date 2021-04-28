@@ -12,6 +12,12 @@ android {
     }
 }
 
+repositories {
+    google()
+    jcenter()
+    mavenCentral()
+}
+
 dependencies {
     implementation Deps.kotlin
 }

@@ -20,6 +20,7 @@ android {
 
 dependencies {
     implementation project(":features:startup:splash")
+    implementation project(":features:startup:login")
 
     implementation Deps.kotlin
     implementation Deps.jetpack.ktx

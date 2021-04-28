@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- description: Login create account text -->
+    <string name="login_text_create_account">Não tem uma conta? Cadastre-se</string>
+    <!-- description: Login forgot password text -->
+    <string name="login_text_forgot_password">Esqueci a senha</string>
+    <!-- description: Login submit button text -->
+    <string name="login_button_submit">Login</string>
+    <!-- description: Login input text password hint -->
+    <string name="login_textinput_hint_password">Senha</string>
+    <!-- description: Login input text email hint -->
+    <string name="login_textinput_hint_email">Email</string>
+</resources>
