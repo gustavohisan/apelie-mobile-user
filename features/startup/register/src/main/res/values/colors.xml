@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- description: Primary color -->
+    <color name="register_color_primary">#0086E9</color>
+    <!-- description: Primary dark color, used in the status bar -->
+    <color name="register_color_primary_dark">#005CA1</color>
+    <!-- description: Register screen toolbar background color -->
+    <color name="register_toolbar_background">#FFFFFF</color>
+    <!-- description: Register screen toolbar title text color -->
+    <color name="register_toolbar_title">#6B6B6B</color>
+</resources>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- description: Register toolbar title -->
+    <string name="register_toolbar_title">Crie sua conta</string>
+    <!-- description: Register submit button text -->
+    <string name="register_button_sumit_text">Criar conta</string>
+    <!-- description: Register input text confirm password hint -->
+    <string name="register_textinput_hint_confirm_password">Confirmar senha</string>
+    <!-- description: Register input text password hint -->
+    <string name="register_textinput_hint_password">Senha</string>
+    <!-- description: Register input text name hint -->
+    <string name="register_textinput_hint_name">Nome completo</string>
+    <!-- description: Register input text email hint -->
+    <string name="register_textinput_hint_email">Email</string>
+</resources>

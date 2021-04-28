@@ -1,1 +1,16 @@
-<manifest package="com.gustavohisan.apelieuser.register" />
+<manifest package="com.gustavohisan.apelieuser.register"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="true"
+        android:supportsRtl="false"
+        android:theme="@style/DefaultTheme">
+
+        <activity
+            android:name=".presentation.RegisterActivity"
+            android:resizeableActivity="false"
+            android:screenOrientation="portrait" />
+
+    </application>
+
+</manifest>

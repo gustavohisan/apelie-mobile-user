@@ -1,7 +1,6 @@
 package com.gustavohisan.apelieuser.login.presentation
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import com.gustavohisan.apelieuser.login.R
 

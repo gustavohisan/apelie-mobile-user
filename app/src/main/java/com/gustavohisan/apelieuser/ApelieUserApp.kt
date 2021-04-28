@@ -2,6 +2,7 @@ package com.gustavohisan.apelieuser
 
 import android.app.Application
 import com.gustavohisan.apelieuser.login.injection.loginModule
+import com.gustavohisan.apelieuser.register.injection.registerModule
 import com.gustavohisan.apelieuser.splash.injection.splashModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
@@ -16,7 +17,7 @@ internal class ApelieUserApp : Application() {
 
         startKoin {
             androidContext(this@ApelieUserApp)
-            modules(splashModule, loginModule)
+            modules(splashModule, loginModule, registerModule)
         }
     }
 }
