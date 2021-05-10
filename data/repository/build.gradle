@@ -1,4 +1,9 @@
 apply plugin: 'com.android.library'
 apply from: "$rootDir/config/android_dependencies.gradle"
 
-dependencies {}
+dependencies {
+    implementation project(":data:domain")
+
+    implementation Deps.koin.core
+    implementation Deps.timber
+}

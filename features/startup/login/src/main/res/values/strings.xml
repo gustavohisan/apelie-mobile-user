@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Login activity layout -->
     <!-- description: Login create account text -->
     <string name="login_text_create_account">Não tem uma conta? Cadastre-se</string>
     <!-- description: Login forgot password text -->
@@ -10,4 +11,14 @@
     <string name="login_textinput_hint_password">Senha</string>
     <!-- description: Login input text email hint -->
     <string name="login_textinput_hint_email">Email</string>
+
+    <!-- Login error messages -->
+    <!-- description: Login error message for invalid passwords -->
+    <string name="login_error_invalid_password">Senha inválida</string>
+    <!-- description: Login error message for email not subscribed -->
+    <string name="login_error_not_subscribed">Email não cadastrado</string>
+    <!-- description: Login error message for server unavailable -->
+    <string name="login_error_server_unavailable">Servidor indisponível, tente novamente</string>
+    <!-- description: Login error message for invalid email -->
+    <string name="login_error_invalid_email">Email inválido</string>
 </resources>

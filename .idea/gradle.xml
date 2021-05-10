@@ -15,8 +15,11 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/data" />
+            <option value="$PROJECT_DIR$/data/api" />
             <option value="$PROJECT_DIR$/data/domain" />
+            <option value="$PROJECT_DIR$/data/memory" />
             <option value="$PROJECT_DIR$/data/repository" />
+            <option value="$PROJECT_DIR$/data/sharedpreferences" />
             <option value="$PROJECT_DIR$/features" />
             <option value="$PROJECT_DIR$/features/main" />
             <option value="$PROJECT_DIR$/features/startup" />

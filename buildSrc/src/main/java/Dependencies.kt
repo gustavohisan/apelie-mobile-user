@@ -9,9 +9,12 @@ object Versions {
     const val ktlint = "0.41.0"
     const val koin = "2.2.2"
 
+    const val timber = "4.7.1"
+
     const val ktx = "1.3.2"
     const val appcompat = "1.2.0"
     const val constraintLayout = "2.0.4"
+    const val security = "1.0.0"
 
     const val material = "1.2.1"
 }
@@ -22,6 +25,7 @@ object Deps {
     val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
     val detekt = "io.gitlab.arturbosch.detekt:detekt-cli:${Versions.detekt}"
     val ktlint = "com.pinterest:ktlint:${Versions.ktlint}"
+    val timber = "com.jakewharton.timber:timber:${Versions.timber}"
     val jetpack = JetpackDeps
     val google = GoogleDeps
     val koin = KoinDeps
@@ -31,6 +35,7 @@ object JetpackDeps {
     val ktx = "androidx.core:core-ktx:${Versions.ktx}"
     val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
     val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
+    val security = "androidx.security:security-crypto:${Versions.security}"
 }
 
 object GoogleDeps {
