@@ -1,8 +1,8 @@
 package com.gustavohisan.apelieuser.domain.usecase.login
 
 import com.gustavohisan.apelieuser.domain.model.login.LoginState
-import com.gustavohisan.apelieuser.domain.repository.login.UserApiRepository
-import com.gustavohisan.apelieuser.domain.repository.login.UserStorageRepository
+import com.gustavohisan.apelieuser.domain.repository.user.UserApiRepository
+import com.gustavohisan.apelieuser.domain.repository.user.UserStorageRepository
 
 /**
  * Use-case used to validate a given login.

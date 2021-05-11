@@ -11,4 +11,18 @@ interface UserStorageDataSource {
      * @param token a [Int] containing the users token
      */
     fun storeUserToken(token: Int)
+
+    /**
+     * Return the user stored token.
+     *
+     * @return a [Int] containing the token
+     */
+    fun getUserStoredToken(): Int
+
+    /**
+     * Checks if there is a stored token in the shared preferences.
+     *
+     * @return if there is a stored token
+     */
+    fun hasStoredToken(): Boolean
 }

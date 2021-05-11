@@ -1,7 +1,7 @@
-package com.gustavohisan.apelieuser.repository.repository.login
+package com.gustavohisan.apelieuser.repository.repository.user
 
 import com.gustavohisan.apelieuser.domain.model.login.LoginState
-import com.gustavohisan.apelieuser.domain.repository.login.UserApiRepository
+import com.gustavohisan.apelieuser.domain.repository.user.UserApiRepository
 import com.gustavohisan.apelieuser.repository.datasource.login.UserApiDataSource
 import com.gustavohisan.apelieuser.repository.mapper.login.LoginStateMapper
 
@@ -18,4 +18,7 @@ internal class UserApiRepositoryImpl(
 
     override fun validateUserLogin(email: String, password: String): LoginState =
         loginStateMapper.toDomain(userApiDataSource.validateLogin(email, password))
+
+    override fun validateUserToken(token: Int): Boolean =
+        userApiDataSource.validateToken(token)
 }

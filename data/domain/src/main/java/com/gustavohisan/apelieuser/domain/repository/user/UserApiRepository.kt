@@ -1,4 +1,4 @@
-package com.gustavohisan.apelieuser.domain.repository.login
+package com.gustavohisan.apelieuser.domain.repository.user
 
 import com.gustavohisan.apelieuser.domain.model.login.LoginState
 
@@ -16,4 +16,13 @@ interface UserApiRepository {
      * @return the [LoginState] with the result
      */
     fun validateUserLogin(email: String, password: String): LoginState
+
+    /**
+     * Checks if the given token is valid or not.
+     *
+     * @param token a [Int] with the token to be checked
+     *
+     * @return if the token is valid
+     */
+    fun validateUserToken(token: Int): Boolean
 }

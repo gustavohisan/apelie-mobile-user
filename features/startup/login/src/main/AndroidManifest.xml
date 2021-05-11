@@ -10,7 +10,12 @@
             android:name=".presentation.LoginActivity"
             android:resizeableActivity="false"
             android:noHistory="true"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.gustavohisan.apelieuser.START_LOGIN"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
 
     </application>
 

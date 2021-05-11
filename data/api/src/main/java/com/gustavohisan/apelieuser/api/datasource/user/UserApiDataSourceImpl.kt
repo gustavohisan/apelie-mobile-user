@@ -1,4 +1,4 @@
-package com.gustavohisan.apelieuser.api.datasource.login
+package com.gustavohisan.apelieuser.api.datasource.user
 
 import com.gustavohisan.apelieuser.api.mapper.login.LoginStateMapper
 import com.gustavohisan.apelieuser.api.model.login.LoginState
@@ -18,4 +18,8 @@ internal class UserApiDataSourceImpl(
         loginStateMapper.toRepo(
             LoginState.Success(0)
         )
+
+    override fun validateToken(token: Int): Boolean {
+        return true
+    }
 }

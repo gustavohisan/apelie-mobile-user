@@ -26,6 +26,30 @@ internal class PreferenceProvider(private val context: Context) {
         }
     }
 
+    /**
+     * Returns the stored token.
+     *
+     * @return a [Int] containing the stored token
+     */
+    fun getStoredToken(): Int {
+        val token = getSharedPreferences().getInt(USER_TOKEN, DEF_VALUE_TOKEN)
+        Timber.d("getStoredToken = $token")
+
+        return token
+    }
+
+    /**
+     * Checks if there is a stored token in the device.
+     *
+     * @return if there is a stored token
+     */
+    fun hasStoredToken(): Boolean {
+        val hasStoredToken = getSharedPreferences().contains(USER_TOKEN)
+        Timber.d("hasStoredToken = $hasStoredToken")
+
+        return hasStoredToken
+    }
+
     private fun getSharedPreferences() =
         EncryptedSharedPreferences.create(
             FILE_NAME,
@@ -43,5 +67,7 @@ internal class PreferenceProvider(private val context: Context) {
         private const val FILE_NAME = "prefs"
 
         private const val USER_TOKEN = "USER_TOKEN"
+
+        private const val DEF_VALUE_TOKEN = -1
     }
 }

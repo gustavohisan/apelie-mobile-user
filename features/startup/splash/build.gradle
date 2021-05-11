@@ -2,9 +2,12 @@ apply plugin: 'com.android.library'
 apply from: "$rootDir/config/android_dependencies.gradle"
 
 dependencies {
+    implementation project(":data:domain")
+
     implementation Deps.google.material
     implementation Deps.jetpack.appcompat
     implementation Deps.jetpack.constraintLayout
     implementation Deps.koin.core
     implementation Deps.koin.viewModel
+    implementation Deps.timber
 }

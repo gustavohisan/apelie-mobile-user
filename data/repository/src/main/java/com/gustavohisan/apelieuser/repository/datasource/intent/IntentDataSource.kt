@@ -11,4 +11,11 @@ interface IntentDataSource {
      * @return a [String] with the action
      */
     fun getMainScreenIntentAction(): String
+
+    /**
+     * Returns the login screen intent action.
+     *
+     * @return a [String] with the action
+     */
+    fun getLoginScreenIntentAction(): String
 }

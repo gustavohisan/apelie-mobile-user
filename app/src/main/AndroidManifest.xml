@@ -12,7 +12,7 @@
 
         <activity-alias
             android:name=".MainActivity"
-            android:targetActivity=".login.presentation.LoginActivity">
+            android:targetActivity=".splash.presentation.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

@@ -8,8 +8,13 @@ import com.gustavohisan.apelieuser.repository.datasource.intent.IntentDataSource
  *
  * @param intentDataSource data source used to load the intents information
  */
-internal class IntentRepositoryImpl(private val intentDataSource: IntentDataSource): IntentRepository {
+internal class IntentRepositoryImpl(
+    private val intentDataSource: IntentDataSource
+) : IntentRepository {
 
     override fun loadMainScreenIntentAction(): String =
         intentDataSource.getMainScreenIntentAction()
+
+    override fun loadLoginScreenIntentAction(): String =
+        intentDataSource.getLoginScreenIntentAction()
 }
