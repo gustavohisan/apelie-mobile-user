@@ -10,7 +10,10 @@ internal class MainScreenIntentLoader {
      *
      * @return a [String] with the action
      */
-    fun getMainScreenIntentAction(): String =
-        //TODO replace with the main screen action
-        ""
+    fun getMainScreenIntentAction(): String = INTENT_ACTIOn
+
+    private companion object {
+
+        private const val INTENT_ACTIOn = "com.gustavohisan.apelieuser.START_MAIN"
+    }
 }

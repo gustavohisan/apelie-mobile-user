@@ -1,5 +1,6 @@
 package com.gustavohisan.apelieuser.login.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -154,6 +155,6 @@ internal class LoginActivity : AppCompatActivity() {
     private fun openMainActivity() {
         Timber.d("openMainActivity")
 
-        //startActivity(Intent(viewModel.getMainScreenIntent()))
+        startActivity(Intent(viewModel.getMainScreenIntent()))
     }
 }

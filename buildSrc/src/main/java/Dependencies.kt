@@ -15,6 +15,7 @@ object Versions {
     const val appcompat = "1.2.0"
     const val constraintLayout = "2.0.4"
     const val security = "1.0.0"
+    const val navigation = "2.3.5"
 
     const val material = "1.2.1"
 }
@@ -36,6 +37,11 @@ object JetpackDeps {
     val appcompat = "androidx.appcompat:appcompat:${Versions.appcompat}"
     val constraintLayout = "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
     val security = "androidx.security:security-crypto:${Versions.security}"
+    val navigationSafeArgs =
+        "androidx.navigation:navigation-safe-args-gradle-plugin:${Versions.navigation}"
+    val navigationFragment =
+        "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
+    val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
 }
 
 object GoogleDeps {

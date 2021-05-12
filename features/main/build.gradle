@@ -1,4 +1,25 @@
 apply plugin: 'com.android.library'
 apply from: "$rootDir/config/android_dependencies.gradle"
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
-dependencies {}
+android {
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+    implementation Deps.koin.core
+    implementation Deps.koin.viewModel
+    implementation Deps.timber
+    implementation Deps.google.material
+    implementation Deps.jetpack.appcompat
+    implementation Deps.jetpack.constraintLayout
+    implementation Deps.jetpack.navigationUi
+    implementation Deps.jetpack.navigationFragment
+}

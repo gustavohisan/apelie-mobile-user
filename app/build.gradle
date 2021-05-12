@@ -27,6 +27,7 @@ dependencies {
     implementation project(":features:startup:splash")
     implementation project(":features:startup:login")
     implementation project(":features:startup:register")
+    implementation project(":features:main")
 
     implementation Deps.kotlin
     implementation Deps.jetpack.ktx
