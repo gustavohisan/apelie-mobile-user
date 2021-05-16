@@ -1,13 +1,12 @@
-
 package com.gustavohisan.apelieuser.repository.mapper.login
 
-import com.gustavohisan.apelieuser.repository.model.login.LoginErrorType as RepositoryErrorType
 import com.gustavohisan.apelieuser.domain.model.login.LoginErrorType as DomainErrorType
+import com.gustavohisan.apelieuser.repository.model.login.LoginErrorType as RepositoryErrorType
 
 /**
  * Mapper used to map an [LoginErrorType] from repository to the domain representation.
  */
-internal class LoginErrorTypeMapper{
+internal class LoginErrorTypeMapper {
 
     /**
      * Maps a [RepositoryErrorType] to a [DomainErrorType].

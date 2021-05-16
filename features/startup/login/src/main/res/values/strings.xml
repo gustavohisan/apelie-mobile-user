@@ -14,7 +14,7 @@
 
     <!-- Login error messages -->
     <!-- description: Login error message for invalid passwords -->
-    <string name="login_error_invalid_password">Senha inválida</string>
+    <string name="login_error_invalid_password">Senha inválida, a senha deve conter mais que 8 carácteres</string>
     <!-- description: Login error message for email not subscribed -->
     <string name="login_error_not_subscribed">Email não cadastrado</string>
     <!-- description: Login error message for server unavailable -->

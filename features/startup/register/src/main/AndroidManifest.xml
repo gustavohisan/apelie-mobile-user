@@ -1,15 +1,23 @@
-<manifest package="com.gustavohisan.apelieuser.register"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.gustavohisan.apelieuser.register">
 
     <application
         android:allowBackup="true"
         android:supportsRtl="false"
-        android:theme="@style/DefaultTheme">
+        android:theme="@style/DefaultTheme"
+        tools:replace="android:theme">
 
         <activity
             android:name=".presentation.RegisterActivity"
+            android:noHistory="true"
             android:resizeableActivity="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.gustavohisan.apelieuser.START_REGISTER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
 
     </application>
 

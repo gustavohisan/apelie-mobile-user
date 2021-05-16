@@ -17,4 +17,7 @@ internal class IntentRepositoryImpl(
 
     override fun loadLoginScreenIntentAction(): String =
         intentDataSource.getLoginScreenIntentAction()
+
+    override fun loadRegisterScreenIntentAction(): String =
+        intentDataSource.getRegisterScreenIntentAction()
 }

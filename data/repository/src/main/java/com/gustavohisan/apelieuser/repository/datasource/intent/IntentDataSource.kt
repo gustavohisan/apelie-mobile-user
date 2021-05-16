@@ -18,4 +18,11 @@ interface IntentDataSource {
      * @return a [String] with the action
      */
     fun getLoginScreenIntentAction(): String
+
+    /**
+     * Returns the register screen intent action.
+     *
+     * @return a [String] with the action
+     */
+    fun getRegisterScreenIntentAction(): String
 }

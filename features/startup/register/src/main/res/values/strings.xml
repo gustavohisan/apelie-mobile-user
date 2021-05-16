@@ -12,4 +12,20 @@
     <string name="register_textinput_hint_name">Nome completo</string>
     <!-- description: Register input text email hint -->
     <string name="register_textinput_hint_email">Email</string>
+    <!-- description: Register successful message -->
+    <string name="register_successful">Cadastrado com sucesso</string>
+
+    <!-- Login error messages -->
+    <!-- description: Register error message for invalid passwords -->
+    <string name="register_error_invalid_password">Senha inválida, a senha deve conter mais que 8 carácteres</string>
+    <!-- description: Register error message for invalid name -->
+    <string name="register_error_invalid_name">Nome inválido</string>
+    <!-- description: Register error message for passwords not matching -->
+    <string name="register_error_passwords_dont_match">As senhas não coincidem</string>
+    <!-- description: Register error message for server unavailable -->
+    <string name="register_error_server_unavailable">Servidor indisponível, tente novamente</string>
+    <!-- description: Register error message for invalid email -->
+    <string name="register_error_invalid_email">Email inválido</string>
+    <!-- description: Register error message for email already subscribed -->
+    <string name="register_error_email_already_subscribed">Email já cadastrado</string>
 </resources>

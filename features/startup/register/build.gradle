@@ -8,9 +8,13 @@ android {
 }
 
 dependencies {
+    implementation project(":data:domain")
+    implementation project(":libraries:core")
+
     implementation Deps.google.material
     implementation Deps.jetpack.appcompat
     implementation Deps.jetpack.constraintLayout
     implementation Deps.koin.core
     implementation Deps.koin.viewModel
+    implementation Deps.timber
 }

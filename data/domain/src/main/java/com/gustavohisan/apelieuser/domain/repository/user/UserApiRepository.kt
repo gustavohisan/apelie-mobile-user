@@ -1,6 +1,7 @@
 package com.gustavohisan.apelieuser.domain.repository.user
 
 import com.gustavohisan.apelieuser.domain.model.login.LoginState
+import com.gustavohisan.apelieuser.domain.model.register.RegisterState
 
 /**
  * User repository used to provide user information using the API.
@@ -25,4 +26,15 @@ interface UserApiRepository {
      * @return if the token is valid
      */
     fun validateUserToken(token: Int): Boolean
+
+    /**
+     * Subscribes a new user in the database and returns the result state of the subscription.
+     *
+     * @param email a [String] with the email
+     * @param password a [String] with the password
+     * @param name a [String] with the name
+     *
+     * @return the [RegisterState] with the result
+     */
+    fun registerUser(email: String, password: String, name: String): RegisterState
 }

@@ -1,4 +1,3 @@
 <lint>
     <issue id="SpUsage" severity="ignore"/>
-    <issue id="any" severity="error"/>
 </lint>

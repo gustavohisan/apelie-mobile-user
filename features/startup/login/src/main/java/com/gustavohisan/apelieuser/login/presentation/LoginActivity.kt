@@ -57,6 +57,9 @@ internal class LoginActivity : AppCompatActivity() {
                 )
             }
         }
+        binding.loginTextCreateAccount.setOnClickListener {
+            openRegisterActivity()
+        }
     }
 
     /**
@@ -66,10 +69,13 @@ internal class LoginActivity : AppCompatActivity() {
      * @return if the fields are valid
      */
     private fun validateFields(): Boolean {
-        Timber.d("validateFields")
-
         val isValidEmail = binding.loginTextfieldEmail.text.toString().isValidEmail()
         val isValidPassword = binding.loginTextfieldPassword.text.toString().isValidPassword()
+
+        Timber.d(
+            "validateFields - isValidEmail = $isValidEmail - isValidPassword = $isValidPassword"
+        )
+
         return when {
             isValidEmail.not() || isValidPassword.not() -> {
                 viewModel.setLoginState(
@@ -155,6 +161,13 @@ internal class LoginActivity : AppCompatActivity() {
     private fun openMainActivity() {
         Timber.d("openMainActivity")
 
+        finish()
         startActivity(Intent(viewModel.getMainScreenIntent()))
+    }
+
+    private fun openRegisterActivity() {
+        Timber.d("openRegisterActivity")
+
+        startActivity(Intent(viewModel.getRegisterScreenIntent()))
     }
 }

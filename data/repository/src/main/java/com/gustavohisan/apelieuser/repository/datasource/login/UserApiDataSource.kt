@@ -1,6 +1,7 @@
 package com.gustavohisan.apelieuser.repository.datasource.login
 
 import com.gustavohisan.apelieuser.repository.model.login.LoginState
+import com.gustavohisan.apelieuser.repository.model.register.RegisterState
 
 /**
  * User data source used to provide information with the API.
@@ -25,4 +26,15 @@ interface UserApiDataSource {
      * @return if the token is valid
      */
     fun validateToken(token: Int): Boolean
+
+    /**
+     * Subscribes the user in the database.
+     *
+     * @param email a [String] containing the email
+     * @param password a [String] containing the password
+     * @param name a [String] containing the name
+     *
+     * @return a [RegisterState] with the result
+     */
+    fun subscribeUser(email: String, password: String, name: String): RegisterState
 }

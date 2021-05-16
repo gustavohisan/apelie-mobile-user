@@ -18,4 +18,11 @@ interface IntentRepository {
      * @return a [String] with the action
      */
     fun loadLoginScreenIntentAction(): String
+
+    /**
+     * Returns the register screen intent action.
+     *
+     * @return a [String] with the action
+     */
+    fun loadRegisterScreenIntentAction(): String
 }

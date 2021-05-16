@@ -35,7 +35,7 @@ class CheckIfUserIsLoggedIn(
     private fun validateUserToken(): Boolean {
         val token = userStorageRepository.getStoredUserToken()
         if (userApiRepository.validateUserToken(token)) {
-            //TODO cache token
+            // TODO cache token
             return true
         } else {
             return false

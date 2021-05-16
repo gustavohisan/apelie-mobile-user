@@ -12,7 +12,7 @@ import org.koin.dsl.module
 val loginModule = module {
 
     // ViewModel
-    viewModel { LoginViewModel(get(), get(), get()) }
+    viewModel { LoginViewModel(get(), get(), get(), get()) }
 
     // Mapper
     factory { LoginStateMapper(get()) }

@@ -17,3 +17,11 @@ fun String.isValidEmail(): Boolean =
  */
 fun String.isValidPassword(): Boolean =
     this.length >= 8
+
+/**
+ * Extension used to check if a given [String] is a valid name.
+ *
+ * @return if the string is valid
+ */
+fun String.isValidName(): Boolean =
+    this.isNotEmpty()

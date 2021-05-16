@@ -1,0 +1,4 @@
+<lint>
+    <issue id="SpUsage" severity="ignore" />
+    <issue id="BinaryOperationInTimber" severity="ignore" />
+</lint>

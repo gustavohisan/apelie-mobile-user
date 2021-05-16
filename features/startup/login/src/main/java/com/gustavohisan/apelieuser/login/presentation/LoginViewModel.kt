@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gustavohisan.apelieuser.domain.usecase.intent.LoadMainScreenIntent
+import com.gustavohisan.apelieuser.domain.usecase.intent.LoadRegisterScreenIntent
 import com.gustavohisan.apelieuser.domain.usecase.login.ValidateLogin
 import com.gustavohisan.apelieuser.login.mapper.LoginStateMapper
 import com.gustavohisan.apelieuser.login.model.LoginState
@@ -17,11 +18,13 @@ import timber.log.Timber
  * @param validateLogin use-case to retrieve if the login is valid
  * @param loginStateMapper mapper used to map the login state
  * @param loadMainScreenIntent use-case to retrieve the main screen intent action
+ * @param loadRegisterScreenIntent use-case to retrieve the register user screen intent action
  */
 internal class LoginViewModel(
     private val validateLogin: ValidateLogin,
     private val loginStateMapper: LoginStateMapper,
-    private val loadMainScreenIntent: LoadMainScreenIntent
+    private val loadMainScreenIntent: LoadMainScreenIntent,
+    private val loadRegisterScreenIntent: LoadRegisterScreenIntent
 ) : ViewModel() {
 
     // Live data storing the login state
@@ -61,6 +64,12 @@ internal class LoginViewModel(
      *
      * @return a [String] with the action
      */
-    fun getMainScreenIntent(): String =
-        loadMainScreenIntent()
+    fun getMainScreenIntent(): String = loadMainScreenIntent()
+
+    /**
+     * Returns the register user screen intent action.
+     *
+     * @return a [String] with the action
+     */
+    fun getRegisterScreenIntent(): String = loadRegisterScreenIntent()
 }

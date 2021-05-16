@@ -10,10 +10,10 @@ internal class MainScreenIntentLoader {
      *
      * @return a [String] with the action
      */
-    fun getMainScreenIntentAction(): String = INTENT_ACTIOn
+    fun getMainScreenIntentAction(): String = INTENT_ACTION
 
     private companion object {
 
-        private const val INTENT_ACTIOn = "com.gustavohisan.apelieuser.START_MAIN"
+        private const val INTENT_ACTION = "com.gustavohisan.apelieuser.START_MAIN"
     }
 }
