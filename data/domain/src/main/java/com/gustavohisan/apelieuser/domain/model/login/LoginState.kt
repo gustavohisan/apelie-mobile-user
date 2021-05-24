@@ -11,7 +11,7 @@ sealed class LoginState {
      *
      * @param token the user token
      */
-    data class Success(val token: Int) : LoginState()
+    data class Success(val token: String) : LoginState()
 
     /**
      * Represents the login state when there was an error validating the login.

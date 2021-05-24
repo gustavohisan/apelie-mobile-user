@@ -6,4 +6,7 @@ dependencies {
 
     implementation Deps.koin.core
     implementation Deps.timber
+    implementation Deps.retrofit.core
+    implementation Deps.retrofit.converter
+    implementation Deps.gson
 }

@@ -20,7 +20,7 @@ class CheckIfUserIsLoggedIn(
      *
      * @return if there is a valid token stored
      */
-    operator fun invoke(): Boolean =
+    suspend operator fun invoke(): Boolean =
         if (userStorageRepository.hasStoredUser()) {
             validateUserToken()
         } else {
@@ -32,7 +32,7 @@ class CheckIfUserIsLoggedIn(
      *
      * @return if the stored token is valid
      */
-    private fun validateUserToken(): Boolean {
+    private suspend fun validateUserToken(): Boolean {
         val token = userStorageRepository.getStoredUserToken()
         if (userApiRepository.validateUserToken(token)) {
             // TODO cache token

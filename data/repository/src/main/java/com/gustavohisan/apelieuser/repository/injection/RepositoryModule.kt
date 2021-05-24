@@ -1,15 +1,19 @@
 package com.gustavohisan.apelieuser.repository.injection
 
 import com.gustavohisan.apelieuser.domain.repository.intent.IntentRepository
+import com.gustavohisan.apelieuser.domain.repository.store.StoreRepository
 import com.gustavohisan.apelieuser.domain.repository.user.UserApiRepository
 import com.gustavohisan.apelieuser.domain.repository.user.UserStorageRepository
 import com.gustavohisan.apelieuser.repository.mapper.login.LoginErrorTypeMapper
 import com.gustavohisan.apelieuser.repository.mapper.login.LoginStateMapper
 import com.gustavohisan.apelieuser.repository.mapper.register.RegisterErrorTypeMapper
 import com.gustavohisan.apelieuser.repository.mapper.register.RegisterStateMapper
+import com.gustavohisan.apelieuser.repository.mapper.store.StoreMapper
+import com.gustavohisan.apelieuser.repository.mapper.store.StoreStateMapper
 import com.gustavohisan.apelieuser.repository.repository.intent.IntentRepositoryImpl
+import com.gustavohisan.apelieuser.repository.repository.store.StoreRepositoryImpl
 import com.gustavohisan.apelieuser.repository.repository.user.UserApiRepositoryImpl
-import com.gustavohisan.apelieuser.repository.repository.user.UserStoreRepositoryImpl
+import com.gustavohisan.apelieuser.repository.repository.user.UserStorageRepositoryImpl
 import org.koin.dsl.module
 
 /**
@@ -19,12 +23,15 @@ val repositoryModule = module {
 
     // Repository
     factory<UserApiRepository> { UserApiRepositoryImpl(get(), get(), get()) }
-    factory<UserStorageRepository> { UserStoreRepositoryImpl(get()) }
+    factory<UserStorageRepository> { UserStorageRepositoryImpl(get()) }
     factory<IntentRepository> { IntentRepositoryImpl(get()) }
+    factory<StoreRepository> { StoreRepositoryImpl(get(), get()) }
 
     // Mapper
     factory { LoginStateMapper(get()) }
     factory { LoginErrorTypeMapper() }
     factory { RegisterStateMapper(get()) }
     factory { RegisterErrorTypeMapper() }
+    factory { StoreStateMapper(get()) }
+    factory { StoreMapper() }
 }

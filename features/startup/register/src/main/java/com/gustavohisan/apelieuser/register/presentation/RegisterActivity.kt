@@ -83,25 +83,26 @@ internal class RegisterActivity : AppCompatActivity() {
         val isValidEmail = binding.registerTextfieldEmail.text.toString().isValidEmail()
         val isValidPassword = binding.registerTextfieldPassword.text.toString().isValidPassword()
         val doPasswordsMatch = binding.registerTextfieldPassword.text.toString() ==
-                binding.registerTextfieldConfirmPassword.text.toString()
+            binding.registerTextfieldConfirmPassword.text.toString()
         val isValidName = binding.registerTextfieldName.text.toString().isValidName()
 
         Timber.d(
             "validateFields - isValidEmail = $isValidEmail - " +
-                    "isValidPassWord = $isValidPassword - doPasswordsMatch = $doPasswordsMatch - " +
-                    "isValidName = $isValidName"
+                "isValidPassWord = $isValidPassword - doPasswordsMatch = $doPasswordsMatch - " +
+                "isValidName = $isValidName"
         )
 
         return when {
             isValidEmail.not() || isValidPassword.not() ||
-                    doPasswordsMatch.not() || isValidName.not() -> {
+                doPasswordsMatch.not() || isValidName.not() -> {
                 viewModel.setRegisterState(
                     RegisterState.Error(
                         listOfNotNull(
                             RegisterErrorType.INVALID_EMAIL.takeUnless { isValidEmail },
                             RegisterErrorType.INVALID_PASSWORD.takeUnless { isValidPassword },
                             RegisterErrorType.PASSWORDS_DONT_MATCH.takeUnless { doPasswordsMatch },
-                            RegisterErrorType.INVALID_NAME.takeUnless { isValidName })
+                            RegisterErrorType.INVALID_NAME.takeUnless { isValidName }
+                        )
                     )
                 )
                 false

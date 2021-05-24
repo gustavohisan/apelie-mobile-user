@@ -82,7 +82,8 @@ internal class LoginActivity : AppCompatActivity() {
                     LoginState.Error(
                         listOfNotNull(
                             LoginErrorType.INVALID_EMAIL.takeUnless { isValidEmail },
-                            LoginErrorType.INVALID_PASSWORD.takeUnless { isValidPassword })
+                            LoginErrorType.INVALID_PASSWORD.takeUnless { isValidPassword }
+                        )
                     )
                 )
                 false

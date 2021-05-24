@@ -1,13 +1,12 @@
-
 package com.gustavohisan.apelieuser.login.mapper
 
-import com.gustavohisan.apelieuser.login.model.LoginErrorType as PresentationErrorType
 import com.gustavohisan.apelieuser.domain.model.login.LoginErrorType as DomainErrorType
+import com.gustavohisan.apelieuser.login.model.LoginErrorType as PresentationErrorType
 
 /**
  * Mapper used to map an [LoginErrorType] from domain to the presentation representation.
  */
-internal class LoginErrorTypeMapper{
+internal class LoginErrorTypeMapper {
 
     /**
      * Maps a [DomainErrorType] to a [PresentationErrorType].

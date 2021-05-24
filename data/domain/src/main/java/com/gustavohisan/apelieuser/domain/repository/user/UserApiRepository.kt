@@ -16,16 +16,16 @@ interface UserApiRepository {
      *
      * @return the [LoginState] with the result
      */
-    fun validateUserLogin(email: String, password: String): LoginState
+    suspend fun validateUserLogin(email: String, password: String): LoginState
 
     /**
      * Checks if the given token is valid or not.
      *
-     * @param token a [Int] with the token to be checked
+     * @param token a [String] with the token to be checked
      *
      * @return if the token is valid
      */
-    fun validateUserToken(token: Int): Boolean
+    suspend fun validateUserToken(token: String): Boolean
 
     /**
      * Subscribes a new user in the database and returns the result state of the subscription.
@@ -36,5 +36,5 @@ interface UserApiRepository {
      *
      * @return the [RegisterState] with the result
      */
-    fun registerUser(email: String, password: String, name: String): RegisterState
+    suspend fun registerUser(email: String, password: String, name: String): RegisterState
 }

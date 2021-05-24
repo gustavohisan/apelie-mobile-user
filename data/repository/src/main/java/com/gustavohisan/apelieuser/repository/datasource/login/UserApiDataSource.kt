@@ -16,16 +16,16 @@ interface UserApiDataSource {
      *
      * @return the [LoginState] with the result
      */
-    fun validateLogin(email: String, password: String): LoginState
+    suspend fun validateLogin(email: String, password: String): LoginState
 
     /**
      * Checks if the given token is valid or not.
      *
-     * @param token a [Int] with the token to be checked
+     * @param token a [String] with the token to be checked
      *
      * @return if the token is valid
      */
-    fun validateToken(token: Int): Boolean
+    suspend fun validateToken(token: String): Boolean
 
     /**
      * Subscribes the user in the database.
@@ -36,5 +36,5 @@ interface UserApiDataSource {
      *
      * @return a [RegisterState] with the result
      */
-    fun subscribeUser(email: String, password: String, name: String): RegisterState
+    suspend fun subscribeUser(email: String, password: String, name: String): RegisterState
 }

@@ -6,6 +6,7 @@ import com.gustavohisan.apelieuser.domain.usecase.intent.LoadRegisterScreenInten
 import com.gustavohisan.apelieuser.domain.usecase.login.ValidateLogin
 import com.gustavohisan.apelieuser.domain.usecase.register.RegisterUser
 import com.gustavohisan.apelieuser.domain.usecase.splash.CheckIfUserIsLoggedIn
+import com.gustavohisan.apelieuser.domain.usecase.store.LoadMainScreenStoreList
 import org.koin.dsl.module
 
 /**
@@ -20,4 +21,5 @@ val domainModule = module {
     factory { LoadLoginScreenIntent(get()) }
     factory { LoadRegisterScreenIntent(get()) }
     factory { RegisterUser(get()) }
+    factory { LoadMainScreenStoreList(get()) }
 }

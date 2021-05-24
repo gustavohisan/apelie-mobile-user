@@ -20,12 +20,12 @@ internal class UserApiRepositoryImpl(
     private val userApiDataSource: UserApiDataSource
 ) : UserApiRepository {
 
-    override fun validateUserLogin(email: String, password: String): LoginState =
+    override suspend fun validateUserLogin(email: String, password: String): LoginState =
         loginStateMapper.toDomain(userApiDataSource.validateLogin(email, password))
 
-    override fun validateUserToken(token: Int): Boolean =
+    override suspend fun validateUserToken(token: String): Boolean =
         userApiDataSource.validateToken(token)
 
-    override fun registerUser(email: String, password: String, name: String): RegisterState =
+    override suspend fun registerUser(email: String, password: String, name: String): RegisterState =
         registerStateMapper.toDomain(userApiDataSource.subscribeUser(email, password, name))
 }

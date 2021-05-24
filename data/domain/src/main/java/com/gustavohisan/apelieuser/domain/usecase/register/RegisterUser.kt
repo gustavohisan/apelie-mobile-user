@@ -20,6 +20,6 @@ class RegisterUser(private val userApiRepository: UserApiRepository) {
      *
      * @return a [RegisterState] with the result
      */
-    operator fun invoke(email: String, password: String, name: String): RegisterState =
+    suspend operator fun invoke(email: String, password: String, name: String): RegisterState =
         userApiRepository.registerUser(email, password, name)
 }

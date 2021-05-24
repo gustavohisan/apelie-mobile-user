@@ -24,7 +24,7 @@ class ValidateLogin(
      *
      * @return a [LoginState] with the result
      */
-    operator fun invoke(email: String, password: String): LoginState {
+    suspend operator fun invoke(email: String, password: String): LoginState {
         val state = userApiRepository.validateUserLogin(email, password)
         return if (state is LoginState.Success) {
             storeToken(state.token)
@@ -36,12 +36,12 @@ class ValidateLogin(
     /**
      * Stores the given token in the device.
      *
-     * @param token a [Int] containing the user token
+     * @param token a [String] containing the user token
      *
      * @return the [LoginState] resulting in a successful validation
      */
-    private fun storeToken(token: Int): LoginState {
+    private fun storeToken(token: String): LoginState {
         userStorageRepository.storeUserToken(token)
-        return LoginState.Success(0)
+        return LoginState.Success("")
     }
 }

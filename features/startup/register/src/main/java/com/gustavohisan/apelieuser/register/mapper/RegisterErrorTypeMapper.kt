@@ -1,13 +1,12 @@
-
 package com.gustavohisan.apelieuser.register.mapper
 
-import com.gustavohisan.apelieuser.register.model.RegisterErrorType as PresentationErrorType
 import com.gustavohisan.apelieuser.domain.model.register.RegisterErrorType as DomainErrorType
+import com.gustavohisan.apelieuser.register.model.RegisterErrorType as PresentationErrorType
 
 /**
  * Mapper used to map an [RegisterErrorType] from domain to the presentation representation.
  */
-internal class RegisterErrorTypeMapper{
+internal class RegisterErrorTypeMapper {
 
     /**
      * Maps a [DomainErrorType] to a [PresentationErrorType].
