@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/store_image"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="20dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/circleImageView" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/store_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="12dp"
+        style="@style/store_name"
+        app:layout_constraintBottom_toTopOf="@id/store_category"
+        app:layout_constraintStart_toEndOf="@id/store_image"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Lucas Araujo store" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/store_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/store_category"
+        app:layout_constraintBottom_toTopOf="@id/store_address"
+        app:layout_constraintStart_toStartOf="@id/store_name"
+        app:layout_constraintTop_toBottomOf="@id/store_name"
+        tools:text="Jardinagem" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/store_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/store_address"
+        app:layout_constraintStart_toStartOf="@id/store_name"
+        app:layout_constraintTop_toBottomOf="@id/store_category"
+        tools:text="Jardinagem" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/store_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/store_rating"
+        android:drawableStart="@drawable/ic_grade"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginEnd="20dp"
+        tools:text="5.0" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

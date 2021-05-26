@@ -1,13 +1,13 @@
-package com.gustavohisan.apelieuser.api.provider
+package com.gustavohisan.apelieuser.api.factory
 
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 /**
- * Provider used to retrieve the API instance available.
+ * Factory used to retrieve the API instance available.
  */
-internal class ApiProvider {
+internal class ApiFactory {
 
     private val retrofit = Retrofit.Builder()
         .baseUrl(API_URL)

@@ -10,6 +10,7 @@ object Versions {
     const val koin = "2.2.2"
     const val retrofit = "2.9.0"
     const val gson = "2.8.6"
+    const val glide = "4.12.0"
 
     const val timber = "4.7.1"
 
@@ -18,6 +19,7 @@ object Versions {
     const val constraintLayout = "2.0.4"
     const val security = "1.0.0"
     const val navigation = "2.3.5"
+    const val fragment = "1.3.3"
 
     const val material = "1.2.1"
 }
@@ -30,6 +32,7 @@ object Deps {
     val ktlint = "com.pinterest:ktlint:${Versions.ktlint}"
     val timber = "com.jakewharton.timber:timber:${Versions.timber}"
     val gson = "com.google.code.gson:gson:${Versions.gson}"
+    val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
     val retrofit = RetrofitDeps
     val jetpack = JetpackDeps
     val google = GoogleDeps
@@ -46,6 +49,7 @@ object JetpackDeps {
     val navigationFragment =
         "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
+    val fragment = "androidx.fragment:fragment-ktx:${Versions.fragment}"
 }
 
 object GoogleDeps {

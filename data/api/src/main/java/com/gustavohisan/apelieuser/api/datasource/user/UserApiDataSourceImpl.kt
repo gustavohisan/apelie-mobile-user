@@ -9,7 +9,7 @@ import com.gustavohisan.apelieuser.api.model.login.LoginUserData
 import com.gustavohisan.apelieuser.api.model.register.RegisterErrorType
 import com.gustavohisan.apelieuser.api.model.register.RegisterState
 import com.gustavohisan.apelieuser.api.model.register.RegisterUserData
-import com.gustavohisan.apelieuser.api.provider.ApiProvider
+import com.gustavohisan.apelieuser.api.factory.ApiFactory
 import com.gustavohisan.apelieuser.repository.datasource.login.UserApiDataSource
 import timber.log.Timber
 import com.gustavohisan.apelieuser.repository.model.login.LoginState as RepoLoginState
@@ -18,17 +18,17 @@ import com.gustavohisan.apelieuser.repository.model.register.RegisterState as Re
 /**
  * Implementation of [UserApiDataSource].
  *
- * @param apiProvider provider used to provide the retrofit instance
+ * @param apiFactory factory used to provide the retrofit instance
  * @param loginStateMapper mapper used to map the login state
  * @param registerStateMapper mapper used to map the register state
  */
 internal class UserApiDataSourceImpl(
-    apiProvider: ApiProvider,
+    apiFactory: ApiFactory,
     private val loginStateMapper: LoginStateMapper,
     private val registerStateMapper: RegisterStateMapper
 ) : UserApiDataSource {
 
-    private val endpoint = apiProvider.getRetrofitInstance().create(UserEndpoints::class.java)
+    private val endpoint = apiFactory.getRetrofitInstance().create(UserEndpoints::class.java)
 
     override suspend fun validateLogin(email: String, password: String): RepoLoginState {
         val callback = endpoint.validateUserLogin(LoginUserData(email, password))
