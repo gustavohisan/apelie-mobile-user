@@ -24,6 +24,7 @@ internal class StoreMapper {
             theme = domainStore.theme,
             city = domainStore.city,
             name = domainStore.name,
-            rating = domainStore.rating
+            rating = domainStore.rating,
+            logoUrl = domainStore.logoUrl
         )
 }

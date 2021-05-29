@@ -11,6 +11,7 @@ package com.gustavohisan.apelieuser.repository.model.store
  * @param city the store city address
  * @param name the store name
  * @param rating the rating of the store
+ * @param logoUrl the image url for the store logo
  */
 data class Store(
     val storeId: Int,
@@ -20,5 +21,6 @@ data class Store(
     val theme: String,
     val city: String,
     val name: String,
-    val rating: Float
+    val rating: Float,
+    val logoUrl: String
 )

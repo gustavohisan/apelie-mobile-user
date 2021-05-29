@@ -13,6 +13,7 @@ import com.google.gson.annotations.SerializedName
  * @param city the store city address
  * @param name the store name
  * @param rating the rating of the store
+ * @param logoUrl the image url for the store logo
  */
 data class Store(
     @SerializedName("storeId")
@@ -30,5 +31,7 @@ data class Store(
     @SerializedName("name")
     val name: String,
     @SerializedName("rating")
-    val rating: Float
+    val rating: Float,
+    @SerializedName("logoUrl")
+    val logoUrl: String
 )

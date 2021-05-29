@@ -39,7 +39,7 @@ internal class HomeStoreListAdapter : RecyclerView.Adapter<HomeStoreListViewHold
         binding.storeCategory.text = storeData.theme
         binding.storeRating.text = storeData.rating.toString()
         Glide.with(holder.itemView)
-            .load(storeData.bannerUrl)
+            .load(storeData.logoUrl)
             .into(binding.storeImage)
     }
 

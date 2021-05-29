@@ -24,6 +24,7 @@ internal class StoreMapper {
             theme = repositoryStore.theme,
             city = repositoryStore.city,
             name = repositoryStore.name,
-            rating = repositoryStore.rating
+            rating = repositoryStore.rating,
+            logoUrl = repositoryStore.logoUrl
         )
 }
