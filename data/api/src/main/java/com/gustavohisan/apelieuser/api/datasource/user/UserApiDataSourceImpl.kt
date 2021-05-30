@@ -32,7 +32,7 @@ internal class UserApiDataSourceImpl(
 
     override suspend fun validateLogin(email: String, password: String): RepoLoginState {
         val callback = endpoint.validateUserLogin(LoginUserData(email, password))
-        Timber.d("validateToken - requestCode = ${callback.code()}")
+        Timber.d("validateLogin - requestCode = ${callback.code()}")
         return loginStateMapper.toRepo(
             when (callback.code()) {
                 403 -> LoginState.Error(LoginErrorType.WRONG_PASSWORD)
