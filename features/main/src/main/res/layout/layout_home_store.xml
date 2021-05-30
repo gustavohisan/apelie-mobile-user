@@ -33,6 +33,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/circleImageView"
         android:cropToPadding="true"
+        android:background="@android:color/white"
         tools:background="@color/design_default_color_secondary"/>
 
     <com.google.android.material.textview.MaterialTextView
