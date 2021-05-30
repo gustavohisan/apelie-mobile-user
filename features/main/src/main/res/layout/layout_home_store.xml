@@ -3,31 +3,52 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
+    android:layout_height="270dp"
     android:clickable="true"
     android:foreground="?android:attr/selectableItemBackground">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/store_image"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="20dp"
+        android:id="@+id/banner_image"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.5"
+        tools:background="@android:color/darker_gray"/>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/store_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="10dp"
+        android:scaleType="centerCrop"
+        app:strokeColor="@android:color/white"
+        app:strokeWidth="3dp"
+        android:padding="2dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/circleImageView" />
+        app:shapeAppearanceOverlay="@style/circleImageView"
+        android:cropToPadding="true"
+        tools:background="@color/design_default_color_secondary"/>
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/store_name"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:ellipsize="end"
+        android:maxLines="1"
         style="@style/store_name"
         app:layout_constraintBottom_toTopOf="@id/store_category"
         app:layout_constraintStart_toEndOf="@id/store_image"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/store_rating"
+        app:layout_constraintTop_toBottomOf="@+id/banner_image"
         tools:text="Lucas Araujo store" />
 
     <com.google.android.material.textview.MaterialTextView
@@ -42,12 +63,15 @@
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/store_address"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        app:layout_constraintEnd_toEndOf="@id/store_rating"
         style="@style/store_address"
         app:layout_constraintStart_toStartOf="@id/store_name"
         app:layout_constraintTop_toBottomOf="@id/store_category"
-        tools:text="Jardinagem" />
+        tools:text="Rio de Janeiro - RJ" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/store_rating"
@@ -55,10 +79,49 @@
         android:layout_height="wrap_content"
         style="@style/store_rating"
         android:drawableStart="@drawable/ic_grade"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/store_name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginEnd="20dp"
         tools:text="5.0" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/product_one_image"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/product_two_image"
+        app:layout_constraintTop_toBottomOf="@id/store_image"
+        app:shapeAppearanceOverlay="@style/circleImageView"
+        android:cropToPadding="true"
+        tools:background="@color/design_default_color_secondary"/>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/product_two_image"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="10dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toEndOf="@id/product_one_image"
+        app:layout_constraintEnd_toStartOf="@id/product_three_image"
+        app:layout_constraintTop_toTopOf="@+id/product_one_image"
+        app:shapeAppearanceOverlay="@style/circleImageView"
+        android:cropToPadding="true"
+        tools:background="@color/design_default_color_secondary"/>
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/product_three_image"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginBottom="10dp"
+        android:scaleType="centerCrop"
+        app:layout_constraintStart_toEndOf="@+id/product_two_image"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/product_one_image"
+        app:shapeAppearanceOverlay="@style/circleImageView"
+        android:cropToPadding="true"
+        tools:background="@color/design_default_color_secondary"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

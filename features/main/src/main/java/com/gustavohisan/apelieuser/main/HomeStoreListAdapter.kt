@@ -41,6 +41,18 @@ internal class HomeStoreListAdapter : RecyclerView.Adapter<HomeStoreListViewHold
         Glide.with(holder.itemView)
             .load(storeData.logoUrl)
             .into(binding.storeImage)
+        Glide.with(holder.itemView)
+            .load(storeData.bannerUrl)
+            .into(binding.bannerImage)
+        Glide.with(holder.itemView)
+            .load(storeData.logoUrl)
+            .into(binding.productOneImage)
+        Glide.with(holder.itemView)
+            .load(storeData.logoUrl)
+            .into(binding.productTwoImage)
+        Glide.with(holder.itemView)
+            .load(storeData.logoUrl)
+            .into(binding.productThreeImage)
     }
 
     override fun getItemCount(): Int = storeList.count()
