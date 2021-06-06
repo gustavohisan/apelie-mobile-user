@@ -11,6 +11,19 @@ internal class HomeStoreListAdapter : RecyclerView.Adapter<HomeStoreListViewHold
 
     private val storeList: MutableList<Store> = ArrayList()
 
+    private val imageList = listOf(
+        R.mipmap.image1,
+        R.mipmap.image2,
+        R.mipmap.image3,
+        R.mipmap.image4,
+        R.mipmap.image5,
+        R.mipmap.image6,
+        R.mipmap.image7,
+        R.mipmap.image8,
+        R.mipmap.image9,
+        R.mipmap.image10
+    )
+
     fun addItems(items: List<Store>) {
         storeList.clear()
         storeList.addAll(items)
@@ -47,15 +60,15 @@ internal class HomeStoreListAdapter : RecyclerView.Adapter<HomeStoreListViewHold
             .error(R.mipmap.placeholder_banner)
             .into(binding.bannerImage)
         Glide.with(holder.itemView)
-            .load(storeData.logoUrl)
+            .load(imageList.random())
             .error(R.mipmap.placeholder_banner)
             .into(binding.productOneImage)
         Glide.with(holder.itemView)
-            .load(storeData.logoUrl)
+            .load(imageList.random())
             .error(R.mipmap.placeholder_banner)
             .into(binding.productTwoImage)
         Glide.with(holder.itemView)
-            .load(storeData.logoUrl)
+            .load(imageList.random())
             .error(R.mipmap.placeholder_banner)
             .into(binding.productThreeImage)
     }
