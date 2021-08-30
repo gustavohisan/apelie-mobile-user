@@ -1,6 +1,6 @@
 object Versions {
-    const val compileSdk = 30
-    const val targetSdk = 30
+    const val compileSdk = 31
+    const val targetSdk = 31
     const val minSdk = 26
 
     const val gradle = "4.1.3"
@@ -20,6 +20,7 @@ object Versions {
     const val security = "1.0.0"
     const val navigation = "2.3.5"
     const val fragment = "1.3.3"
+    const val splashScreen = "1.0.0-alpha01"
 
     const val material = "1.2.1"
 }
@@ -50,6 +51,7 @@ object JetpackDeps {
         "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}"
     val navigationUi = "androidx.navigation:navigation-ui-ktx:${Versions.navigation}"
     val fragment = "androidx.fragment:fragment-ktx:${Versions.fragment}"
+    val splashScreen = "androidx.core:core-splashscreen:${Versions.splashScreen}"
 }
 
 object GoogleDeps {

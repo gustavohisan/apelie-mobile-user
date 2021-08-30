@@ -23,15 +23,15 @@ android {
 }
 
 dependencies {
-    implementation project(":data:domain")
-    implementation project(":data:repository")
-    implementation project(":data:api")
-    implementation project(":data:sharedpreferences")
-    implementation project(":data:memory")
-    implementation project(":features:startup:splash")
-    implementation project(":features:startup:login")
-    implementation project(":features:startup:register")
-    implementation project(":features:main")
+//    implementation project(":data:domain")
+//    implementation project(":data:repository")
+//    implementation project(":data:api")
+//    implementation project(":data:sharedpreferences")
+//    implementation project(":data:memory")
+//    implementation project(":features:startup:splash")
+//    implementation project(":features:startup:login")
+//    implementation project(":features:startup:register")
+//    implementation project(":features:main")
 
     implementation Deps.kotlin
     implementation Deps.jetpack.ktx
@@ -39,4 +39,5 @@ dependencies {
     implementation Deps.google.material
     implementation Deps.koin.core
     implementation Deps.timber
+    implementation Deps.jetpack.splashScreen
 }
