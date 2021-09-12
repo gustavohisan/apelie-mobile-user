@@ -21,4 +21,6 @@ internal sealed class RegisterState {
      * @param errorTypeList list of the errors that were given
      */
     data class Error(val errorTypeList: List<RegisterErrorType>) : RegisterState()
+
+    object Default : RegisterState()
 }

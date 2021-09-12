@@ -3,11 +3,12 @@ object Versions {
     const val targetSdk = 31
     const val minSdk = 26
 
-    const val gradle = "4.1.3"
-    const val kotlin = "1.4.31"
+    const val gradle = "7.0.2"
+    const val kotlin = "1.5.30"
+    const val coroutines = "1.5.2"
     const val detekt = "1.14.0"
     const val ktlint = "0.41.0"
-    const val koin = "2.2.2"
+    const val koin = "3.1.2"
     const val retrofit = "2.9.0"
     const val gson = "2.8.6"
     const val glide = "4.12.0"
@@ -23,12 +24,18 @@ object Versions {
     const val splashScreen = "1.0.0-alpha01"
 
     const val material = "1.2.1"
+
+    const val compose = "1.1.0-alpha03"
+    const val composeActivity = "1.3.0-rc02"
+    const val composeViewModel = "1.0.0-alpha07"
+    const val composeNavigation = "2.4.0-alpha06"
 }
 
 object Deps {
     val gradle = "com.android.tools.build:gradle:${Versions.gradle}"
     val kotlinGradle = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
+    val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.coroutines}"
     val detekt = "io.gitlab.arturbosch.detekt:detekt-cli:${Versions.detekt}"
     val ktlint = "com.pinterest:ktlint:${Versions.ktlint}"
     val timber = "com.jakewharton.timber:timber:${Versions.timber}"
@@ -38,6 +45,7 @@ object Deps {
     val jetpack = JetpackDeps
     val google = GoogleDeps
     val koin = KoinDeps
+    val compose = ComposeDeps
 }
 
 object JetpackDeps {
@@ -64,6 +72,23 @@ object RetrofitDeps {
 }
 
 object KoinDeps {
-    val core = "org.koin:koin-android:${Versions.koin}"
-    val viewModel = "org.koin:koin-androidx-viewmodel:${Versions.koin}"
+    val core = "io.insert-koin:koin-core:${Versions.koin}"
+    val android = "io.insert-koin:koin-android:${Versions.koin}"
+    val compose = "io.insert-koin:koin-androidx-compose:${Versions.koin}"
+}
+
+object ComposeDeps {
+    val core = "androidx.compose.ui:ui:${Versions.compose}"
+    val compiler = "androidx.compose:compose-compiler:${Versions.compose}"
+    val tooling = "androidx.compose.ui:ui-tooling:${Versions.compose}"
+    val foundation = "androidx.compose.foundation:foundation:${Versions.compose}"
+    val material = "androidx.compose.material:material:${Versions.compose}"
+    val materialIconsCore = "androidx.compose.material:material-icons-core:${Versions.compose}"
+    val materialIconsExtended =
+        "androidx.compose.material:material-icons-extended:${Versions.compose}"
+    val navigation = "androidx.navigation:navigation-compose:${Versions.composeNavigation}"
+    val activity = "androidx.activity:activity-compose:${Versions.composeActivity}"
+    val viewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.composeViewModel}"
+    val liveData = "androidx.compose.runtime:runtime-livedata:${Versions.compose}"
+    val test = "androidx.compose.ui:ui-test-junit4:${Versions.compose}"
 }

@@ -19,5 +19,9 @@ internal class RegisterErrorTypeMapper {
         when (domainErrorType) {
             DomainErrorType.ALREADY_SUBSCRIBED -> PresentationErrorType.ALREADY_SUBSCRIBED
             DomainErrorType.SERVER_UNAVAILABLE -> PresentationErrorType.SERVER_UNAVAILABLE
+            DomainErrorType.INVALID_NAME -> PresentationErrorType.INVALID_NAME
+            DomainErrorType.PASSWORDS_DONT_MATCH -> PresentationErrorType.PASSWORDS_DONT_MATCH
+            DomainErrorType.INVALID_EMAIL -> PresentationErrorType.INVALID_EMAIL
+            DomainErrorType.INVALID_PASSWORD -> PresentationErrorType.INVALID_PASSWORD
         }
 }

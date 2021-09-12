@@ -6,5 +6,7 @@ package com.gustavohisan.apelieuser.domain.model.login
 enum class LoginErrorType {
     WRONG_PASSWORD,
     NOT_SUBSCRIBED,
-    SERVER_UNAVAILABLE
+    SERVER_UNAVAILABLE,
+    INVALID_EMAIL,
+    INVALID_PASSWORD
 }

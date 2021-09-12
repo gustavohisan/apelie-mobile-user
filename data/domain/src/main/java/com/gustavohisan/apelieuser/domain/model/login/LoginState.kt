@@ -18,5 +18,5 @@ sealed class LoginState {
      *
      * @param errorType type of the error that was given
      */
-    data class Error(val errorType: LoginErrorType) : LoginState()
+    data class Error(val errorType: List<LoginErrorType>) : LoginState()
 }

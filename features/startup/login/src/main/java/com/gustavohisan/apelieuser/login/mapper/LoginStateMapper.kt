@@ -21,11 +21,9 @@ internal class LoginStateMapper(private val errorTypeMapper: LoginErrorTypeMappe
         when (domainState) {
             is DomainState.Success -> PresentationState.Success
             is DomainState.Error -> PresentationState.Error(
-                listOf(
-                    errorTypeMapper.toPresentation(
-                        domainState.errorType
-                    )
-                )
+                domainState.errorType.map { errorType ->
+                    errorTypeMapper.toPresentation(errorType)
+                }
             )
         }
 }

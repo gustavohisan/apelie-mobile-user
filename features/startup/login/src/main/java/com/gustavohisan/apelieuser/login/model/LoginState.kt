@@ -21,4 +21,6 @@ internal sealed class LoginState {
      * @param errorTypeList list of the errors that were given
      */
     data class Error(val errorTypeList: List<LoginErrorType>) : LoginState()
+
+    object Default : LoginState()
 }

@@ -10,6 +10,10 @@ android {
         targetSdkVersion Versions.targetSdk
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 repositories {
@@ -19,4 +23,5 @@ repositories {
 
 dependencies {
     implementation Deps.kotlin
+    implementation Deps.coroutines
 }

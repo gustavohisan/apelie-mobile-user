@@ -34,25 +34,21 @@ internal class RegisterViewModel(
      * @param password a [String] containing the password
      * @param name a [String] containing the name
      */
-    fun registerNewUser(email: String, password: String, name: String) {
+    fun registerNewUser(email: String, password: String, name: String, confirmPassword: String) {
         Timber.d("registerNewUser - email = $email - password = $password - name = $name")
 
         _registerState.value = RegisterState.Checking
         viewModelScope.launch {
             _registerState.postValue(
-                registerStateMapper.toPresentation(registerUser(email, password, name))
+                registerStateMapper.toPresentation(
+                    registerUser(
+                        email,
+                        password,
+                        name,
+                        confirmPassword
+                    )
+                )
             )
         }
-    }
-
-    /**
-     * Updates the register state with the given param.
-     *
-     * @param eventState the new [RegisterState]
-     */
-    fun setRegisterState(eventState: RegisterState) {
-        Timber.d("setRegisterState - eventState = $eventState")
-
-        _registerState.value = eventState
     }
 }

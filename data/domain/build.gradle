@@ -2,6 +2,8 @@ apply plugin: 'com.android.library'
 apply from: "$rootDir/config/android_dependencies.gradle"
 
 dependencies {
+    implementation project(":libraries:core")
+
     implementation Deps.koin.core
     implementation Deps.timber
 }

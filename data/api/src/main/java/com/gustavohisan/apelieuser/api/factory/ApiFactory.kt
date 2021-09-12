@@ -35,6 +35,6 @@ internal class ApiFactory(private val networkInterceptor: NetworkInterceptor) {
     private companion object {
 
         private const val API_URL =
-            "http://ec2-54-232-70-145.sa-east-1.compute.amazonaws.com:8080/api/"
+            "https://shrouded-springs-20631.herokuapp.com"
     }
 }

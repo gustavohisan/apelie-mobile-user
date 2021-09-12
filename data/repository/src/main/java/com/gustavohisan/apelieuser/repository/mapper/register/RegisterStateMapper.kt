@@ -21,8 +21,8 @@ internal class RegisterStateMapper(private val errorTypeMapper: RegisterErrorTyp
         when (repositoryState) {
             is RepositoryState.Success -> DomainState.Success
             is RepositoryState.Error -> DomainState.Error(
-                errorTypeMapper.toDomain(
-                    repositoryState.errorType
+                listOf(
+                    errorTypeMapper.toDomain(repositoryState.errorType)
                 )
             )
         }

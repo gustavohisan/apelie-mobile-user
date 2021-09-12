@@ -20,5 +20,7 @@ internal class LoginErrorTypeMapper {
             DomainErrorType.WRONG_PASSWORD -> PresentationErrorType.WRONG_PASSWORD
             DomainErrorType.NOT_SUBSCRIBED -> PresentationErrorType.NOT_SUBSCRIBED
             DomainErrorType.SERVER_UNAVAILABLE -> PresentationErrorType.SERVER_UNAVAILABLE
+            DomainErrorType.INVALID_PASSWORD -> PresentationErrorType.INVALID_PASSWORD
+            DomainErrorType.INVALID_EMAIL -> PresentationErrorType.INVALID_EMAIL
         }
 }

@@ -1,18 +1,25 @@
 apply plugin: 'com.android.library'
 apply from: "$rootDir/config/android_dependencies.gradle"
+apply from: "$rootDir/config/compose_dependencies.gradle"
 apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
     viewBinding {
         enabled = true
     }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 dependencies {
     implementation project(":data:domain")
+    implementation project(":libraries:navigation")
+    implementation project(":libraries:design")
 
+    implementation Deps.koin.android
+    implementation Deps.koin.compose
     implementation Deps.koin.core
-    implementation Deps.koin.viewModel
     implementation Deps.timber
     implementation Deps.google.material
     implementation Deps.jetpack.appcompat
@@ -21,4 +28,6 @@ dependencies {
     implementation Deps.jetpack.navigationFragment
     implementation Deps.jetpack.fragment
     implementation Deps.glide
+    implementation Deps.compose.navigation
+    implementation Deps.compose.liveData
 }

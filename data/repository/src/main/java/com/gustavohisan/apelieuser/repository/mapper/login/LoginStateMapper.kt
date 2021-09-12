@@ -21,8 +21,8 @@ internal class LoginStateMapper(private val errorTypeMapper: LoginErrorTypeMappe
         when (repositoryState) {
             is RepositoryState.Success -> DomainState.Success(repositoryState.token)
             is RepositoryState.Error -> DomainState.Error(
-                errorTypeMapper.toDomain(
-                    repositoryState.errorType
+                listOf(
+                    errorTypeMapper.toDomain(repositoryState.errorType)
                 )
             )
         }

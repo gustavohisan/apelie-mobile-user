@@ -5,6 +5,7 @@ dependencies {
     implementation project(":data:repository")
 
     implementation Deps.koin.core
+    implementation Deps.koin.android
     implementation Deps.jetpack.security
     implementation Deps.timber
 }

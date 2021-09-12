@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply from: "$rootDir/config/android_dependencies.gradle"
+apply from: "$rootDir/config/compose_dependencies.gradle"
 
 android {
     viewBinding {
@@ -10,11 +11,15 @@ android {
 dependencies {
     implementation project(":data:domain")
     implementation project(":libraries:core")
+    implementation project(":libraries:design")
 
     implementation Deps.google.material
     implementation Deps.jetpack.appcompat
     implementation Deps.jetpack.constraintLayout
     implementation Deps.koin.core
-    implementation Deps.koin.viewModel
+    implementation Deps.koin.android
+    implementation Deps.koin.compose
     implementation Deps.timber
+    implementation Deps.compose.navigation
+    implementation Deps.compose.liveData
 }

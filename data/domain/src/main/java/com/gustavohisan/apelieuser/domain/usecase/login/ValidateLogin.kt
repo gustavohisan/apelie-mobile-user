@@ -1,5 +1,8 @@
 package com.gustavohisan.apelieuser.domain.usecase.login
 
+import com.gustavohisan.apelieuser.core.extensions.isValidEmail
+import com.gustavohisan.apelieuser.core.extensions.isValidPassword
+import com.gustavohisan.apelieuser.domain.model.login.LoginErrorType
 import com.gustavohisan.apelieuser.domain.model.login.LoginState
 import com.gustavohisan.apelieuser.domain.repository.user.UserApiRepository
 import com.gustavohisan.apelieuser.domain.repository.user.UserStorageRepository
@@ -25,6 +28,10 @@ class ValidateLogin(
      * @return a [LoginState] with the result
      */
     suspend operator fun invoke(email: String, password: String): LoginState {
+        val errors = checkFields(email, password)
+        if (errors.isNotEmpty()) {
+            return LoginState.Error(errors)
+        }
         val state = userApiRepository.validateUserLogin(email, password)
         return if (state is LoginState.Success) {
             storeToken(state.token)
@@ -43,5 +50,16 @@ class ValidateLogin(
     private fun storeToken(token: String): LoginState {
         userStorageRepository.storeUserToken(token)
         return LoginState.Success("")
+    }
+
+    private fun checkFields(email: String, password: String): List<LoginErrorType> {
+        val errors: MutableList<LoginErrorType> = mutableListOf()
+        if (email.isValidEmail().not()) {
+            errors.add(LoginErrorType.INVALID_EMAIL)
+        }
+        if (password.isValidPassword().not()) {
+            errors.add(LoginErrorType.INVALID_PASSWORD)
+        }
+        return errors
     }
 }

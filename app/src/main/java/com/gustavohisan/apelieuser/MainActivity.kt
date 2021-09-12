@@ -4,20 +4,28 @@ import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.View
 import android.view.animation.AnticipateInterpolator
-import androidx.appcompat.app.AppCompatActivity
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
 import androidx.core.animation.doOnEnd
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.gustavohisan.apelieuser.design.ApelieTheme
+import com.gustavohisan.apelieuser.navigation.NavGraph
 import timber.log.Timber
 
 /**
  * Application main activity.
  */
-internal class MainActivity : AppCompatActivity() {
+internal class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setupSplashScreen()
+        setContent {
+            ApelieTheme {
+                NavGraph()
+            }
+        }
     }
 
     private fun setupSplashScreen() {

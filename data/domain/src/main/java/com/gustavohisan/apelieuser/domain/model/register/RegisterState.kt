@@ -15,5 +15,5 @@ sealed class RegisterState {
      *
      * @param errorType the error that occurred when trying to subscribe the user
      */
-    data class Error(val errorType: RegisterErrorType) : RegisterState()
+    data class Error(val errorType: List<RegisterErrorType>) : RegisterState()
 }

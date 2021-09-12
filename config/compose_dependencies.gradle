@@ -1,0 +1,17 @@
+android {
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = Versions.compose
+    }
+}
+
+dependencies {
+    implementation Deps.compose.core
+    implementation Deps.compose.material
+    implementation Deps.compose.tooling
+    implementation Deps.compose.materialIconsCore
+    implementation Deps.compose.materialIconsExtended
+}
