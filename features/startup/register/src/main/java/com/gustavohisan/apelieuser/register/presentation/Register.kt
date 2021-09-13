@@ -22,6 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.gustavohisan.apelieuser.design.ApelieTheme
 import com.gustavohisan.apelieuser.design.mainBlue
+import com.gustavohisan.apelieuser.design.textGrey
 import com.gustavohisan.apelieuser.register.R
 import com.gustavohisan.apelieuser.register.model.RegisterErrorType
 import com.gustavohisan.apelieuser.register.model.RegisterState
@@ -126,9 +127,10 @@ private fun RegisterScaffold(
                 .fillMaxSize()
                 .padding(horizontal = 25.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
+            verticalArrangement = Arrangement.Top,
         ) {
             OutlinedTextField(
+                modifier = Modifier.padding(top = 20.dp),
                 value = name,
                 onValueChange = { value -> setName(value) },
                 singleLine = true,
@@ -140,6 +142,7 @@ private fun RegisterScaffold(
             )
             if (hasNameError) {
                 Text(
+                    modifier = Modifier.fillMaxWidth(),
                     text = nameErrorMessage,
                     color = MaterialTheme.colors.error,
                     style = MaterialTheme.typography.caption,
@@ -158,6 +161,7 @@ private fun RegisterScaffold(
             )
             if (hasEmailError) {
                 Text(
+                    modifier = Modifier.fillMaxWidth(),
                     text = emailErrorMessage,
                     color = MaterialTheme.colors.error,
                     style = MaterialTheme.typography.caption,
@@ -178,6 +182,7 @@ private fun RegisterScaffold(
             )
             if (hasPasswordError) {
                 Text(
+                    modifier = Modifier.fillMaxWidth(),
                     text = passwordErrorMessage,
                     color = MaterialTheme.colors.error,
                     style = MaterialTheme.typography.caption,
@@ -198,6 +203,7 @@ private fun RegisterScaffold(
             )
             if (hasConfirmPasswordError) {
                 Text(
+                    modifier = Modifier.fillMaxWidth(),
                     text = confirmPasswordErrorMessage,
                     color = MaterialTheme.colors.error,
                     style = MaterialTheme.typography.caption,
@@ -205,7 +211,7 @@ private fun RegisterScaffold(
             }
             Button(
                 modifier = Modifier
-                    .padding(bottom = 20.dp, top = 20.dp)
+                    .padding(top = 20.dp)
                     .fillMaxWidth(),
                 onClick = { viewModel.registerNewUser(email, password, name, confirmPassword) },
                 enabled = isRegistering.not()
@@ -228,7 +234,7 @@ private fun RegisterTopBar(
         title = {
             Text(
                 text = stringResource(R.string.register_toolbar_title),
-                color = mainBlue
+                color = textGrey
             )
         },
         navigationIcon = {

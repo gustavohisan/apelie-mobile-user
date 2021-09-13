@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.gustavohisan.apelieuser.checkin.presentation.Checkin
 import com.gustavohisan.apelieuser.login.presentation.Login
+import com.gustavohisan.apelieuser.main.presentation.Home
 import com.gustavohisan.apelieuser.register.presentation.Register
 
 @Composable
@@ -35,6 +36,10 @@ fun NavGraph(startDestination: String = Destinations.CHECKIN_ROUTE) {
                 onBackPressed = actions.openLoginScreen,
                 onRegisterNewUser = actions.openMainScreen
             )
+        }
+
+        composable(Destinations.HOME_ROUTE) {
+            Home()
         }
     }
 }

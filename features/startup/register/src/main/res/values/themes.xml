@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <!-- Default screen theme -->
-    <style name="DefaultTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <item name="colorPrimary">@color/register_color_primary</item>
-        <item name="colorPrimaryDark">@color/register_color_primary_dark</item>
-    </style>
-</resources>

@@ -54,9 +54,7 @@ internal class UserApiDataSourceImpl(
         password: String,
         name: String
     ): RepoRegisterState {
-        val callback = endpoint.insertUser(
-            RegisterUserData(name, email, password, "Masculino", "2021-05-24")
-        )
+        val callback = endpoint.insertUser(RegisterUserData(name, email, password, ""))
         Timber.d("subscribeUser - requestCode = ${callback.code()}")
         return registerStateMapper.toRepo(
             when (callback.code()) {

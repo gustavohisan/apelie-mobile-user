@@ -6,7 +6,7 @@ internal data class NavActions(val navController: NavHostController) {
 
     val openMainScreen: () -> Unit = {
         navController.navigate(Destinations.HOME_ROUTE) {
-            popUpTo(Destinations.CHECKIN_ROUTE) { inclusive = true }
+            popUpTo(0)
         }
     }
 

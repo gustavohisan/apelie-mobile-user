@@ -6,13 +6,11 @@ package com.gustavohisan.apelieuser.api.model.register
  * @param fullName the user full name
  * @param email the user email
  * @param password the user password
- * @param gender the user gender
- * @param birthDate the user birth date
+ * @param photo the user photo
  */
 data class RegisterUserData(
     val fullName: String,
     val email: String,
     val password: String,
-    val gender: String,
-    val birthDate: String
+    val photo: String
 )

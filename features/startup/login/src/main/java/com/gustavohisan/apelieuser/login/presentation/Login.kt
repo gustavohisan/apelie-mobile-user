@@ -89,7 +89,7 @@ private fun LoginScaffold(
                     }
                     LoginErrorType.WRONG_PASSWORD -> {
                         hasPasswordError = true
-                        loginErrorMessage = stringResource(R.string.login_error_invalid_password)
+                        passwordErrorMessage = stringResource(R.string.login_error_invalid_password)
                     }
                 }
             }
@@ -131,6 +131,7 @@ private fun LoginScaffold(
             )
             if (hasLoginError) {
                 Text(
+                    modifier = Modifier.fillMaxWidth(),
                     text = loginErrorMessage,
                     color = MaterialTheme.colors.error,
                     style = MaterialTheme.typography.caption,
@@ -151,6 +152,7 @@ private fun LoginScaffold(
             )
             if (hasPasswordError) {
                 Text(
+                    modifier = Modifier.fillMaxWidth(),
                     text = passwordErrorMessage,
                     color = MaterialTheme.colors.error,
                     style = MaterialTheme.typography.caption,
