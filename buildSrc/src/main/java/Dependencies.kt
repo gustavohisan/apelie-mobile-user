@@ -29,6 +29,8 @@ object Versions {
     const val composeActivity = "1.3.0-rc02"
     const val composeViewModel = "1.0.0-alpha07"
     const val composeNavigation = "2.4.0-alpha06"
+    const val accompanist = "0.18.0"
+    const val coil = "1.3.2"
 }
 
 object Deps {
@@ -91,4 +93,6 @@ object ComposeDeps {
     val viewModel = "androidx.lifecycle:lifecycle-viewmodel-compose:${Versions.composeViewModel}"
     val liveData = "androidx.compose.runtime:runtime-livedata:${Versions.compose}"
     val test = "androidx.compose.ui:ui-test-junit4:${Versions.compose}"
+    val placeholder = "com.google.accompanist:accompanist-placeholder:${Versions.accompanist}"
+    val coil = "io.coil-kt:coil-compose:${Versions.coil}"
 }

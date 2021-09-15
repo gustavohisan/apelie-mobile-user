@@ -4,7 +4,6 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
-import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
@@ -26,7 +25,6 @@ private fun HomeLoader() {
     HomeScaffold(
         navController = navController,
         actions = actions,
-        onSectionClicked = actions.onSectionClicked,
         currentRoute = currentRoute(navController),
         sections = sections
     )
@@ -36,14 +34,13 @@ private fun HomeLoader() {
 internal fun HomeScaffold(
     navController: NavHostController,
     actions: HomeNavActions,
-    onSectionClicked: (String) -> Unit,
     currentRoute: String?,
     sections: List<HomeSections>
 ) {
     Scaffold(
         bottomBar = {
             MainBottomBar(
-                onSectionClicked = onSectionClicked,
+                onSectionClicked = actions.onSectionClicked,
                 sections = sections,
                 currentRoute = currentRoute
             )

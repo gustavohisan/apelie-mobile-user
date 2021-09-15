@@ -1,9 +1,9 @@
-package com.gustavohisan.apelieuser.main.model
+package com.gustavohisan.apelieuser.feed.model
 
 /**
  * Representation of the store state.
  */
-sealed class StoreState {
+internal sealed class StoreState {
 
     /**
      * Represents the store state when the list of stores was successfully retrieved.
@@ -16,4 +16,6 @@ sealed class StoreState {
      * Represents the store state when there was an server error retrieving the store list.
      */
     data class Error(val errorType: StoreErrorType) : StoreState()
+
+    object Loading: StoreState()
 }

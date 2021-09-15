@@ -1,7 +1,7 @@
-package com.gustavohisan.apelieuser.main.mapper
+package com.gustavohisan.apelieuser.feed.mapper
 
 import com.gustavohisan.apelieuser.domain.model.store.Store as DomainStore
-import com.gustavohisan.apelieuser.main.model.Store as PresentationStore
+import com.gustavohisan.apelieuser.feed.model.Store as PresentationStore
 
 /**
  * Mapper used to map a store from domain to the presentation representation.
@@ -21,7 +21,8 @@ internal class StoreMapper {
             category = domainStore.category,
             state = domainStore.state,
             bannerUrl = domainStore.bannerUrl,
-            theme = domainStore.theme,
+            primaryColor = domainStore.primaryColor,
+            secondaryColor = domainStore.secondaryColor,
             city = domainStore.city,
             name = domainStore.name,
             rating = domainStore.rating,

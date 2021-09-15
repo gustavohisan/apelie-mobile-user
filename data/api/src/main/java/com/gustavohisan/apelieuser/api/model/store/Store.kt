@@ -9,7 +9,8 @@ import com.google.gson.annotations.SerializedName
  * @param category the category of the store
  * @param state the state address of the store
  * @param bannerUrl the image url for the store banner
- * @param theme the store theme
+ * @param primaryColor the store primary color
+ * @param secondaryColor the store secondary color
  * @param city the store city address
  * @param name the store name
  * @param rating the rating of the store
@@ -19,13 +20,15 @@ data class Store(
     @SerializedName("storeId")
     val storeId: Int,
     @SerializedName("category")
-    val category: String,
+    val category: List<String>,
     @SerializedName("state")
     val state: String,
     @SerializedName("bannerUrl")
     val bannerUrl: String,
-    @SerializedName("theme")
-    val theme: String,
+    @SerializedName("primaryColor")
+    val primaryColor: String,
+    @SerializedName("secondaryColor")
+    val secondaryColor: String,
     @SerializedName("city")
     val city: String,
     @SerializedName("name")

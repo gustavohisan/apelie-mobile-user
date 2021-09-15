@@ -13,6 +13,10 @@ val mainGrey = Color(0xFFA3A3A3)
 
 val textGrey = Color(0xFF6B6B6B)
 
+val darkGrey = Color(0xFFAAAAAA)
+
+val ratingYellow = Color(0xFFFFBF00)
+
 val colors = lightColors(
     primary = mainBlue,
     primaryVariant = variantBlue,

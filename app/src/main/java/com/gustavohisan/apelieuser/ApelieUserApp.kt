@@ -5,8 +5,8 @@ import com.gustavohisan.apelie.user.sharedpreferences.injection.sharedPreference
 import com.gustavohisan.apelieuser.api.injection.apiModule
 import com.gustavohisan.apelieuser.checkin.injection.checkinModule
 import com.gustavohisan.apelieuser.domain.injection.domainModule
+import com.gustavohisan.apelieuser.feed.injection.feedModule
 import com.gustavohisan.apelieuser.login.injection.loginModule
-import com.gustavohisan.apelieuser.main.injection.mainModule
 import com.gustavohisan.apelieuser.memory.injection.memoryModule
 import com.gustavohisan.apelieuser.register.injection.registerModule
 import com.gustavohisan.apelieuser.repository.injection.repositoryModule
@@ -38,7 +38,7 @@ internal class ApelieUserApp : Application() {
                 apiModule,
                 loginModule,
                 registerModule,
-                mainModule
+                feedModule
             )
         }
     }

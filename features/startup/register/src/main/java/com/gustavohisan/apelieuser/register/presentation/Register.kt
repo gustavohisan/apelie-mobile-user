@@ -130,7 +130,9 @@ private fun RegisterScaffold(
             verticalArrangement = Arrangement.Top,
         ) {
             OutlinedTextField(
-                modifier = Modifier.padding(top = 20.dp),
+                modifier = Modifier
+                    .padding(top = 30.dp)
+                    .fillMaxWidth(),
                 value = name,
                 onValueChange = { value -> setName(value) },
                 singleLine = true,
@@ -149,7 +151,9 @@ private fun RegisterScaffold(
                 )
             }
             OutlinedTextField(
-                modifier = Modifier.padding(top = 20.dp),
+                modifier = Modifier
+                    .padding(top = 30.dp)
+                    .fillMaxWidth(),
                 value = email,
                 onValueChange = { value -> setEmail(value) },
                 singleLine = true,
@@ -168,7 +172,9 @@ private fun RegisterScaffold(
                 )
             }
             OutlinedTextField(
-                modifier = Modifier.padding(top = 20.dp),
+                modifier = Modifier
+                    .padding(top = 30.dp)
+                    .fillMaxWidth(),
                 value = password,
                 onValueChange = { value -> setPassword(value) },
                 singleLine = true,
@@ -189,7 +195,9 @@ private fun RegisterScaffold(
                 )
             }
             OutlinedTextField(
-                modifier = Modifier.padding(top = 20.dp),
+                modifier = Modifier
+                    .padding(top = 30.dp)
+                    .fillMaxWidth(),
                 value = confirmPassword,
                 onValueChange = { value -> setConfirmPassword(value) },
                 singleLine = true,
@@ -211,7 +219,7 @@ private fun RegisterScaffold(
             }
             Button(
                 modifier = Modifier
-                    .padding(top = 20.dp)
+                    .padding(top = 30.dp)
                     .fillMaxWidth(),
                 onClick = { viewModel.registerNewUser(email, password, name, confirmPassword) },
                 enabled = isRegistering.not()

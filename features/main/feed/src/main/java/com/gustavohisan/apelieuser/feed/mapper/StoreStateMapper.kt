@@ -1,7 +1,7 @@
-package com.gustavohisan.apelieuser.main.mapper
+package com.gustavohisan.apelieuser.feed.mapper
 
 import com.gustavohisan.apelieuser.domain.model.store.StoreState as DomainStoreState
-import com.gustavohisan.apelieuser.main.model.StoreState as PresentationStoreState
+import com.gustavohisan.apelieuser.feed.model.StoreState as PresentationStoreState
 
 /**
  * Mapper used to map the store state from repository to domain representation.

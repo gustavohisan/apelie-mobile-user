@@ -1,9 +1,9 @@
-package com.gustavohisan.apelieuser.main.model
+package com.gustavohisan.apelieuser.feed.model
 
 /**
  * Enum used to represent the error types of the store request.
  */
-enum class StoreErrorType {
+internal enum class StoreErrorType {
     SERVER_UNAVAILABLE,
     EMPTY_LIST
 }

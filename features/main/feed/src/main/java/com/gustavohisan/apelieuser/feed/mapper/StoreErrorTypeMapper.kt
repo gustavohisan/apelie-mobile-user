@@ -1,7 +1,7 @@
-package com.gustavohisan.apelieuser.main.mapper
+package com.gustavohisan.apelieuser.feed.mapper
 
 import com.gustavohisan.apelieuser.domain.model.store.StoreErrorType as DomainStoreErrorType
-import com.gustavohisan.apelieuser.main.model.StoreErrorType as PresentationStoreErrorType
+import com.gustavohisan.apelieuser.feed.model.StoreErrorType as PresentationStoreErrorType
 
 /**
  * Mapper used to map a store error type from domain to the presentation representation.

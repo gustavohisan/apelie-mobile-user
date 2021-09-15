@@ -9,6 +9,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.gustavohisan.apelieuser.design.mainBlue
+import com.gustavohisan.apelieuser.design.mainGrey
 import com.gustavohisan.apelieuser.main.navigation.HomeSections
 
 @Composable
@@ -22,9 +23,10 @@ internal fun MainBottomBar(
     ) {
         sections.forEach { section ->
             val selected = section.route == currentRoute
+            val color = if (selected) mainBlue else mainGrey
             BottomNavigationItem(
-                icon = { Icon(section.icon, stringResource(id = section.label), tint = mainBlue) },
-                label = { Text(stringResource(id = section.label), color = mainBlue) },
+                icon = { Icon(section.icon, stringResource(id = section.label), tint = color) },
+                label = { Text(stringResource(id = section.label), color = color) },
                 selected = selected,
                 alwaysShowLabel = false,
                 onClick = {

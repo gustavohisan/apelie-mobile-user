@@ -5,6 +5,8 @@ object Destinations {
     const val LOGIN_ROUTE = "login"
     const val REGISTER_ROUTE = "register"
     const val HOME_ROUTE = "home"
+    const val STORE_ROUTE = "home/feed/store"
+    const val STORE_ID = "storeId"
 
     enum class HomeSections(val route: String) {
         FEED("home/feed"),

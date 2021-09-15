@@ -7,7 +7,8 @@ package com.gustavohisan.apelieuser.repository.model.store
  * @param category the category of the store
  * @param state the state address of the store
  * @param bannerUrl the image url for the store banner
- * @param theme the store theme
+ * @param primaryColor the store primary color
+ * @param secondaryColor the store secondary color
  * @param city the store city address
  * @param name the store name
  * @param rating the rating of the store
@@ -15,10 +16,11 @@ package com.gustavohisan.apelieuser.repository.model.store
  */
 data class Store(
     val storeId: Int,
-    val category: String,
+    val category: List<String>,
     val state: String,
     val bannerUrl: String,
-    val theme: String,
+    val primaryColor: String,
+    val secondaryColor: String,
     val city: String,
     val name: String,
     val rating: Float,

@@ -115,11 +115,12 @@ private fun LoginScaffold(
             verticalArrangement = Arrangement.Center,
         ) {
             Image(
-                modifier = Modifier.padding(bottom = 20.dp),
+                modifier = Modifier.padding(bottom = 30.dp),
                 painter = painterResource(R.drawable.ic_apelie),
                 contentDescription = "Apelie Logo"
             )
             OutlinedTextField(
+                modifier = Modifier.fillMaxWidth(),
                 value = email,
                 onValueChange = { value -> setEmail(value) },
                 singleLine = true,
@@ -138,7 +139,9 @@ private fun LoginScaffold(
                 )
             }
             OutlinedTextField(
-                modifier = Modifier.padding(top = 20.dp),
+                modifier = Modifier
+                    .padding(top = 30.dp)
+                    .fillMaxWidth(),
                 value = password,
                 onValueChange = { value -> setPassword(value) },
                 singleLine = true,
@@ -160,7 +163,7 @@ private fun LoginScaffold(
             }
             Button(
                 modifier = Modifier
-                    .padding(bottom = 20.dp, top = 20.dp)
+                    .padding(bottom = 30.dp, top = 30.dp)
                     .fillMaxWidth(),
                 onClick = { viewModel.validateUserLogin(email, password) },
                 enabled = isChecking.not()
@@ -171,7 +174,7 @@ private fun LoginScaffold(
                 )
             }
             ClickableText(
-                modifier = Modifier.padding(bottom = 20.dp),
+                modifier = Modifier.padding(bottom = 30.dp),
                 onClick = { onRegisterNewUser() },
                 text = buildAnnotatedString {
                     withStyle(

@@ -33,6 +33,7 @@ dependencies {
     implementation project(":features:startup:login")
     implementation project(":features:startup:register")
     implementation project(":features:main")
+    implementation project(":features:main:feed")
     implementation project(":libraries:design")
     implementation project(":libraries:navigation")
 
