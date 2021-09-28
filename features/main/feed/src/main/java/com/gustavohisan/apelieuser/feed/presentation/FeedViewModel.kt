@@ -5,19 +5,19 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.gustavohisan.apelieuser.domain.usecase.store.LoadMainScreenStoreList
-import com.gustavohisan.apelieuser.feed.mapper.StoreStateMapper
-import com.gustavohisan.apelieuser.feed.model.StoreState
+import com.gustavohisan.apelieuser.feed.mapper.MainScreenStoreStateMapper
+import com.gustavohisan.apelieuser.feed.model.MainScreenStoreState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 internal class FeedViewModel(
     private val loadMainScreenStoreList: LoadMainScreenStoreList,
-    private val storeStateMapper: StoreStateMapper
+    private val storeStateMapper: MainScreenStoreStateMapper
 ) : ViewModel() {
 
-    private val _storeState: MutableLiveData<StoreState> = MutableLiveData()
-
-    val storeState: LiveData<StoreState>
+    private val _storeState: MutableLiveData<MainScreenStoreState> =
+        MutableLiveData(MainScreenStoreState.Loading)
+    val storeState: LiveData<MainScreenStoreState>
         get() = _storeState
 
     fun getHomeStoreList() {

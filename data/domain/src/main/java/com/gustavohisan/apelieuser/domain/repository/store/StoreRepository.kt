@@ -1,5 +1,6 @@
 package com.gustavohisan.apelieuser.domain.repository.store
 
+import com.gustavohisan.apelieuser.domain.model.store.MainScreenStoreState
 import com.gustavohisan.apelieuser.domain.model.store.StoreState
 
 /**
@@ -10,7 +11,9 @@ interface StoreRepository {
     /**
      * Returns the list of stores to be displayed on the home screen.
      *
-     * @return the [StoreState] with the state of the request
+     * @return the [MainScreenStoreState] with the state of the request
      */
-    suspend fun getMainScreenStores(): StoreState
+    suspend fun getMainScreenStores(): MainScreenStoreState
+
+    suspend fun getStoreData(storeId: Int): StoreState
 }

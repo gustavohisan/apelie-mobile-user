@@ -37,4 +37,6 @@ interface UserApiDataSource {
      * @return a [RegisterState] with the result
      */
     suspend fun subscribeUser(email: String, password: String, name: String): RegisterState
+
+    suspend fun setUserToken(token: String)
 }

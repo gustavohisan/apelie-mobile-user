@@ -45,8 +45,12 @@ internal fun HomeScaffold(
                 currentRoute = currentRoute
             )
         }
-    ) {
-        MainScreenNavGraph(navController = navController, actions = actions)
+    ) { innerPaddings ->
+        MainScreenNavGraph(
+            navController = navController,
+            actions = actions,
+            paddings = innerPaddings
+        )
     }
 }
 

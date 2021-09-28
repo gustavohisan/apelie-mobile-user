@@ -1,8 +1,8 @@
 package com.gustavohisan.apelieuser.feed.injection
 
-import com.gustavohisan.apelieuser.feed.mapper.StoreErrorTypeMapper
-import com.gustavohisan.apelieuser.feed.mapper.StoreMapper
-import com.gustavohisan.apelieuser.feed.mapper.StoreStateMapper
+import com.gustavohisan.apelieuser.feed.mapper.MainScreenStoreErrorTypeMapper
+import com.gustavohisan.apelieuser.feed.mapper.MainScreenStoreMapper
+import com.gustavohisan.apelieuser.feed.mapper.MainScreenStoreStateMapper
 import com.gustavohisan.apelieuser.feed.presentation.FeedViewModel
 import com.gustavohisan.apelieuser.feed.provider.FeedProviderImpl
 import com.gustavohisan.apelieuser.main.provider.FeedProvider
@@ -14,8 +14,8 @@ import org.koin.dsl.module
  */
 val feedModule = module {
     viewModel { FeedViewModel(get(), get()) }
-    factory { StoreStateMapper(get(), get()) }
-    factory { StoreErrorTypeMapper() }
-    factory { StoreMapper() }
+    factory { MainScreenStoreStateMapper(get(), get()) }
+    factory { MainScreenStoreErrorTypeMapper() }
+    factory { MainScreenStoreMapper() }
     factory<FeedProvider> { FeedProviderImpl() }
 }

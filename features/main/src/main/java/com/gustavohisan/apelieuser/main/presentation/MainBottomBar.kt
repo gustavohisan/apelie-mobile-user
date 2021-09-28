@@ -5,6 +5,7 @@ import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -18,23 +19,26 @@ internal fun MainBottomBar(
     sections: List<HomeSections>,
     currentRoute: String?
 ) {
-    BottomNavigation(
-        backgroundColor = Color.White
-    ) {
-        sections.forEach { section ->
-            val selected = section.route == currentRoute
-            val color = if (selected) mainBlue else mainGrey
-            BottomNavigationItem(
-                icon = { Icon(section.icon, stringResource(id = section.label), tint = color) },
-                label = { Text(stringResource(id = section.label), color = color) },
-                selected = selected,
-                alwaysShowLabel = false,
-                onClick = {
-                    if (selected.not()) {
-                        onSectionClicked(section.route)
+    val sectionsValues = remember { sections.map { section -> section.route } }
+    if (currentRoute in sectionsValues) {
+        BottomNavigation(
+            backgroundColor = Color.White
+        ) {
+            sections.forEach { section ->
+                val selected = section.route == currentRoute
+                val color = if (selected) mainBlue else mainGrey
+                BottomNavigationItem(
+                    icon = { Icon(section.icon, stringResource(id = section.label), tint = color) },
+                    label = { Text(stringResource(id = section.label), color = color) },
+                    selected = selected,
+                    alwaysShowLabel = false,
+                    onClick = {
+                        if (selected.not()) {
+                            onSectionClicked(section.route)
+                        }
                     }
-                }
-            )
+                )
+            }
         }
     }
 }

@@ -31,7 +31,7 @@ interface UserEndpoints {
      *
      * @return a [Response] with the [ResponseBody] containing the request state
      */
-    @GET("user/me")
+    @GET("users/me")
     suspend fun validateUserToken(@Header("Authorization") token: String): Response<ResponseBody>
 
     /**
@@ -41,6 +41,6 @@ interface UserEndpoints {
      *
      * @return a [Response] with the [ResponseBody] containing the request state
      */
-    @POST("user")
+    @POST("users")
     suspend fun insertUser(@Body userData: RegisterUserData): Response<ResponseBody>
 }

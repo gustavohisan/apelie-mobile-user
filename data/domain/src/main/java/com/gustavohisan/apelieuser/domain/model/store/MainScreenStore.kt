@@ -1,7 +1,7 @@
-package com.gustavohisan.apelieuser.feed.model
+package com.gustavohisan.apelieuser.domain.model.store
 
 /**
- * Representation of the store.
+ * Representation of the store on the main screen.
  *
  * @param storeId the id of the store
  * @param category the category of the store
@@ -14,7 +14,7 @@ package com.gustavohisan.apelieuser.feed.model
  * @param rating the rating of the store
  * @param logoUrl the image url for the store logo
  */
-internal data class Store(
+data class MainScreenStore(
     val storeId: Int,
     val category: List<String>,
     val state: String,

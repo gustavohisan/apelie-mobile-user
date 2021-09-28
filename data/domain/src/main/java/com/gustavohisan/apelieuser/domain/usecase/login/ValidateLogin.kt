@@ -34,6 +34,7 @@ class ValidateLogin(
         }
         val state = userApiRepository.validateUserLogin(email, password)
         return if (state is LoginState.Success) {
+            userApiRepository.setUserToken(state.token)
             storeToken(state.token)
         } else {
             state

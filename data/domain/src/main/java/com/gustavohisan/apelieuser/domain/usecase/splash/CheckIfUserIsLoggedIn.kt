@@ -34,11 +34,11 @@ class CheckIfUserIsLoggedIn(
      */
     private suspend fun validateUserToken(): Boolean {
         val token = userStorageRepository.getStoredUserToken()
-        if (userApiRepository.validateUserToken(token)) {
-            // TODO cache token
-            return true
+        return if (userApiRepository.validateUserToken(token)) {
+            userApiRepository.setUserToken(token)
+            true
         } else {
-            return false
+            false
         }
     }
 }

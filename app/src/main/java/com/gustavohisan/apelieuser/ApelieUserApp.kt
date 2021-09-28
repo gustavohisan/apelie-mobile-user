@@ -10,6 +10,7 @@ import com.gustavohisan.apelieuser.login.injection.loginModule
 import com.gustavohisan.apelieuser.memory.injection.memoryModule
 import com.gustavohisan.apelieuser.register.injection.registerModule
 import com.gustavohisan.apelieuser.repository.injection.repositoryModule
+import com.gustavohisan.apelieuser.store.injection.storeModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import timber.log.Timber
@@ -38,7 +39,8 @@ internal class ApelieUserApp : Application() {
                 apiModule,
                 loginModule,
                 registerModule,
-                feedModule
+                feedModule,
+                storeModule
             )
         }
     }

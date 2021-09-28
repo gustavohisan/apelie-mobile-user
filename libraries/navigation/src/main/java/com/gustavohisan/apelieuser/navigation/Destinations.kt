@@ -7,6 +7,8 @@ object Destinations {
     const val HOME_ROUTE = "home"
     const val STORE_ROUTE = "home/feed/store"
     const val STORE_ID = "storeId"
+    const val PRODUCT_ROUTE = "home/feed/store/product"
+    const val PRODUCT_ID = "productId"
 
     enum class HomeSections(val route: String) {
         FEED("home/feed"),

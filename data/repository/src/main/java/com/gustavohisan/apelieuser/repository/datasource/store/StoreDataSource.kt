@@ -1,5 +1,6 @@
 package com.gustavohisan.apelieuser.repository.datasource.store
 
+import com.gustavohisan.apelieuser.repository.model.store.MainScreenStoreState
 import com.gustavohisan.apelieuser.repository.model.store.StoreState
 
 /**
@@ -10,7 +11,9 @@ interface StoreDataSource {
     /**
      * Returns the store list to be shown on the home screen.
      *
-     * @return the [StoreState] with the request state
+     * @return the [MainScreenStoreState] with the request state
      */
-    suspend fun getMainScreenStoreList(): StoreState
+    suspend fun getMainScreenStoreList(): MainScreenStoreState
+
+    suspend fun getStoreData(storeId: Int): StoreState
 }

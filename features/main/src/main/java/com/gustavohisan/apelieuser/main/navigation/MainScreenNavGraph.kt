@@ -1,8 +1,11 @@
 package com.gustavohisan.apelieuser.main.navigation
 
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -10,6 +13,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 import androidx.navigation.navigation
 import com.gustavohisan.apelieuser.main.provider.FeedProvider
+import com.gustavohisan.apelieuser.main.provider.StoreProvider
 import com.gustavohisan.apelieuser.navigation.Destinations
 import org.koin.androidx.compose.get
 
@@ -17,8 +21,10 @@ import org.koin.androidx.compose.get
 internal fun MainScreenNavGraph(
     navController: NavHostController,
     actions: HomeNavActions,
+    paddings: PaddingValues,
     startDestination: String = Destinations.HOME_ROUTE,
-    feedProvider: FeedProvider = get()
+    feedProvider: FeedProvider = get(),
+    storeProvider: StoreProvider = get()
 ) {
     NavHost(navController = navController, startDestination = startDestination) {
         navigation(
@@ -26,7 +32,7 @@ internal fun MainScreenNavGraph(
             startDestination = Destinations.HomeSections.FEED.route
         ) {
             composable(Destinations.HomeSections.FEED.route) {
-                Scaffold {
+                Scaffold(modifier = Modifier.padding(paddings)) {
                     feedProvider.FeedComposable(actions.onStoreClicked)
                 }
             }
@@ -53,6 +59,19 @@ internal fun MainScreenNavGraph(
         ) { backStackEntry ->
             val arguments = requireNotNull(backStackEntry.arguments)
             val storeId = arguments.getInt(Destinations.STORE_ID, 0)
+            storeProvider.StoreComposable(
+                storeId = storeId,
+                onProductClicked = actions.onProductClicked,
+                onBackClicked = actions.onBackClicked
+            )
+        }
+
+        composable(
+            route = "${Destinations.PRODUCT_ROUTE}/{${Destinations.PRODUCT_ID}}",
+            arguments = listOf(navArgument(Destinations.PRODUCT_ID) { type = NavType.IntType })
+        ) { backStackEntry ->
+            val arguments = requireNotNull(backStackEntry.arguments)
+            val storeId = arguments.getInt(Destinations.PRODUCT_ID, 0)
             Scaffold {
                 Text("Store id $storeId")
             }

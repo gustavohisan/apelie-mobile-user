@@ -12,4 +12,12 @@ internal data class HomeNavActions(val navController: NavHostController) {
     val onStoreClicked: (Int) -> Unit = { storeId ->
         navController.navigate("${Destinations.STORE_ROUTE}/$storeId")
     }
+
+    val onProductClicked: (Int) -> Unit = { itemId ->
+        navController.navigate("${Destinations.STORE_ROUTE}/$itemId")
+    }
+
+    val onBackClicked: () -> Unit = {
+        navController.navigateUp()
+    }
 }

@@ -1,12 +1,12 @@
 package com.gustavohisan.apelieuser.feed.mapper
 
-import com.gustavohisan.apelieuser.domain.model.store.Store as DomainStore
-import com.gustavohisan.apelieuser.feed.model.Store as PresentationStore
+import com.gustavohisan.apelieuser.domain.model.store.MainScreenStore as DomainStore
+import com.gustavohisan.apelieuser.feed.model.MainScreenStore as PresentationStore
 
 /**
  * Mapper used to map a store from domain to the presentation representation.
  */
-internal class StoreMapper {
+internal class MainScreenStoreMapper {
 
     /**
      * Maps a [DomainStore] to a [PresentationStore].

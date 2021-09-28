@@ -2,16 +2,13 @@ package com.gustavohisan.apelieuser.feed.presentation
 
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Icon
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -21,12 +18,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.draw.shadow
-import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.semantics.Role.Companion.Image
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -34,15 +28,13 @@ import androidx.compose.ui.unit.sp
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.ImagePainter
 import coil.compose.rememberImagePainter
-import coil.transform.CircleCropTransformation
-import coil.transform.RoundedCornersTransformation
 import com.google.accompanist.placeholder.PlaceholderHighlight
 import com.google.accompanist.placeholder.fade
 import com.google.accompanist.placeholder.placeholder
 import com.gustavohisan.apelieuser.design.darkGrey
 import com.gustavohisan.apelieuser.design.ratingYellow
-import com.gustavohisan.apelieuser.feed.model.Store
-import com.gustavohisan.apelieuser.feed.model.StoreState
+import com.gustavohisan.apelieuser.feed.model.MainScreenStore
+import com.gustavohisan.apelieuser.feed.model.MainScreenStoreState
 import org.koin.androidx.compose.getViewModel
 
 @Composable
@@ -55,17 +47,19 @@ private fun FeedLoader(
     onStoreClicked: (Int) -> Unit,
     viewModel: FeedViewModel = getViewModel()
 ) {
-    val state: StoreState by viewModel.storeState.observeAsState(StoreState.Loading)
-    viewModel.getHomeStoreList()
-    FeedScaffold(onStoreClicked = onStoreClicked, state = state)
+    val stateMainScreen by viewModel.storeState.observeAsState()
+    if (stateMainScreen is MainScreenStoreState.Loading) {
+        viewModel.getHomeStoreList()
+    }
+    stateMainScreen?.let { FeedScaffold(onStoreClicked = onStoreClicked, stateMainScreen = it) }
 }
 
 @Composable
-private fun FeedScaffold(onStoreClicked: (Int) -> Unit, state: StoreState) {
+private fun FeedScaffold(onStoreClicked: (Int) -> Unit, stateMainScreen: MainScreenStoreState) {
     Scaffold {
-        Crossfade(targetState = state) { state ->
+        Crossfade(targetState = stateMainScreen) { state ->
             when (state) {
-                is StoreState.Loading -> {
+                is MainScreenStoreState.Loading -> {
                     Column {
                         StorePlaceholder()
                         StorePlaceholder()
@@ -73,14 +67,14 @@ private fun FeedScaffold(onStoreClicked: (Int) -> Unit, state: StoreState) {
                         StorePlaceholder()
                     }
                 }
-                is StoreState.Success -> {
+                is MainScreenStoreState.Success -> {
                     LazyColumn {
-                        items(state.storeList) { store ->
-                            Store(onStoreClicked = onStoreClicked, store = store)
+                        items(state.mainScreenStoreList) { store ->
+                            Store(onStoreClicked = onStoreClicked, mainScreenStore = store)
                         }
                     }
                 }
-                is StoreState.Error -> {
+                is MainScreenStoreState.Error -> {
                     Text(
                         text = "Error",
                         modifier = Modifier.padding(16.dp)
@@ -93,19 +87,19 @@ private fun FeedScaffold(onStoreClicked: (Int) -> Unit, state: StoreState) {
 
 @ExperimentalCoilApi
 @Composable
-private fun Store(onStoreClicked: (Int) -> Unit, store: Store) {
-    val bannerImage = rememberImagePainter(data = store.bannerUrl)
+private fun Store(onStoreClicked: (Int) -> Unit, mainScreenStore: MainScreenStore) {
+    val bannerImage = rememberImagePainter(data = mainScreenStore.bannerUrl)
     val storeImage = rememberImagePainter(
-        data = store.logoUrl,
+        data = mainScreenStore.logoUrl,
     )
     Box(
         Modifier
-            .clickable(onClick = { onStoreClicked(store.storeId) })
             .padding(horizontal = 10.dp, vertical = 10.dp)
             .fillMaxWidth()
             .height(200.dp)
             .border(0.dp, Color.White, shape = RoundedCornerShape(10.dp))
             .shadow(1.dp, shape = RoundedCornerShape(10.dp))
+            .clickable(onClick = { onStoreClicked(mainScreenStore.storeId) })
     ) {
         Image(
             painter = bannerImage,
@@ -143,7 +137,7 @@ private fun Store(onStoreClicked: (Int) -> Unit, store: Store) {
             ) {
                 Column(modifier = Modifier.weight(1F)) {
                     Text(
-                        text = store.name,
+                        text = mainScreenStore.name,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                         color = Color.Black,
@@ -151,14 +145,14 @@ private fun Store(onStoreClicked: (Int) -> Unit, store: Store) {
                         fontWeight = FontWeight.Bold,
                     )
                     Text(
-                        text = store.category.joinToString(separator = ", ", limit = 3),
+                        text = mainScreenStore.category.joinToString(separator = ", ", limit = 3),
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                         color = darkGrey,
                         fontSize = 12.sp,
                     )
                     Text(
-                        text = "${store.city}, ${store.state}",
+                        text = "${mainScreenStore.city}, ${mainScreenStore.state}",
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                         color = Color.Black,
@@ -175,7 +169,7 @@ private fun Store(onStoreClicked: (Int) -> Unit, store: Store) {
                         tint = ratingYellow,
                     )
                     Text(
-                        text = store.rating.toString(),
+                        text = mainScreenStore.rating.toString(),
                         maxLines = 1,
                         overflow = TextOverflow.Visible,
                         color = ratingYellow,

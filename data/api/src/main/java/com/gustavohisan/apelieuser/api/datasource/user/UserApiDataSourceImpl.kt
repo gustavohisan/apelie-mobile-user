@@ -23,7 +23,7 @@ import com.gustavohisan.apelieuser.repository.model.register.RegisterState as Re
  * @param registerStateMapper mapper used to map the register state
  */
 internal class UserApiDataSourceImpl(
-    apiFactory: ApiFactory,
+    private val apiFactory: ApiFactory,
     private val loginStateMapper: LoginStateMapper,
     private val registerStateMapper: RegisterStateMapper
 ) : UserApiDataSource {
@@ -47,6 +47,10 @@ internal class UserApiDataSourceImpl(
         val isValid = callback.isSuccessful
         Timber.d("validateToken - requestCode = ${callback.code()} - isValid = $isValid")
         return isValid
+    }
+
+    override suspend fun setUserToken(token: String) {
+        apiFactory.setAuthenticationToken(token)
     }
 
     override suspend fun subscribeUser(

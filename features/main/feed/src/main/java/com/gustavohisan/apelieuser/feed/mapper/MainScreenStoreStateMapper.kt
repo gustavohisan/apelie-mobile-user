@@ -1,7 +1,7 @@
 package com.gustavohisan.apelieuser.feed.mapper
 
-import com.gustavohisan.apelieuser.domain.model.store.StoreState as DomainStoreState
-import com.gustavohisan.apelieuser.feed.model.StoreState as PresentationStoreState
+import com.gustavohisan.apelieuser.domain.model.store.MainScreenStoreState as DomainStoreState
+import com.gustavohisan.apelieuser.feed.model.MainScreenStoreState as PresentationStoreState
 
 /**
  * Mapper used to map the store state from repository to domain representation.
@@ -9,9 +9,9 @@ import com.gustavohisan.apelieuser.feed.model.StoreState as PresentationStoreSta
  * @param storeMapper mapper used to map a store
  * @param storeErrorTypeMapper mapper used to map a store error type
  */
-internal class StoreStateMapper(
-    private val storeMapper: StoreMapper,
-    private val storeErrorTypeMapper: StoreErrorTypeMapper
+internal class MainScreenStoreStateMapper(
+    private val storeMapper: MainScreenStoreMapper,
+    private val storeErrorTypeMapper: MainScreenStoreErrorTypeMapper
 ) {
 
     /**

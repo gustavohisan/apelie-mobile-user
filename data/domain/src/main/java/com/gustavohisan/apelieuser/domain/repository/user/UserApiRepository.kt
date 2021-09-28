@@ -37,4 +37,6 @@ interface UserApiRepository {
      * @return the [RegisterState] with the result
      */
     suspend fun registerUser(email: String, password: String, name: String): RegisterState
+
+    suspend fun setUserToken(token: String)
 }

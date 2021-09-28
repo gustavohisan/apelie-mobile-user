@@ -28,4 +28,8 @@ internal class UserApiRepositoryImpl(
 
     override suspend fun registerUser(email: String, password: String, name: String): RegisterState =
         registerStateMapper.toDomain(userApiDataSource.subscribeUser(email, password, name))
+
+    override suspend fun setUserToken(token: String) {
+        userApiDataSource.setUserToken(token)
+    }
 }

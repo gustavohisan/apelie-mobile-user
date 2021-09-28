@@ -3,22 +3,15 @@ package com.gustavohisan.apelieuser.api.model.store
 import com.google.gson.annotations.SerializedName
 
 /**
- * Representation of the store retrieved by the API.
- *
- * @param storeId the id of the store
- * @param category the category of the store
- * @param state the state address of the store
- * @param bannerUrl the image url for the store banner
- * @param primaryColor the store primary color
- * @param secondaryColor the store secondary color
- * @param city the store city address
- * @param name the store name
- * @param rating the rating of the store
- * @param logoUrl the image url for the store logo
+ * Representation of the store.
  */
-data class Store(
+internal data class Store(
     @SerializedName("storeId")
     val storeId: Int,
+    @SerializedName("owner")
+    val owner: Owner,
+    @SerializedName("products")
+    val products: List<Product>?,
     @SerializedName("category")
     val category: List<String>,
     @SerializedName("state")
@@ -36,5 +29,28 @@ data class Store(
     @SerializedName("rating")
     val rating: Float,
     @SerializedName("logoUrl")
-    val logoUrl: String
+    val logoUrl: String,
+    @SerializedName("twitterAccount")
+    val twitter: String,
+    @SerializedName("instagramAccount")
+    val instagram: String,
+    @SerializedName("facebookAccount")
+    val facebook: String,
+    @SerializedName("youtubeAccount")
+    val youtube: String,
+    @SerializedName("street")
+    val street: String,
+    @SerializedName("cep")
+    val cep: String,
+    @SerializedName("email")
+    val email: String,
+    @SerializedName("phone")
+    val phone: String,
+    @SerializedName("addressNumber")
+    val addressNumber: String,
+    @SerializedName("neighbourhood")
+    val neighbourhood: String,
+    @SerializedName("description")
+    val description: String
 )
+

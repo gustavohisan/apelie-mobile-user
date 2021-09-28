@@ -15,6 +15,8 @@ val textGrey = Color(0xFF6B6B6B)
 
 val darkGrey = Color(0xFFAAAAAA)
 
+val moneyGreen = Color(0xFF007835)
+
 val ratingYellow = Color(0xFFFFBF00)
 
 val colors = lightColors(

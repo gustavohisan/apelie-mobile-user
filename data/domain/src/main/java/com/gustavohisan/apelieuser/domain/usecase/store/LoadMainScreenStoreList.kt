@@ -1,7 +1,7 @@
 package com.gustavohisan.apelieuser.domain.usecase.store
 
-import com.gustavohisan.apelieuser.domain.model.store.StoreErrorType
-import com.gustavohisan.apelieuser.domain.model.store.StoreState
+import com.gustavohisan.apelieuser.domain.model.store.MainScreenStoreErrorType
+import com.gustavohisan.apelieuser.domain.model.store.MainScreenStoreState
 import com.gustavohisan.apelieuser.domain.repository.store.StoreRepository
 
 /**
@@ -14,19 +14,19 @@ class LoadMainScreenStoreList(private val storeRepository: StoreRepository) {
     /**
      * Retrieves the list of stores.
      *
-     * @return a [StoreState] with the state of the request
+     * @return a [MainScreenStoreState] with the state of the request
      */
-    suspend operator fun invoke(): StoreState {
+    suspend operator fun invoke(): MainScreenStoreState {
         val result = storeRepository.getMainScreenStores()
         return when (result) {
-            is StoreState.Success -> checkIfResultIsEmpty(result)
-            is StoreState.Error -> result
+            is MainScreenStoreState.Success -> checkIfResultIsEmpty(result)
+            is MainScreenStoreState.Error -> result
         }
     }
 
-    private fun checkIfResultIsEmpty(result: StoreState.Success): StoreState =
+    private fun checkIfResultIsEmpty(result: MainScreenStoreState.Success): MainScreenStoreState =
         if (result.storeList.isNullOrEmpty()) {
-            StoreState.Error(StoreErrorType.EMPTY_LIST)
+            MainScreenStoreState.Error(MainScreenStoreErrorType.EMPTY_LIST)
         } else {
             result
         }
