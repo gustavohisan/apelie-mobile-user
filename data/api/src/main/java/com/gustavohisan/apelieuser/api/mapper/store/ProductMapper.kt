@@ -1,6 +1,6 @@
 package com.gustavohisan.apelieuser.api.mapper.store
 
-import com.gustavohisan.apelieuser.api.model.store.Product as ApiProduct
+import com.gustavohisan.apelieuser.api.model.product.Product as ApiProduct
 import com.gustavohisan.apelieuser.repository.model.store.Product as RepositoryProduct
 
 internal class ProductMapper {

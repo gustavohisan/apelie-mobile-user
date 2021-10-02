@@ -8,6 +8,7 @@ import com.gustavohisan.apelieuser.domain.injection.domainModule
 import com.gustavohisan.apelieuser.feed.injection.feedModule
 import com.gustavohisan.apelieuser.login.injection.loginModule
 import com.gustavohisan.apelieuser.memory.injection.memoryModule
+import com.gustavohisan.apelieuser.product.injection.productModule
 import com.gustavohisan.apelieuser.register.injection.registerModule
 import com.gustavohisan.apelieuser.repository.injection.repositoryModule
 import com.gustavohisan.apelieuser.store.injection.storeModule
@@ -40,7 +41,8 @@ internal class ApelieUserApp : Application() {
                 loginModule,
                 registerModule,
                 feedModule,
-                storeModule
+                storeModule,
+                productModule
             )
         }
     }

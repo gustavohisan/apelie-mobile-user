@@ -94,5 +94,7 @@ object ComposeDeps {
     val liveData = "androidx.compose.runtime:runtime-livedata:${Versions.compose}"
     val test = "androidx.compose.ui:ui-test-junit4:${Versions.compose}"
     val placeholder = "com.google.accompanist:accompanist-placeholder:${Versions.accompanist}"
+    val pager = "com.google.accompanist:accompanist-pager:${Versions.accompanist}"
+    val pagerIndicator = "com.google.accompanist:accompanist-pager-indicators:${Versions.accompanist}"
     val coil = "io.coil-kt:coil-compose:${Versions.coil}"
 }

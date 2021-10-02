@@ -1,4 +1,4 @@
-package com.gustavohisan.apelieuser.api.model.store
+package com.gustavohisan.apelieuser.api.model.product
 
 import com.google.gson.annotations.SerializedName
 

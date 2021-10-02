@@ -13,6 +13,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 import androidx.navigation.navigation
 import com.gustavohisan.apelieuser.main.provider.FeedProvider
+import com.gustavohisan.apelieuser.main.provider.ProductProvider
 import com.gustavohisan.apelieuser.main.provider.StoreProvider
 import com.gustavohisan.apelieuser.navigation.Destinations
 import org.koin.androidx.compose.get
@@ -24,7 +25,8 @@ internal fun MainScreenNavGraph(
     paddings: PaddingValues,
     startDestination: String = Destinations.HOME_ROUTE,
     feedProvider: FeedProvider = get(),
-    storeProvider: StoreProvider = get()
+    storeProvider: StoreProvider = get(),
+    productProvider: ProductProvider = get()
 ) {
     NavHost(navController = navController, startDestination = startDestination) {
         navigation(
@@ -71,10 +73,12 @@ internal fun MainScreenNavGraph(
             arguments = listOf(navArgument(Destinations.PRODUCT_ID) { type = NavType.IntType })
         ) { backStackEntry ->
             val arguments = requireNotNull(backStackEntry.arguments)
-            val storeId = arguments.getInt(Destinations.PRODUCT_ID, 0)
-            Scaffold {
-                Text("Store id $storeId")
-            }
+            val productId = arguments.getInt(Destinations.PRODUCT_ID, 0)
+            productProvider.ProductComposable(
+                productId = productId,
+                onAddToCardSuccess = actions.onBackClicked,
+                onBackClicked = actions.onBackClicked
+            )
         }
     }
 }

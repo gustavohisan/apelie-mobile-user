@@ -1,6 +1,7 @@
 package com.gustavohisan.apelieuser.api.model.store
 
 import com.google.gson.annotations.SerializedName
+import com.gustavohisan.apelieuser.api.model.product.Product
 
 /**
  * Representation of the store.

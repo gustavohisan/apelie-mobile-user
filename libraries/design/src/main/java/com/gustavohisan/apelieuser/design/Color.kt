@@ -11,6 +11,8 @@ val mainWhite = Color(0xFFFFFFFF)
 
 val mainGrey = Color(0xFFA3A3A3)
 
+val backgroundGrey = Color(0xFFE6E6E6)
+
 val textGrey = Color(0xFF6B6B6B)
 
 val darkGrey = Color(0xFFAAAAAA)
