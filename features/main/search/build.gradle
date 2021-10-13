@@ -1,0 +1,24 @@
+apply plugin: 'com.android.library'
+apply from: "$rootDir/config/android_dependencies.gradle"
+apply from: "$rootDir/config/compose_dependencies.gradle"
+apply plugin: "androidx.navigation.safeargs.kotlin"
+
+dependencies {
+    implementation project(":data:domain")
+    implementation project(":libraries:design")
+    implementation project(":libraries:navigation")
+    implementation project(":features:main")
+    implementation project(":features:main:feedstore")
+
+    implementation Deps.koin.android
+    implementation Deps.koin.compose
+    implementation Deps.koin.core
+    implementation Deps.timber
+    implementation Deps.compose.navigation
+    implementation Deps.compose.liveData
+    implementation Deps.compose.placeholder
+    implementation Deps.compose.coil
+    implementation Deps.compose.pager
+    implementation Deps.compose.pagerIndicator
+    implementation Deps.compose.flowLayouts
+}

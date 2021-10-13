@@ -18,7 +18,7 @@ internal class ProductMapper {
         }
     }
 
-    private fun toDomain(repoProduct: RepositoryProduct): DomainProduct =
+    fun toDomain(repoProduct: RepositoryProduct): DomainProduct =
         DomainProduct(
             id = repoProduct.id,
             description = repoProduct.description,

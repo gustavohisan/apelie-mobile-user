@@ -29,7 +29,7 @@ val repositoryModule = module {
     factory<UserApiRepository> { UserApiRepositoryImpl(get(), get(), get()) }
     factory<UserStorageRepository> { UserStorageRepositoryImpl(get()) }
     factory<IntentRepository> { IntentRepositoryImpl(get()) }
-    factory<StoreRepository> { StoreRepositoryImpl(get(), get(), get()) }
+    factory<StoreRepository> { StoreRepositoryImpl(get(), get(), get(), get(), get()) }
 
     // Mapper
     factory { LoginStateMapper(get()) }
@@ -42,4 +42,6 @@ val repositoryModule = module {
     factory { StoreStateMapper(get()) }
     factory { OwnerMapper() }
     factory { ProductMapper() }
+    factory { ProductStateMapper(get()) }
+    factory { CategoryStateMapper() }
 }

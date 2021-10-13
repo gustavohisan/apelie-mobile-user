@@ -12,6 +12,7 @@ object Destinations {
 
     enum class HomeSections(val route: String) {
         FEED("home/feed"),
+        SEARCH("home/search"),
         CART("home/cart"),
         ORDERS("home/orders"),
         PROFILE("home/profile")

@@ -21,7 +21,13 @@ private fun HomeLoader() {
     val navController = rememberNavController()
     val actions = remember(navController) { HomeNavActions(navController) }
     val sections =
-        listOf(HomeSections.Feed, HomeSections.Cart, HomeSections.Orders, HomeSections.Profile)
+        listOf(
+            HomeSections.Feed,
+            HomeSections.Search,
+            HomeSections.Cart,
+            HomeSections.Orders,
+            HomeSections.Profile
+        )
     HomeScaffold(
         navController = navController,
         actions = actions,

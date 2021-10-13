@@ -9,6 +9,7 @@ import com.gustavohisan.apelieuser.feed.mapper.MainScreenStoreStateMapper
 import com.gustavohisan.apelieuser.feed.model.MainScreenStoreState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 internal class FeedViewModel(
     private val loadMainScreenStoreList: LoadMainScreenStoreList,
@@ -21,6 +22,7 @@ internal class FeedViewModel(
         get() = _storeState
 
     fun getHomeStoreList() {
+        Timber.d("getHomeStoreList")
         viewModelScope.launch(Dispatchers.IO) {
             _storeState.postValue(storeStateMapper.toPresentation(loadMainScreenStoreList()))
         }

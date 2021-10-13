@@ -6,4 +6,5 @@
     <string name="cart_section_text">Carrinho</string>
     <string name="orders_section_text">Compras</string>
     <string name="profile_section_text">Perfil</string>
+    <string name="search_section_text">Pesquisar</string>
 </resources>

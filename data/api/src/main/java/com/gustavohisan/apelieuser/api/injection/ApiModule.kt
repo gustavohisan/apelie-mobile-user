@@ -21,7 +21,7 @@ val apiModule = module {
 
     // Data source
     single<UserApiDataSource> { UserApiDataSourceImpl(get(), get(), get()) }
-    single<StoreDataSource> { StoreDataSourceImpl(get(), get(), get()) }
+    single<StoreDataSource> { StoreDataSourceImpl(get(), get(), get(), get()) }
 
     // Mapper
     factory { LoginStateMapper(get()) }
@@ -34,6 +34,7 @@ val apiModule = module {
     factory { StoreMapper(get(), get()) }
     factory { OwnerMapper() }
     factory { ProductMapper() }
+    factory { ProductStateMapper(get()) }
 
     // Provider
     single { ApiFactory(get(), get()) }

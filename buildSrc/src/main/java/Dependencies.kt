@@ -29,7 +29,7 @@ object Versions {
     const val composeActivity = "1.3.0-rc02"
     const val composeViewModel = "1.0.0-alpha07"
     const val composeNavigation = "2.4.0-alpha06"
-    const val accompanist = "0.18.0"
+    const val accompanist = "0.19.0"
     const val coil = "1.3.2"
 }
 
@@ -96,5 +96,7 @@ object ComposeDeps {
     val placeholder = "com.google.accompanist:accompanist-placeholder:${Versions.accompanist}"
     val pager = "com.google.accompanist:accompanist-pager:${Versions.accompanist}"
     val pagerIndicator = "com.google.accompanist:accompanist-pager-indicators:${Versions.accompanist}"
+    val insets = "com.google.accompanist:accompanist-insets:${Versions.accompanist}"
+    val flowLayouts = "com.google.accompanist:accompanist-flowlayout:${Versions.accompanist}"
     val coil = "io.coil-kt:coil-compose:${Versions.coil}"
 }

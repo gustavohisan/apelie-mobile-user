@@ -2,10 +2,7 @@ package com.gustavohisan.apelieuser.main.navigation
 
 import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Person
-import androidx.compose.material.icons.filled.ReceiptLong
-import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.material.icons.filled.*
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.gustavohisan.apelieuser.main.R
 import com.gustavohisan.apelieuser.navigation.Destinations
@@ -20,6 +17,12 @@ internal sealed class HomeSections(
         Destinations.HomeSections.FEED.route,
         Icons.Default.Home,
         R.string.feed_section_text
+    )
+
+    object Search : HomeSections(
+        Destinations.HomeSections.SEARCH.route,
+        Icons.Default.Search,
+        R.string.search_section_text
     )
 
     object Cart : HomeSections(

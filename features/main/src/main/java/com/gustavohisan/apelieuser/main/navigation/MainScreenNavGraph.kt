@@ -14,6 +14,7 @@ import androidx.navigation.compose.navArgument
 import androidx.navigation.navigation
 import com.gustavohisan.apelieuser.main.provider.FeedProvider
 import com.gustavohisan.apelieuser.main.provider.ProductProvider
+import com.gustavohisan.apelieuser.main.provider.SearchProvider
 import com.gustavohisan.apelieuser.main.provider.StoreProvider
 import com.gustavohisan.apelieuser.navigation.Destinations
 import org.koin.androidx.compose.get
@@ -26,7 +27,8 @@ internal fun MainScreenNavGraph(
     startDestination: String = Destinations.HOME_ROUTE,
     feedProvider: FeedProvider = get(),
     storeProvider: StoreProvider = get(),
-    productProvider: ProductProvider = get()
+    productProvider: ProductProvider = get(),
+    searchProvider: SearchProvider = get()
 ) {
     NavHost(navController = navController, startDestination = startDestination) {
         navigation(
@@ -37,6 +39,9 @@ internal fun MainScreenNavGraph(
                 Scaffold(modifier = Modifier.padding(paddings)) {
                     feedProvider.FeedComposable(actions.onStoreClicked)
                 }
+            }
+            composable(Destinations.HomeSections.SEARCH.route) {
+                searchProvider.SearchComposable(actions.onStoreClicked, paddings)
             }
             composable(Destinations.HomeSections.CART.route) {
                 Scaffold {

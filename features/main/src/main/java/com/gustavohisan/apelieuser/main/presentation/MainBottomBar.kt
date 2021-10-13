@@ -8,7 +8,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.sp
 import com.gustavohisan.apelieuser.design.mainBlue
 import com.gustavohisan.apelieuser.design.mainGrey
 import com.gustavohisan.apelieuser.main.navigation.HomeSections
@@ -29,7 +31,15 @@ internal fun MainBottomBar(
                 val color = if (selected) mainBlue else mainGrey
                 BottomNavigationItem(
                     icon = { Icon(section.icon, stringResource(id = section.label), tint = color) },
-                    label = { Text(stringResource(id = section.label), color = color) },
+                    label = {
+                        Text(
+                            stringResource(id = section.label),
+                            fontSize = 10.sp,
+                            color = color,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                    },
                     selected = selected,
                     alwaysShowLabel = false,
                     onClick = {

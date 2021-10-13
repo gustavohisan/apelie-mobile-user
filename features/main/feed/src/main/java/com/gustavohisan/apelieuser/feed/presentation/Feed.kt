@@ -13,8 +13,7 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Star
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
+import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -35,6 +34,7 @@ import com.gustavohisan.apelieuser.design.darkGrey
 import com.gustavohisan.apelieuser.design.ratingYellow
 import com.gustavohisan.apelieuser.feed.model.MainScreenStore
 import com.gustavohisan.apelieuser.feed.model.MainScreenStoreState
+import com.gustavohisan.apelieuser.feedstore.FeedStore
 import org.koin.androidx.compose.getViewModel
 
 @Composable
@@ -70,7 +70,17 @@ private fun FeedScaffold(onStoreClicked: (Int) -> Unit, stateMainScreen: MainScr
                 is MainScreenStoreState.Success -> {
                     LazyColumn {
                         items(state.mainScreenStoreList) { store ->
-                            Store(onStoreClicked = onStoreClicked, mainScreenStore = store)
+                            FeedStore(
+                                onStoreClicked = onStoreClicked,
+                                storeId = store.storeId,
+                                name = store.name,
+                                categories = store.category,
+                                bannerUrl = store.bannerUrl,
+                                storeUrl = store.logoUrl,
+                                state = store.state,
+                                city = store.city,
+                                rating = store.rating
+                            )
                         }
                     }
                 }
@@ -78,103 +88,6 @@ private fun FeedScaffold(onStoreClicked: (Int) -> Unit, stateMainScreen: MainScr
                     Text(
                         text = "Error",
                         modifier = Modifier.padding(16.dp)
-                    )
-                }
-            }
-        }
-    }
-}
-
-@ExperimentalCoilApi
-@Composable
-private fun Store(onStoreClicked: (Int) -> Unit, mainScreenStore: MainScreenStore) {
-    val bannerImage = rememberImagePainter(data = mainScreenStore.bannerUrl)
-    val storeImage = rememberImagePainter(
-        data = mainScreenStore.logoUrl,
-    )
-    Box(
-        Modifier
-            .padding(horizontal = 10.dp, vertical = 10.dp)
-            .fillMaxWidth()
-            .height(200.dp)
-            .border(0.dp, Color.White, shape = RoundedCornerShape(10.dp))
-            .shadow(1.dp, shape = RoundedCornerShape(10.dp))
-            .clickable(onClick = { onStoreClicked(mainScreenStore.storeId) })
-    ) {
-        Image(
-            painter = bannerImage,
-            contentDescription = null,
-            contentScale = ContentScale.Crop,
-            alignment = Alignment.Center,
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(80.dp)
-                .placeholder(
-                    visible = (bannerImage.state is ImagePainter.State.Success).not(),
-                    color = Color.LightGray,
-                    highlight = PlaceholderHighlight.fade(Color.White)
-                )
-        )
-        Row(modifier = Modifier.padding(top = 50.dp, start = 10.dp)) {
-            Image(
-                painter = storeImage,
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-                alignment = Alignment.Center,
-                modifier = Modifier
-                    .border(width = 4.dp, color = Color.White, shape = RoundedCornerShape(10.dp))
-                    .padding(4.dp)
-                    .size(100.dp)
-                    .placeholder(
-                        visible = (storeImage.state is ImagePainter.State.Success).not(),
-                        color = Color.LightGray,
-                        highlight = PlaceholderHighlight.fade(Color.White)
-                    )
-            )
-            Row(
-                modifier = Modifier.padding(top = 34.dp, start = 6.dp, end = 15.dp),
-                horizontalArrangement = Arrangement.SpaceBetween
-            ) {
-                Column(modifier = Modifier.weight(1F)) {
-                    Text(
-                        text = mainScreenStore.name,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                        color = Color.Black,
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold,
-                    )
-                    Text(
-                        text = mainScreenStore.category.joinToString(separator = ", ", limit = 3),
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                        color = darkGrey,
-                        fontSize = 12.sp,
-                    )
-                    Text(
-                        text = "${mainScreenStore.city}, ${mainScreenStore.state}",
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                        color = Color.Black,
-                        fontSize = 12.sp,
-                    )
-                }
-                Row(
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Icon(
-                        modifier = Modifier.size(24.dp),
-                        imageVector = Icons.Filled.Star,
-                        contentDescription = "Rating",
-                        tint = ratingYellow,
-                    )
-                    Text(
-                        text = mainScreenStore.rating.toString(),
-                        maxLines = 1,
-                        overflow = TextOverflow.Visible,
-                        color = ratingYellow,
-                        fontSize = 20.sp,
-                        fontWeight = FontWeight.Bold,
                     )
                 }
             }

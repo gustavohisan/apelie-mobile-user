@@ -19,4 +19,5 @@ dependencies {
     implementation Deps.compose.coil
     implementation Deps.compose.pager
     implementation Deps.compose.pagerIndicator
+    implementation Deps.compose.insets
 }

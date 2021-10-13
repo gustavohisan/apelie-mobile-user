@@ -2,6 +2,7 @@ package com.gustavohisan.apelieuser.repository.mapper.store
 
 import com.gustavohisan.apelieuser.domain.model.store.MainScreenStoreErrorType
 import com.gustavohisan.apelieuser.domain.model.store.MainScreenStoreState as DomainStoreState
+import com.gustavohisan.apelieuser.domain.model.store.SearchStoreState
 import com.gustavohisan.apelieuser.repository.model.store.MainScreenStoreState as RepositoryStoreState
 
 /**
@@ -28,5 +29,17 @@ internal class MainScreenStoreStateMapper(private val storeMapper: MainScreenSto
                 )
             is RepositoryStoreState.Error ->
                 DomainStoreState.Error(MainScreenStoreErrorType.SERVER_UNAVAILABLE)
+        }
+
+    fun toDomainSearch(repositoryStoreState: RepositoryStoreState): SearchStoreState =
+        when (repositoryStoreState) {
+            is RepositoryStoreState.Success ->
+                SearchStoreState.Success(
+                    repositoryStoreState.storeList?.map { store ->
+                        storeMapper.toDomain(store)
+                    }
+                )
+            is RepositoryStoreState.Error ->
+                SearchStoreState.Error(MainScreenStoreErrorType.SERVER_UNAVAILABLE)
         }
 }

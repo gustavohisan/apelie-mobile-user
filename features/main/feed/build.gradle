@@ -8,6 +8,7 @@ dependencies {
     implementation project(":libraries:navigation")
     implementation project(":libraries:design")
     implementation project(":features:main")
+    implementation project(":features:main:feedstore")
 
     implementation Deps.koin.android
     implementation Deps.koin.compose
@@ -17,4 +18,5 @@ dependencies {
     implementation Deps.compose.liveData
     implementation Deps.compose.placeholder
     implementation Deps.compose.coil
+    implementation Deps.compose.flowLayouts
 }

@@ -1,5 +1,6 @@
 package com.gustavohisan.apelieuser.product.presentation
 
+import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
@@ -9,6 +10,7 @@ import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.ArrowDropUp
 import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -18,11 +20,16 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberImagePainter
+import com.google.accompanist.insets.ProvideWindowInsets
+import com.google.accompanist.insets.navigationBarsWithImePadding
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.rememberPagerState
 import com.gustavohisan.apelieuser.design.*
+import com.gustavohisan.apelieuser.product.model.Product
+import com.gustavohisan.apelieuser.product.model.ProductState
+import org.koin.androidx.compose.getViewModel
 import timber.log.Timber
 
 @ExperimentalPagerApi
@@ -44,72 +51,106 @@ internal fun Product(
 private fun ProductLoader(
     productId: Int,
     onAddToCardSuccess: () -> Unit,
-    onBackClicked: () -> Unit
+    onBackClicked: () -> Unit,
+    viewModel: ProductViewModel = getViewModel()
 ) {
-    ProductScaffold(onAddToCardSuccess = onAddToCardSuccess, onBackClicked = onBackClicked)
+    viewModel.getProductData(productId)
+    val productState: ProductState by viewModel.productState.observeAsState(ProductState.Loading)
+    ProductScaffold(
+        productState = productState,
+        onAddToCardSuccess = onAddToCardSuccess,
+        onBackClicked = onBackClicked
+    )
 }
 
 @ExperimentalPagerApi
 @Composable
 private fun ProductScaffold(
+    productState: ProductState,
     onAddToCardSuccess: () -> Unit,
     onBackClicked: () -> Unit
 ) {
-    val firstImage =
-        rememberImagePainter(data = "https://tokstok.vtexassets.com/arquivos/ids/1777930-300-300/Cadeira-Amendoa-Brisa.jpg?v=637006142412630000")
-    val secondImage =
-        rememberImagePainter(data = "https://tokstok.vtexassets.com/arquivos/ids/1777930-300-300/Cadeira-Amendoa-Brisa.jpg?v=637006142412630000")
+    ProvideWindowInsets {
+        Scaffold {
+            Crossfade(targetState = productState) {
+                when (it) {
+                    is ProductState.Loading -> {
+                    }
+                    is ProductState.Error -> {
+                    }
+                    is ProductState.Success -> {
+                        ProductInfo(product = it.product)
+                    }
+                }
+            }
+            BackButton(onBackClicked = onBackClicked)
+        }
+    }
+}
+
+@ExperimentalPagerApi
+@Composable
+private fun ProductInfo(product: Product) {
     val (description, setDescription) = rememberSaveable { mutableStateOf("") }
-    val listImages = listOf(firstImage, secondImage)
-    val pagerState = rememberPagerState(pageCount = 2)
+    val listImages = product.images.map { rememberImagePainter(data = it) }
     var productSelectedQuantity by remember { mutableStateOf(1) }
     var quantityDropdownExpanded by remember { mutableStateOf(false) }
     val scrollState = rememberScrollState(0)
-    Scaffold {
-        Column(modifier = Modifier.verticalScroll(scrollState)) {
-            HorizontalPager(modifier = Modifier.background(darkGrey), state = pagerState) { page ->
-                Image(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(300.dp),
-                    painter = listImages[page],
-                    contentDescription = "aaa"
-                )
-            }
+    val pagerState = rememberPagerState(0)
+    Column(modifier = Modifier.verticalScroll(scrollState)) {
+        HorizontalPager(
+            modifier = Modifier.background(darkGrey),
+            state = pagerState,
+            count = listImages.size
+        ) { page ->
+            Image(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(300.dp),
+                painter = listImages[page],
+                contentDescription = null
+            )
+        }
+        if (listImages.size > 1) {
             HorizontalPagerIndicator(
-                modifier = Modifier.align(Alignment.CenterHorizontally),
+                modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .padding(top = 5.dp),
                 pagerState = pagerState
             )
-            Column(modifier = Modifier.padding(20.dp)) {
-                Text(
-                    text = "Cadeira de madeira",
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    color = Color.Black,
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                )
-                Text(
-                    text = "Descrição do produto",
-                    overflow = TextOverflow.Ellipsis,
-                    color = textGrey,
-                    fontSize = 12.sp,
-                )
-                Text(
-                    modifier = Modifier.padding(top = 20.dp),
-                    text = "R$10,00",
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    color = moneyGreen,
-                    fontSize = 20.sp,
-                    fontWeight = FontWeight.Bold,
-                )
-                Divider(modifier = Modifier.padding(vertical = 20.dp))
+        }
+        Column(modifier = Modifier.padding(20.dp)) {
+            Text(
+                text = product.name,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                color = Color.Black,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+            )
+            Text(
+                text = product.description,
+                overflow = TextOverflow.Ellipsis,
+                color = textGrey,
+                fontSize = 12.sp,
+            )
+            Text(
+                modifier = Modifier.padding(top = 20.dp),
+                text = "R$ ${"%.2f".format(product.price)}",
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                color = moneyGreen,
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+            )
+            Divider(modifier = Modifier.padding(vertical = 20.dp))
+            if (product.quantity > 1) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(
+                        modifier = Modifier.padding(vertical = 5.dp),
                         text = "Quantidade",
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
@@ -122,7 +163,8 @@ private fun ProductScaffold(
                                 .width(60.dp)
                                 .clickable {
                                     quantityDropdownExpanded = true
-                                },
+                                }
+                                .padding(vertical = 5.dp),
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
                             Text(
@@ -142,60 +184,50 @@ private fun ProductScaffold(
                             expanded = quantityDropdownExpanded,
                             onDismissRequest = { quantityDropdownExpanded = false })
                         {
-                            DropdownMenuItem(onClick = {
-                                productSelectedQuantity = 1
-                                quantityDropdownExpanded = false
-                            }) {
-                                Text(text = "1")
-                            }
-                            DropdownMenuItem(onClick = {
-                                productSelectedQuantity = 2
-                                quantityDropdownExpanded = false
-                            }) {
-                                Text(text = "2")
-                            }
-                            DropdownMenuItem(onClick = {
-                                productSelectedQuantity = 3
-                                quantityDropdownExpanded = false
-                            }) {
-                                Text(text = "3")
+                            for (i in 1..product.quantity) {
+                                DropdownMenuItem(onClick = {
+                                    productSelectedQuantity = i
+                                    quantityDropdownExpanded = false
+                                }) {
+                                    Text(text = "$i")
+                                }
                             }
                         }
                     }
                 }
-                Text(
-                    modifier = Modifier.padding(top = 20.dp),
-                    text = "Comentários adicionais",
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                    color = textGrey,
-                    fontSize = 16.sp
+            }
+            Text(
+                modifier = Modifier.padding(top = 20.dp),
+                text = "Comentários adicionais",
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                color = textGrey,
+                fontSize = 16.sp
+            )
+            OutlinedTextField(
+                modifier = Modifier
+                    .padding(top = 10.dp)
+                    .height(140.dp)
+                    .fillMaxWidth(),
+                value = description,
+                onValueChange = { value -> setDescription(value) },
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    textColor = textGrey,
+                    cursorColor = mainGrey,
+                    focusedBorderColor = mainGrey,
+                    unfocusedBorderColor = backgroundGrey
                 )
-                OutlinedTextField(
-                    modifier = Modifier
-                        .padding(top = 10.dp)
-                        .height(140.dp)
-                        .fillMaxWidth(),
-                    value = description,
-                    onValueChange = { value -> setDescription(value) },
-                    colors = TextFieldDefaults.outlinedTextFieldColors(
-                        textColor = textGrey,
-                        cursorColor = mainGrey,
-                        focusedBorderColor = mainGrey,
-                        unfocusedBorderColor = backgroundGrey
-                    )
-                )
-                Button(
-                    modifier = Modifier
-                        .padding(top = 20.dp)
-                        .fillMaxWidth(),
-                    onClick = { /*TODO*/ }
-                ) {
-                    Text(text = "ADICIONAR AO CARRINHO", fontWeight = FontWeight.Bold)
-                }
+            )
+            Button(
+                modifier = Modifier
+                    .padding(top = 20.dp)
+                    .fillMaxWidth()
+                    .navigationBarsWithImePadding(),
+                onClick = { /*TODO*/ }
+            ) {
+                Text(text = "ADICIONAR AO CARRINHO", fontWeight = FontWeight.Bold)
             }
         }
-        BackButton(onBackClicked = onBackClicked)
     }
 }
 
