@@ -4,7 +4,7 @@ object Versions {
     const val minSdk = 26
 
     const val gradle = "7.0.2"
-    const val kotlin = "1.5.30"
+    const val kotlin = "1.5.31"
     const val coroutines = "1.5.2"
     const val detekt = "1.14.0"
     const val ktlint = "0.41.0"
@@ -25,12 +25,12 @@ object Versions {
 
     const val material = "1.2.1"
 
-    const val compose = "1.1.0-alpha03"
+    const val compose = "1.1.0-beta01"
     const val composeActivity = "1.3.0-rc02"
     const val composeViewModel = "1.0.0-alpha07"
     const val composeNavigation = "2.4.0-alpha06"
-    const val accompanist = "0.19.0"
-    const val coil = "1.3.2"
+    const val accompanist = "0.20.0"
+    const val coil = "1.4.0"
 }
 
 object Deps {

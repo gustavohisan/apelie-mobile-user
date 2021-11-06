@@ -1,21 +1,15 @@
 package com.gustavohisan.apelieuser.main.navigation
 
-import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 import androidx.navigation.navigation
-import com.gustavohisan.apelieuser.main.provider.FeedProvider
-import com.gustavohisan.apelieuser.main.provider.ProductProvider
-import com.gustavohisan.apelieuser.main.provider.SearchProvider
-import com.gustavohisan.apelieuser.main.provider.StoreProvider
+import com.gustavohisan.apelieuser.main.provider.*
 import com.gustavohisan.apelieuser.navigation.Destinations
 import org.koin.androidx.compose.get
 
@@ -23,12 +17,13 @@ import org.koin.androidx.compose.get
 internal fun MainScreenNavGraph(
     navController: NavHostController,
     actions: HomeNavActions,
-    paddings: PaddingValues,
     startDestination: String = Destinations.HOME_ROUTE,
     feedProvider: FeedProvider = get(),
     storeProvider: StoreProvider = get(),
     productProvider: ProductProvider = get(),
-    searchProvider: SearchProvider = get()
+    searchProvider: SearchProvider = get(),
+    cartProvider: CartProvider = get(),
+    profileProvider: ProfileProvider = get()
 ) {
     NavHost(navController = navController, startDestination = startDestination) {
         navigation(
@@ -36,17 +31,13 @@ internal fun MainScreenNavGraph(
             startDestination = Destinations.HomeSections.FEED.route
         ) {
             composable(Destinations.HomeSections.FEED.route) {
-                Scaffold(modifier = Modifier.padding(paddings)) {
-                    feedProvider.FeedComposable(actions.onStoreClicked)
-                }
+                feedProvider.FeedComposable(actions.onStoreClicked)
             }
             composable(Destinations.HomeSections.SEARCH.route) {
-                searchProvider.SearchComposable(actions.onStoreClicked, paddings)
+                searchProvider.SearchComposable(actions.onStoreClicked)
             }
             composable(Destinations.HomeSections.CART.route) {
-                Scaffold {
-                    Text("CART")
-                }
+                cartProvider.CartComposable(onCheckoutSuccess = {})
             }
             composable(Destinations.HomeSections.ORDERS.route) {
                 Scaffold {
@@ -54,9 +45,7 @@ internal fun MainScreenNavGraph(
                 }
             }
             composable(Destinations.HomeSections.PROFILE.route) {
-                Scaffold {
-                    Text("PROFILE")
-                }
+                profileProvider.ProfileComposable()
             }
         }
 

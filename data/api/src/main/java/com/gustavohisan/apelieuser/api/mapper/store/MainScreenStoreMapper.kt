@@ -26,6 +26,8 @@ internal class MainScreenStoreMapper {
             city = apiStore.city,
             name = apiStore.name,
             rating = apiStore.rating,
-            logoUrl = apiStore.logoUrl
+            logoUrl = apiStore.logoUrl,
+            productImages = apiStore.products?.map { product -> product.images.first().url }
+                ?: listOf()
         )
 }

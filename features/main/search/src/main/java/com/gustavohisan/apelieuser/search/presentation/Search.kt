@@ -5,22 +5,15 @@ import androidx.compose.animation.Crossfade
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.selection.toggleable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Filter
 import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.runtime.*
 import androidx.compose.runtime.livedata.observeAsState
@@ -46,8 +39,8 @@ import org.koin.androidx.compose.getViewModel
 @ExperimentalAnimationApi
 @ExperimentalComposeUiApi
 @Composable
-fun Search(onStoreClicked: (Int) -> Unit, paddings: PaddingValues) {
-    SearchLoader(onStoreClicked = onStoreClicked, paddings = paddings)
+fun Search(onStoreClicked: (Int) -> Unit) {
+    SearchLoader(onStoreClicked = onStoreClicked)
 }
 
 @ExperimentalFoundationApi
@@ -56,7 +49,6 @@ fun Search(onStoreClicked: (Int) -> Unit, paddings: PaddingValues) {
 @Composable
 private fun SearchLoader(
     onStoreClicked: (Int) -> Unit,
-    paddings: PaddingValues,
     viewModel: SearchViewModel = getViewModel()
 ) {
     val searchState by viewModel.searchState.observeAsState()
@@ -67,7 +59,6 @@ private fun SearchLoader(
     searchState?.let {
         SearchScaffold(
             onStoreClicked = onStoreClicked,
-            paddings = paddings,
             searchState = it,
             categoryState = categoryState,
             viewModel = viewModel
@@ -81,7 +72,6 @@ private fun SearchLoader(
 @Composable
 private fun SearchScaffold(
     onStoreClicked: (Int) -> Unit,
-    paddings: PaddingValues,
     searchState: SearchStoresState,
     categoryState: CategoryState,
     viewModel: SearchViewModel
@@ -90,7 +80,7 @@ private fun SearchScaffold(
     val keyboardController = LocalSoftwareKeyboardController.current
     var visible by remember { mutableStateOf(false) }
     val filterList = remember { mutableListOf<Filter>() }
-    Scaffold(modifier = Modifier.padding(paddings)) {
+    Scaffold {
         Column {
             Row(
                 modifier = Modifier
@@ -225,7 +215,8 @@ private fun SearchScaffold(
                                     storeUrl = store.logoUrl,
                                     state = store.state,
                                     city = store.city,
-                                    rating = store.rating
+                                    rating = store.rating,
+                                    productImages = store.products
                                 )
                             }
                         }

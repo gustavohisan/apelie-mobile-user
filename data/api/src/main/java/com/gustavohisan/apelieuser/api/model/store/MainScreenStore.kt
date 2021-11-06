@@ -1,6 +1,7 @@
 package com.gustavohisan.apelieuser.api.model.store
 
 import com.google.gson.annotations.SerializedName
+import com.gustavohisan.apelieuser.api.model.product.Product
 
 /**
  * Representation of the store retrieved by the API.
@@ -36,5 +37,7 @@ internal data class MainScreenStore(
     @SerializedName("rating")
     val rating: Float,
     @SerializedName("logoUrl")
-    val logoUrl: String
+    val logoUrl: String,
+    @SerializedName("products")
+    val products: List<Product>?
 )

@@ -26,6 +26,7 @@ internal class SearchStoreMapper {
             city = domainStore.city,
             name = domainStore.name,
             rating = domainStore.rating,
-            logoUrl = domainStore.logoUrl
+            logoUrl = domainStore.logoUrl,
+            products = domainStore.productImages
         )
 }

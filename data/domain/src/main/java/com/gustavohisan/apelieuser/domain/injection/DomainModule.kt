@@ -1,5 +1,9 @@
 package com.gustavohisan.apelieuser.domain.injection
 
+import com.gustavohisan.apelieuser.domain.usecase.cart.CheckoutItemsFromCart
+import com.gustavohisan.apelieuser.domain.usecase.cart.EditProductInCart
+import com.gustavohisan.apelieuser.domain.usecase.cart.GetCartItemsFromUser
+import com.gustavohisan.apelieuser.domain.usecase.cart.InsertProductInCart
 import com.gustavohisan.apelieuser.domain.usecase.login.ValidateLogin
 import com.gustavohisan.apelieuser.domain.usecase.product.LoadProductData
 import com.gustavohisan.apelieuser.domain.usecase.register.RegisterUser
@@ -24,4 +28,8 @@ val domainModule = module {
     factory { SearchStores(get()) }
     factory { LoadProductData(get()) }
     factory { LoadCategories(get()) }
+    factory { CheckoutItemsFromCart(get()) }
+    factory { EditProductInCart(get()) }
+    factory { GetCartItemsFromUser(get()) }
+    factory { InsertProductInCart(get()) }
 }

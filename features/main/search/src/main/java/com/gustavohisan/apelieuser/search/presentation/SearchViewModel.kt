@@ -13,7 +13,6 @@ import com.gustavohisan.apelieuser.search.model.Filter
 import com.gustavohisan.apelieuser.search.model.SearchStoresState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 internal class SearchViewModel(
     private val searchStore: SearchStores,

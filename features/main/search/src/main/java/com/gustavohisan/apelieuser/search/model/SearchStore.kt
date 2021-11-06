@@ -24,5 +24,6 @@ internal data class SearchStore(
     val city: String,
     val name: String,
     val rating: Float,
-    val logoUrl: String
+    val logoUrl: String,
+    val products: List<String>
 )

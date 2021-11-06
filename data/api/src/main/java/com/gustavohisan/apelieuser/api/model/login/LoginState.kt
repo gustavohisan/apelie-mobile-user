@@ -3,7 +3,7 @@ package com.gustavohisan.apelieuser.api.model.login
 /**
  * Representation of the login check state.
  */
-sealed class LoginState {
+internal sealed class LoginState {
 
     /**
      * Represents the login state when the login was validated successfully and the user token was

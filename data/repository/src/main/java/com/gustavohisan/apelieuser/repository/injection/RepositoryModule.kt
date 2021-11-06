@@ -1,9 +1,16 @@
 package com.gustavohisan.apelieuser.repository.injection
 
+import com.gustavohisan.apelieuser.domain.repository.cart.CartRepository
 import com.gustavohisan.apelieuser.domain.repository.intent.IntentRepository
 import com.gustavohisan.apelieuser.domain.repository.store.StoreRepository
 import com.gustavohisan.apelieuser.domain.repository.user.UserApiRepository
 import com.gustavohisan.apelieuser.domain.repository.user.UserStorageRepository
+import com.gustavohisan.apelieuser.repository.mapper.cart.*
+import com.gustavohisan.apelieuser.repository.mapper.cart.CartItemMapper
+import com.gustavohisan.apelieuser.repository.mapper.cart.CheckoutItemsFromCartMapper
+import com.gustavohisan.apelieuser.repository.mapper.cart.EditProductInCartStateMapper
+import com.gustavohisan.apelieuser.repository.mapper.cart.GetItemsFromCartStateMapper
+import com.gustavohisan.apelieuser.repository.mapper.cart.InsertProductInCartStateMapper
 import com.gustavohisan.apelieuser.repository.mapper.login.LoginErrorTypeMapper
 import com.gustavohisan.apelieuser.repository.mapper.login.LoginStateMapper
 import com.gustavohisan.apelieuser.repository.mapper.register.RegisterErrorTypeMapper
@@ -14,6 +21,7 @@ import com.gustavohisan.apelieuser.repository.mapper.store.MainScreenStoreStateM
 import com.gustavohisan.apelieuser.repository.mapper.store.OwnerMapper
 import com.gustavohisan.apelieuser.repository.mapper.store.StoreMapper
 import com.gustavohisan.apelieuser.repository.mapper.store.StoreStateMapper
+import com.gustavohisan.apelieuser.repository.repository.cart.CartRepositoryImpl
 import com.gustavohisan.apelieuser.repository.repository.intent.IntentRepositoryImpl
 import com.gustavohisan.apelieuser.repository.repository.store.StoreRepositoryImpl
 import com.gustavohisan.apelieuser.repository.repository.user.UserApiRepositoryImpl
@@ -30,6 +38,7 @@ val repositoryModule = module {
     factory<UserStorageRepository> { UserStorageRepositoryImpl(get()) }
     factory<IntentRepository> { IntentRepositoryImpl(get()) }
     factory<StoreRepository> { StoreRepositoryImpl(get(), get(), get(), get(), get()) }
+    factory<CartRepository> { CartRepositoryImpl(get(), get(), get(), get(), get()) }
 
     // Mapper
     factory { LoginStateMapper(get()) }
@@ -44,4 +53,9 @@ val repositoryModule = module {
     factory { ProductMapper() }
     factory { ProductStateMapper(get()) }
     factory { CategoryStateMapper() }
+    factory { CartItemMapper(get()) }
+    factory { CheckoutItemsFromCartMapper() }
+    factory { EditProductInCartStateMapper() }
+    factory { GetItemsFromCartStateMapper(get()) }
+    factory { InsertProductInCartStateMapper() }
 }

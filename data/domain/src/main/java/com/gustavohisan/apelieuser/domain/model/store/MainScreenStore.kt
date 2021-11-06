@@ -24,5 +24,6 @@ data class MainScreenStore(
     val city: String,
     val name: String,
     val rating: Float,
-    val logoUrl: String
+    val logoUrl: String,
+    val productImages: List<String>
 )

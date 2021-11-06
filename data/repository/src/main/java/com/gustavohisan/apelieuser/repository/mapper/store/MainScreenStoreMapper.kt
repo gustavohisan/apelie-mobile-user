@@ -26,6 +26,7 @@ internal class MainScreenStoreMapper {
             city = repositoryStore.city,
             name = repositoryStore.name,
             rating = repositoryStore.rating,
-            logoUrl = repositoryStore.logoUrl
+            logoUrl = repositoryStore.logoUrl,
+            productImages = repositoryStore.productImages
         )
 }

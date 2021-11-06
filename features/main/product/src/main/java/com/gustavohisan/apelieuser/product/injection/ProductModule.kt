@@ -1,6 +1,7 @@
 package com.gustavohisan.apelieuser.product.injection
 
 import com.gustavohisan.apelieuser.main.provider.ProductProvider
+import com.gustavohisan.apelieuser.product.mapper.InsertProductInCartStateMapper
 import com.gustavohisan.apelieuser.product.mapper.ProductErrorTypeMapper
 import com.gustavohisan.apelieuser.product.mapper.ProductMapper
 import com.gustavohisan.apelieuser.product.mapper.ProductStateMapper
@@ -12,9 +13,10 @@ import org.koin.dsl.module
 val productModule = module {
 
     factory<ProductProvider> { ProductProviderImpl() }
-    viewModel { ProductViewModel(get(), get()) }
+    viewModel { ProductViewModel(get(), get(), get(), get()) }
     factory { ProductMapper() }
     factory { ProductErrorTypeMapper() }
     factory { ProductStateMapper(get(), get()) }
+    factory { InsertProductInCartStateMapper() }
 }
 

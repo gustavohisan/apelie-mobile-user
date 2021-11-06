@@ -27,6 +27,7 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.rememberPagerState
 import com.gustavohisan.apelieuser.design.*
+import com.gustavohisan.apelieuser.product.model.InsertProductInCartState
 import com.gustavohisan.apelieuser.product.model.Product
 import com.gustavohisan.apelieuser.product.model.ProductState
 import org.koin.androidx.compose.getViewModel
@@ -56,10 +57,15 @@ private fun ProductLoader(
 ) {
     viewModel.getProductData(productId)
     val productState: ProductState by viewModel.productState.observeAsState(ProductState.Loading)
+    val insertProductInCartScrollState: InsertProductInCartState by viewModel.insertProductInCartState.observeAsState(
+        InsertProductInCartState.NotInserting
+    )
     ProductScaffold(
         productState = productState,
         onAddToCardSuccess = onAddToCardSuccess,
-        onBackClicked = onBackClicked
+        onBackClicked = onBackClicked,
+        insertProductInCartState = insertProductInCartScrollState,
+        viewModel = viewModel
     )
 }
 
@@ -68,7 +74,9 @@ private fun ProductLoader(
 private fun ProductScaffold(
     productState: ProductState,
     onAddToCardSuccess: () -> Unit,
-    onBackClicked: () -> Unit
+    onBackClicked: () -> Unit,
+    insertProductInCartState: InsertProductInCartState,
+    viewModel: ProductViewModel
 ) {
     ProvideWindowInsets {
         Scaffold {
@@ -79,7 +87,20 @@ private fun ProductScaffold(
                     is ProductState.Error -> {
                     }
                     is ProductState.Success -> {
-                        ProductInfo(product = it.product)
+                        ProductInfo(product = it.product, viewModel = viewModel)
+                    }
+                }
+            }
+            Crossfade(targetState = insertProductInCartState) {
+                when (it) {
+                    is InsertProductInCartState.Loading -> {
+                    }
+                    is InsertProductInCartState.Error -> {
+                    }
+                    is InsertProductInCartState.Success -> {
+                        onAddToCardSuccess()
+                    }
+                    is InsertProductInCartState.NotInserting -> {
                     }
                 }
             }
@@ -90,7 +111,7 @@ private fun ProductScaffold(
 
 @ExperimentalPagerApi
 @Composable
-private fun ProductInfo(product: Product) {
+private fun ProductInfo(product: Product, viewModel: ProductViewModel) {
     val (description, setDescription) = rememberSaveable { mutableStateOf("") }
     val listImages = product.images.map { rememberImagePainter(data = it) }
     var productSelectedQuantity by remember { mutableStateOf(1) }
@@ -223,7 +244,13 @@ private fun ProductInfo(product: Product) {
                     .padding(top = 20.dp)
                     .fillMaxWidth()
                     .navigationBarsWithImePadding(),
-                onClick = { /*TODO*/ }
+                onClick = {
+                    viewModel.addProductToCart(
+                        product.id,
+                        description,
+                        productSelectedQuantity
+                    )
+                }
             ) {
                 Text(text = "ADICIONAR AO CARRINHO", fontWeight = FontWeight.Bold)
             }

@@ -37,6 +37,8 @@ dependencies {
     implementation project(":features:main:store")
     implementation project(":features:main:product")
     implementation project(":features:main:search")
+    implementation project(":features:main:cart")
+    implementation project(":features:main:profile")
     implementation project(":libraries:design")
     implementation project(":libraries:navigation")
 

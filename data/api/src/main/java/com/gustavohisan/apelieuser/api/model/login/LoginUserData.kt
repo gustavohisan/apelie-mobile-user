@@ -6,7 +6,7 @@ package com.gustavohisan.apelieuser.api.model.login
  * @param username the user username
  * @param password the user password
  */
-data class LoginUserData(
+internal data class LoginUserData(
     val username: String,
     val password: String
 )

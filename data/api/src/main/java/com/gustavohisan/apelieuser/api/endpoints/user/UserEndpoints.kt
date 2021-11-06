@@ -12,7 +12,7 @@ import retrofit2.http.POST
 /**
  * User end points.
  */
-interface UserEndpoints {
+internal interface UserEndpoints {
 
     /**
      * Checks if the user login is subscribed in the database.
