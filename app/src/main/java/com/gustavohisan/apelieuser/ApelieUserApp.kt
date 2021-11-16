@@ -2,9 +2,12 @@ package com.gustavohisan.apelieuser
 
 import android.app.Application
 import com.gustavohisan.apelie.user.sharedpreferences.injection.sharedPreferencesModule
+import com.gustavohisan.apelieuser.address.injection.addressModule
+import com.gustavohisan.apelieuser.addressapi.injection.addressApiModule
 import com.gustavohisan.apelieuser.api.injection.apiModule
 import com.gustavohisan.apelieuser.cart.injection.cartModule
 import com.gustavohisan.apelieuser.checkin.injection.checkinModule
+import com.gustavohisan.apelieuser.checkout.injection.checkoutModule
 import com.gustavohisan.apelieuser.domain.injection.domainModule
 import com.gustavohisan.apelieuser.feed.injection.feedModule
 import com.gustavohisan.apelieuser.login.injection.loginModule
@@ -48,7 +51,10 @@ internal class ApelieUserApp : Application() {
                 productModule,
                 searchModule,
                 cartModule,
-                profileModule
+                profileModule,
+                addressApiModule,
+                checkoutModule,
+                addressModule
             )
         }
     }

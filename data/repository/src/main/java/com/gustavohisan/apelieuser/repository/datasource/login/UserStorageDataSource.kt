@@ -25,4 +25,6 @@ interface UserStorageDataSource {
      * @return if there is a stored token
      */
     fun hasStoredToken(): Boolean
+
+    fun removeUserToken(): Boolean
 }

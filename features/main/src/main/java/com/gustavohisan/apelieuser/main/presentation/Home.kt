@@ -15,12 +15,12 @@ import com.gustavohisan.apelieuser.main.navigation.HomeSections
 import com.gustavohisan.apelieuser.main.navigation.MainScreenNavGraph
 
 @Composable
-fun Home() {
-    HomeLoader()
+fun Home(onLogout: () -> Unit) {
+    HomeLoader(onLogout)
 }
 
 @Composable
-private fun HomeLoader() {
+private fun HomeLoader(onLogout: () -> Unit) {
     val navController = rememberNavController()
     val actions = remember(navController) { HomeNavActions(navController) }
     val sections =
@@ -35,7 +35,8 @@ private fun HomeLoader() {
         navController = navController,
         actions = actions,
         currentRoute = currentRoute(navController),
-        sections = sections
+        sections = sections,
+        onLogout = onLogout
     )
 }
 
@@ -44,7 +45,8 @@ internal fun HomeScaffold(
     navController: NavHostController,
     actions: HomeNavActions,
     currentRoute: String?,
-    sections: List<HomeSections>
+    sections: List<HomeSections>,
+    onLogout: () -> Unit
 ) {
     Scaffold(
         bottomBar = {
@@ -58,7 +60,8 @@ internal fun HomeScaffold(
         Box(modifier = Modifier.padding(bottom = innerPaddings.calculateBottomPadding())) {
             MainScreenNavGraph(
                 navController = navController,
-                actions = actions
+                actions = actions,
+                onLogout = onLogout
             )
         }
     }

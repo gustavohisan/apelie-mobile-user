@@ -24,6 +24,22 @@ internal data class HomeNavActions(val navController: NavHostController) {
         navController.navigate("${Destinations.PRODUCT_ROUTE}/$itemId")
     }
 
+    val onOrderClicked: (Int) -> Unit = { orderId ->
+        navController.navigate("${Destinations.ORDER_ROUTE}/$orderId")
+    }
+
+    val navigateToOrders: () -> Unit = {
+        navController.navigate(Destinations.HomeSections.ORDERS.route)
+    }
+
+    val onRegisterAddressClicked: () -> Unit = {
+        navController.navigate(Destinations.ADDRESS_ROUTE)
+    }
+
+    val onCheckoutClicked: () -> Unit = {
+        navController.navigate(Destinations.CHECKOUT_ROUTE)
+    }
+
     val onBackClicked: () -> Unit = {
         navController.navigateUp()
     }

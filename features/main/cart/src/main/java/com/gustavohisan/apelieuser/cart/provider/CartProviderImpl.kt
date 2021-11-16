@@ -7,6 +7,6 @@ import com.gustavohisan.apelieuser.main.provider.CartProvider
 internal class CartProviderImpl : CartProvider {
 
     @Composable
-    override fun CartComposable(onCheckoutSuccess: (Int) -> Unit) =
-        Cart(onCheckoutSuccess = onCheckoutSuccess)
+    override fun CartComposable(onCheckoutClicked: () -> Unit) =
+        Cart(onCheckoutClicked = onCheckoutClicked)
 }

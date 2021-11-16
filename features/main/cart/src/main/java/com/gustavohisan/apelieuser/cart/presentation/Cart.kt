@@ -41,13 +41,13 @@ import com.gustavohisan.apelieuser.design.textGrey
 import org.koin.androidx.compose.getViewModel
 
 @Composable
-internal fun Cart(onCheckoutSuccess: (Int) -> Unit) {
-    CartLoader(onCheckoutClicked = onCheckoutSuccess)
+internal fun Cart(onCheckoutClicked: () -> Unit) {
+    CartLoader(onCheckoutClicked = onCheckoutClicked)
 }
 
 @Composable
 private fun CartLoader(
-    onCheckoutClicked: (Int) -> Unit,
+    onCheckoutClicked: () -> Unit,
     viewModel: CartViewModel = getViewModel()
 ) {
     val cartItemsState: GetItemsFromCartState by viewModel.getItemsFromCartState.observeAsState(
@@ -57,11 +57,29 @@ private fun CartLoader(
         EditProductInCartState.None
     )
     viewModel.getCartItems()
-    CartScaffold(cartItemsState = cartItemsState, viewModel = viewModel)
+    CartScaffold(
+        cartItemsState = cartItemsState,
+        viewModel = viewModel,
+        onCheckoutClicked = onCheckoutClicked,
+        editProductState = editProductInCartState
+    )
 }
 
 @Composable
-private fun CartScaffold(cartItemsState: GetItemsFromCartState, viewModel: CartViewModel) {
+private fun CartScaffold(
+    cartItemsState: GetItemsFromCartState,
+    viewModel: CartViewModel,
+    onCheckoutClicked: () -> Unit,
+    editProductState: EditProductInCartState
+) {
+    when (editProductState) {
+        is EditProductInCartState.Success -> {
+            viewModel.getCartItems()
+        }
+        EditProductInCartState.Error -> {}
+        EditProductInCartState.Loading -> {}
+        EditProductInCartState.None -> {}
+    }
     Scaffold {
         Crossfade(targetState = cartItemsState) {
             when (it) {
@@ -129,7 +147,11 @@ private fun CartScaffold(cartItemsState: GetItemsFromCartState, viewModel: CartV
                                                 .padding(end = 20.dp, top = 20.dp, bottom = 20.dp),
                                             verticalAlignment = Alignment.CenterVertically
                                         ) {
-                                            Text(text = "Total: ", color = textGrey, fontSize = 18.sp)
+                                            Text(
+                                                text = "Total: ",
+                                                color = textGrey,
+                                                fontSize = 18.sp
+                                            )
                                             Text(
                                                 text = "R$${
                                                     "%.2f".format(it.itemList.map { it.quantity * it.product.price }
@@ -155,7 +177,7 @@ private fun CartScaffold(cartItemsState: GetItemsFromCartState, viewModel: CartV
                                     .background(Color.White)
                             ) {
                                 TextButton(
-                                    onClick = {},
+                                    onClick = { onCheckoutClicked() },
                                     modifier = Modifier
                                         .align(Alignment.CenterEnd)
                                         .padding(horizontal = 25.dp)

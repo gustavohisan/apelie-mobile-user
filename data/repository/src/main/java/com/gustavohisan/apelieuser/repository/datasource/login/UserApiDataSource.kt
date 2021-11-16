@@ -1,6 +1,8 @@
 package com.gustavohisan.apelieuser.repository.datasource.login
 
+import com.gustavohisan.apelieuser.repository.model.address.GetUserAddressesState
 import com.gustavohisan.apelieuser.repository.model.login.LoginState
+import com.gustavohisan.apelieuser.repository.model.order.GetUserOrdersState
 import com.gustavohisan.apelieuser.repository.model.register.RegisterState
 
 /**
@@ -39,4 +41,31 @@ interface UserApiDataSource {
     suspend fun subscribeUser(email: String, password: String, name: String): RegisterState
 
     suspend fun setUserToken(token: String)
+
+    suspend fun insertAddress(
+        city: String,
+        complement: String,
+        district: String,
+        number: String,
+        state: String,
+        street: String,
+        zipCode: String
+    ): Boolean
+
+    suspend fun editAddress(
+        addressId: Int,
+        city: String,
+        complement: String,
+        district: String,
+        number: String,
+        state: String,
+        street: String,
+        zipCode: String
+    ): Boolean
+
+    suspend fun deleteAddress(addressId: Int): Boolean
+
+    suspend fun getUserAddresses(): GetUserAddressesState
+
+    suspend fun getUserOrders(): GetUserOrdersState
 }

@@ -18,16 +18,16 @@ internal class MainScreenStoreMapper {
     fun toRepository(apiStore: ApiStore): RepositoryStore =
         RepositoryStore(
             storeId = apiStore.storeId,
-            category = apiStore.category,
-            state = apiStore.state,
-            bannerUrl = apiStore.bannerUrl,
-            primaryColor = apiStore.primaryColor,
-            secondaryColor = apiStore.secondaryColor,
-            city = apiStore.city,
-            name = apiStore.name,
-            rating = apiStore.rating,
-            logoUrl = apiStore.logoUrl,
-            productImages = apiStore.products?.map { product -> product.images.first().url }
+            category = apiStore.category ?: listOf(),
+            state = apiStore.state ?: "",
+            bannerUrl = apiStore.bannerUrl ?: "",
+            primaryColor = apiStore.primaryColor ?: "",
+            secondaryColor = apiStore.secondaryColor ?: "",
+            city = apiStore.city ?: "",
+            name = apiStore.name ?: "",
+            rating = apiStore.rating ?: 0F,
+            logoUrl = apiStore.logoUrl ?: "",
+            productImages = apiStore.products?.map { product -> product.images?.firstOrNull()?.url ?: "" }
                 ?: listOf()
         )
 }

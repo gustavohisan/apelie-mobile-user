@@ -14,25 +14,32 @@ import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.unit.dp
 import com.gustavohisan.apelieuser.design.textGrey
+import org.koin.androidx.compose.getViewModel
 
 @Composable
-internal fun Profile() {
-    ProfileLoader()
+internal fun Profile(onLogout: () -> Unit) {
+    ProfileLoader(onLogout)
 }
 
 @Composable
-private fun ProfileLoader() {
-    ProfileScaffold()
+private fun ProfileLoader(onLogout: () -> Unit, viewModel: ProfileViewModel = getViewModel()) {
+    val logoutState: Boolean by viewModel.logoutUserResult.observeAsState(false)
+    if (logoutState) {
+        onLogout()
+    }
+    ProfileScaffold(viewModel = viewModel)
 }
 
 @Composable
-private fun ProfileScaffold() {
+private fun ProfileScaffold(viewModel: ProfileViewModel) {
     val scrollState = rememberScrollState()
     Scaffold {
         Column(modifier = Modifier.verticalScroll(scrollState)) {
@@ -105,7 +112,7 @@ private fun ProfileScaffold() {
                 Text("Ajuda", color = textGrey)
             }
             Row(modifier = Modifier
-                .clickable { }
+                .clickable { viewModel.logout() }
                 .padding(horizontal = 10.dp, vertical = 15.dp)
                 .fillMaxWidth()) {
                 Icon(imageVector = Icons.Filled.Logout, contentDescription = null, tint = textGrey)

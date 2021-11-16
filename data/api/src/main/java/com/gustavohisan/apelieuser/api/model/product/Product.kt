@@ -6,15 +6,15 @@ internal data class Product(
     @SerializedName("productId")
     val id: Int,
     @SerializedName("price")
-    val price: Float,
+    val price: Float?,
     @SerializedName("name")
-    val name: String,
+    val name: String?,
     @SerializedName("description")
-    val description: String,
+    val description: String?,
     @SerializedName("quantity")
-    val quantity: Int,
+    val quantity: Int?,
     @SerializedName("category")
-    val category: String,
+    val category: String?,
     @SerializedName("images")
-    val images: List<ProductImage>
+    val images: List<ProductImage>?
 )

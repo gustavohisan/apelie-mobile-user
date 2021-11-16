@@ -8,11 +8,11 @@ internal class ProductMapper {
     fun toRepo(apiProduct: ApiProduct): RepositoryProduct =
         RepositoryProduct(
             id = apiProduct.id,
-            description = apiProduct.description,
-            category = apiProduct.category,
-            images = apiProduct.images.map { productImage -> productImage.url },
-            name = apiProduct.name,
-            price = apiProduct.price,
-            quantity = apiProduct.quantity
+            description = apiProduct.description ?: "",
+            category = apiProduct.category ?: "",
+            images = apiProduct.images?.map { productImage -> productImage.url } ?: listOf(),
+            name = apiProduct.name  ?: "",
+            price = apiProduct.price  ?: 0F,
+            quantity = apiProduct.quantity ?: 1
         )
 }

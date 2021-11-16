@@ -1,0 +1,12 @@
+apply plugin: 'com.android.library'
+apply from: "$rootDir/config/android_dependencies.gradle"
+
+dependencies {
+    implementation project(":data:repository")
+
+    implementation Deps.koin.core
+    implementation Deps.timber
+    implementation Deps.retrofit.core
+    implementation Deps.retrofit.converter
+    implementation Deps.gson
+}

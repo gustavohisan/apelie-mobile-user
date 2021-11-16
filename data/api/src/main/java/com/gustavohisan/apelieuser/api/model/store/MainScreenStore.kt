@@ -21,23 +21,23 @@ internal data class MainScreenStore(
     @SerializedName("storeId")
     val storeId: Int,
     @SerializedName("category")
-    val category: List<String>,
+    val category: List<String>?,
     @SerializedName("state")
-    val state: String,
+    val state: String?,
     @SerializedName("bannerUrl")
-    val bannerUrl: String,
+    val bannerUrl: String?,
     @SerializedName("primaryColor")
-    val primaryColor: String,
+    val primaryColor: String?,
     @SerializedName("secondaryColor")
-    val secondaryColor: String,
+    val secondaryColor: String?,
     @SerializedName("city")
-    val city: String,
+    val city: String?,
     @SerializedName("name")
-    val name: String,
+    val name: String?,
     @SerializedName("rating")
-    val rating: Float,
+    val rating: Float?,
     @SerializedName("logoUrl")
-    val logoUrl: String,
+    val logoUrl: String?,
     @SerializedName("products")
     val products: List<Product>?
 )

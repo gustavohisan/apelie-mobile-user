@@ -64,7 +64,7 @@ internal class CartDataSourceImpl(
             Timber.d("checkoutItemsFromCart - Success")
             checkoutItemsFromCartMapper.toRepo(CheckoutItemsFromCartState.Success)
         } else {
-            Timber.d("checkoutItemsFromCart - Error")
+            Timber.d("checkoutItemsFromCart - Error - requestCode = ${callback.code()}")
             checkoutItemsFromCartMapper.toRepo(CheckoutItemsFromCartState.Error)
         }
     }

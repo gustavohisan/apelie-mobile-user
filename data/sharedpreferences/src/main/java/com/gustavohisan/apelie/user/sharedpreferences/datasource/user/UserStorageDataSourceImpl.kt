@@ -33,6 +33,12 @@ internal class UserStorageDataSourceImpl(
         return hasStoredToken
     }
 
+    override fun removeUserToken() = with(preferenceProvider.getSharedPreferences().edit()) {
+        remove(USER_TOKEN)
+        commit()
+    }
+
+
     companion object {
 
         private const val USER_TOKEN = "USER_TOKEN"

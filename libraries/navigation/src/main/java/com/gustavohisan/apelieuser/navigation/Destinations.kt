@@ -9,6 +9,10 @@ object Destinations {
     const val STORE_ID = "storeId"
     const val PRODUCT_ROUTE = "home/feed/store/product"
     const val PRODUCT_ID = "productId"
+    const val ORDER_ROUTE = "home/feed/orders/order"
+    const val ORDER_ID = "orderId"
+    const val ADDRESS_ROUTE = "home/address"
+    const val CHECKOUT_ROUTE = "home/cart/checkout"
 
     enum class HomeSections(val route: String) {
         FEED("home/feed"),

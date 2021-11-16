@@ -12,12 +12,11 @@ internal class UserStorageRepositoryImpl(
     private val userStorageDataSource: UserStorageDataSource
 ) : UserStorageRepository {
 
-    override fun storeUserToken(token: String) =
-        userStorageDataSource.storeUserToken(token)
+    override fun storeUserToken(token: String) = userStorageDataSource.storeUserToken(token)
 
-    override fun getStoredUserToken(): String =
-        userStorageDataSource.getUserStoredToken()
+    override fun getStoredUserToken(): String = userStorageDataSource.getUserStoredToken()
 
-    override fun hasStoredUser(): Boolean =
-        userStorageDataSource.hasStoredToken()
+    override fun hasStoredUser(): Boolean = userStorageDataSource.hasStoredToken()
+
+    override fun removeUserToken(): Boolean = userStorageDataSource.removeUserToken()
 }

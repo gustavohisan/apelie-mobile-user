@@ -6,6 +6,8 @@ import com.gustavohisan.apelieuser.api.datasource.store.StoreDataSourceImpl
 import com.gustavohisan.apelieuser.api.datasource.user.UserApiDataSourceImpl
 import com.gustavohisan.apelieuser.api.factory.ApiFactory
 import com.gustavohisan.apelieuser.api.interceptor.NetworkInterceptor
+import com.gustavohisan.apelieuser.api.mapper.address.AddressMapper
+import com.gustavohisan.apelieuser.api.mapper.address.GetUserAddressesStateMapper
 import com.gustavohisan.apelieuser.api.mapper.cart.*
 import com.gustavohisan.apelieuser.api.mapper.cart.CartItemMapper
 import com.gustavohisan.apelieuser.api.mapper.cart.CheckoutItemsFromCartMapper
@@ -14,6 +16,9 @@ import com.gustavohisan.apelieuser.api.mapper.cart.GetItemsFromCartStateMapper
 import com.gustavohisan.apelieuser.api.mapper.cart.InsertProductInCartStateMapper
 import com.gustavohisan.apelieuser.api.mapper.login.LoginErrorTypeMapper
 import com.gustavohisan.apelieuser.api.mapper.login.LoginStateMapper
+import com.gustavohisan.apelieuser.api.mapper.order.GetUserOrdersStateMapper
+import com.gustavohisan.apelieuser.api.mapper.order.ItemListMapper
+import com.gustavohisan.apelieuser.api.mapper.order.OrderMapper
 import com.gustavohisan.apelieuser.api.mapper.register.RegisterErrorTypeMapper
 import com.gustavohisan.apelieuser.api.mapper.register.RegisterStateMapper
 import com.gustavohisan.apelieuser.api.mapper.store.*
@@ -28,9 +33,9 @@ import org.koin.dsl.module
 val apiModule = module {
 
     // Data source
-    single<UserApiDataSource> { UserApiDataSourceImpl(get(), get(), get()) }
-    single<StoreDataSource> { StoreDataSourceImpl(get(), get(), get(), get()) }
-    single<CartDataSource> { CartDataSourceImpl(get(), get(), get(), get(), get())}
+    factory<UserApiDataSource> { UserApiDataSourceImpl(get(), get(), get(), get(), get()) }
+    factory<StoreDataSource> { StoreDataSourceImpl(get(), get(), get(), get()) }
+    factory<CartDataSource> { CartDataSourceImpl(get(), get(), get(), get(), get())}
 
     // Mapper
     factory { LoginStateMapper(get()) }
@@ -49,6 +54,11 @@ val apiModule = module {
     factory { EditProductInCartStateMapper() }
     factory { GetItemsFromCartStateMapper(get()) }
     factory { InsertProductInCartStateMapper() }
+    factory { AddressMapper() }
+    factory { GetUserAddressesStateMapper(get()) }
+    factory { GetUserOrdersStateMapper(get()) }
+    factory { ItemListMapper(get()) }
+    factory { OrderMapper(get(), get()) }
 
     // Provider
     single { ApiFactory(get(), get()) }

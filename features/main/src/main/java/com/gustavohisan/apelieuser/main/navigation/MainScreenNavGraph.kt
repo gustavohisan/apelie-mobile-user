@@ -1,7 +1,5 @@
 package com.gustavohisan.apelieuser.main.navigation
 
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -23,7 +21,12 @@ internal fun MainScreenNavGraph(
     productProvider: ProductProvider = get(),
     searchProvider: SearchProvider = get(),
     cartProvider: CartProvider = get(),
-    profileProvider: ProfileProvider = get()
+    profileProvider: ProfileProvider = get(),
+    addressProvider: AddressProvider = get(),
+    checkoutProvider: CheckoutProvider = get(),
+    onLogout: () -> Unit,
+//    orderProvider: OrderProvider = get(),
+//    ordersProvider: OrdersProvider = get()
 ) {
     NavHost(navController = navController, startDestination = startDestination) {
         navigation(
@@ -37,15 +40,13 @@ internal fun MainScreenNavGraph(
                 searchProvider.SearchComposable(actions.onStoreClicked)
             }
             composable(Destinations.HomeSections.CART.route) {
-                cartProvider.CartComposable(onCheckoutSuccess = {})
+                cartProvider.CartComposable(actions.onCheckoutClicked)
             }
             composable(Destinations.HomeSections.ORDERS.route) {
-                Scaffold {
-                    Text("ORDERS")
-                }
+//                ordersProvider.OrdersComposable(actions.onOrderClicked)
             }
             composable(Destinations.HomeSections.PROFILE.route) {
-                profileProvider.ProfileComposable()
+                profileProvider.ProfileComposable(onLogout)
             }
         }
 
@@ -72,6 +73,33 @@ internal fun MainScreenNavGraph(
                 productId = productId,
                 onAddToCardSuccess = actions.onBackClicked,
                 onBackClicked = actions.onBackClicked
+            )
+        }
+
+        composable(
+            route = "${Destinations.ORDER_ROUTE}/{${Destinations.ORDER_ID}}",
+            arguments = listOf(navArgument(Destinations.ORDER_ID) { type = NavType.IntType })
+        ) { backStackEntry ->
+            val arguments = requireNotNull(backStackEntry.arguments)
+            val orderId = arguments.getInt(Destinations.ORDER_ID, 0)
+//            orderProvider.OrderPComposable(
+//                orderId = orderId,
+//                onBackClicked = actions.onBackClicked
+//            )
+        }
+
+        composable(Destinations.ADDRESS_ROUTE) {
+            addressProvider.AddressComposable(
+                onBackClicked = actions.onBackClicked,
+                onDone = actions.onBackClicked
+            )
+        }
+
+        composable(Destinations.CHECKOUT_ROUTE) {
+            checkoutProvider.CheckoutComposable(
+                onBackClicked = actions.onBackClicked,
+                onConfirmed = actions.navigateToOrders,
+                onRegisterAddressClicked = actions.onRegisterAddressClicked
             )
         }
     }

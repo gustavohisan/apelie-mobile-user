@@ -5,5 +5,5 @@ import androidx.compose.runtime.Composable
 interface ProfileProvider {
 
     @Composable
-    fun ProfileComposable()
+    fun ProfileComposable(onLogout: () -> Unit)
 }

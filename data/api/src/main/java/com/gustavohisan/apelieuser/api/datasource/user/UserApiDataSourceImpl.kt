@@ -10,7 +10,15 @@ import com.gustavohisan.apelieuser.api.model.register.RegisterErrorType
 import com.gustavohisan.apelieuser.api.model.register.RegisterState
 import com.gustavohisan.apelieuser.api.model.register.RegisterUserData
 import com.gustavohisan.apelieuser.api.factory.ApiFactory
+import com.gustavohisan.apelieuser.api.mapper.address.GetUserAddressesStateMapper
+import com.gustavohisan.apelieuser.api.mapper.order.GetUserOrdersStateMapper
+import com.gustavohisan.apelieuser.api.model.address.AddressData
+import com.gustavohisan.apelieuser.api.model.address.EditAddressData
+import com.gustavohisan.apelieuser.api.model.address.GetUserAddressesState as ApiGetUserAddressesState
+import com.gustavohisan.apelieuser.api.model.orders.GetUserOrdersState as ApiGetUserOrdersState
 import com.gustavohisan.apelieuser.repository.datasource.login.UserApiDataSource
+import com.gustavohisan.apelieuser.repository.model.address.GetUserAddressesState
+import com.gustavohisan.apelieuser.repository.model.order.GetUserOrdersState
 import timber.log.Timber
 import com.gustavohisan.apelieuser.repository.model.login.LoginState as RepoLoginState
 import com.gustavohisan.apelieuser.repository.model.register.RegisterState as RepoRegisterState
@@ -25,7 +33,9 @@ import com.gustavohisan.apelieuser.repository.model.register.RegisterState as Re
 internal class UserApiDataSourceImpl(
     private val apiFactory: ApiFactory,
     private val loginStateMapper: LoginStateMapper,
-    private val registerStateMapper: RegisterStateMapper
+    private val registerStateMapper: RegisterStateMapper,
+    private val getUserAddressesStateMapper: GetUserAddressesStateMapper,
+    private val getUserOrdersStateMapper: GetUserOrdersStateMapper
 ) : UserApiDataSource {
 
     private val endpoint = apiFactory.getRetrofitInstance().create(UserEndpoints::class.java)
@@ -65,6 +75,86 @@ internal class UserApiDataSourceImpl(
                 201 -> RegisterState.Success
                 415 -> RegisterState.Error(RegisterErrorType.ALREADY_SUBSCRIBED)
                 else -> RegisterState.Error(RegisterErrorType.SERVER_UNAVAILABLE)
+            }
+        )
+    }
+
+    override suspend fun insertAddress(
+        city: String,
+        complement: String,
+        district: String,
+        number: String,
+        state: String,
+        street: String,
+        zipCode: String
+    ): Boolean {
+        val callback = endpoint.insertAddress(
+            AddressData(
+                city,
+                complement,
+                district,
+                number,
+                state,
+                street,
+                zipCode
+            )
+        )
+        Timber.d("insertAddress - requestCode = ${callback.code()}")
+        return callback.code() == 201
+    }
+
+    override suspend fun editAddress(
+        addressId: Int,
+        city: String,
+        complement: String,
+        district: String,
+        number: String,
+        state: String,
+        street: String,
+        zipCode: String
+    ): Boolean {
+        val callback = endpoint.editAddress(
+            EditAddressData(
+                addressId,
+                city,
+                complement,
+                district,
+                number,
+                state,
+                street,
+                zipCode
+            )
+        )
+        Timber.d("editAddress - requestCode = ${callback.code()}")
+        return callback.code() == 201
+    }
+
+    override suspend fun deleteAddress(addressId: Int): Boolean {
+        val callback = endpoint.deleteAddress(addressId)
+        Timber.d("deleteAddress - requestCode = ${callback.code()}")
+        return callback.code() == 201
+    }
+
+    override suspend fun getUserAddresses(): GetUserAddressesState {
+        val callback = endpoint.getUserAddresses()
+        Timber.d("getUserAddresses - requestCode = ${callback.code()}")
+        return getUserAddressesStateMapper.toRepo(
+            if (callback.code() == 200) {
+                ApiGetUserAddressesState.Success(callback.body() ?: listOf())
+            } else {
+                ApiGetUserAddressesState.Error
+            }
+        )
+    }
+
+    override suspend fun getUserOrders(): GetUserOrdersState {
+        val callback = endpoint.getOrders()
+        Timber.d("getUserOrders - requestCode = ${callback.code()}")
+        return getUserOrdersStateMapper.toRepo(
+            if (callback.code() == 200) {
+                ApiGetUserOrdersState.Success(callback.body() ?: listOf())
+            } else {
+                ApiGetUserOrdersState.Error
             }
         )
     }

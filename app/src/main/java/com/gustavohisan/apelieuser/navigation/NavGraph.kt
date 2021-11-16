@@ -39,7 +39,7 @@ fun NavGraph(startDestination: String = Destinations.CHECKIN_ROUTE) {
         }
 
         composable(Destinations.HOME_ROUTE) {
-            Home()
+            Home(actions.openLoginScreen)
         }
     }
 }

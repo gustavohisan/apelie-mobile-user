@@ -1,13 +1,15 @@
 package com.gustavohisan.apelieuser.api.endpoints.user
 
+import com.gustavohisan.apelieuser.api.model.address.Address
+import com.gustavohisan.apelieuser.api.model.address.AddressData
+import com.gustavohisan.apelieuser.api.model.address.EditAddressData
 import com.gustavohisan.apelieuser.api.model.login.LoginUserData
+import com.gustavohisan.apelieuser.api.model.orders.Order
+import com.gustavohisan.apelieuser.api.model.product.Product
 import com.gustavohisan.apelieuser.api.model.register.RegisterUserData
 import okhttp3.ResponseBody
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
 
 /**
  * User end points.
@@ -43,4 +45,19 @@ internal interface UserEndpoints {
      */
     @POST("users")
     suspend fun insertUser(@Body userData: RegisterUserData): Response<ResponseBody>
+
+    @POST("users/addresses")
+    suspend fun insertAddress(@Body addressData: AddressData): Response<ResponseBody>
+
+    @DELETE("users/addresses/{id}")
+    suspend fun deleteAddress(@Path("id") id: Int): Response<ResponseBody>
+
+    @PUT("users/addresses")
+    suspend fun editAddress(@Body editAddressData: EditAddressData): Response<ResponseBody>
+
+    @GET("users/orders")
+    suspend fun getOrders(): Response<List<Order>>
+
+    @GET("users/addresses")
+    suspend fun getUserAddresses(): Response<List<Address>>
 }

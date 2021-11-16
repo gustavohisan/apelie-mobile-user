@@ -1,10 +1,14 @@
 package com.gustavohisan.apelieuser.domain.injection
 
+import com.gustavohisan.apelieuser.domain.usecase.address.*
 import com.gustavohisan.apelieuser.domain.usecase.cart.CheckoutItemsFromCart
 import com.gustavohisan.apelieuser.domain.usecase.cart.EditProductInCart
 import com.gustavohisan.apelieuser.domain.usecase.cart.GetCartItemsFromUser
 import com.gustavohisan.apelieuser.domain.usecase.cart.InsertProductInCart
+import com.gustavohisan.apelieuser.domain.usecase.login.LogoutUser
 import com.gustavohisan.apelieuser.domain.usecase.login.ValidateLogin
+import com.gustavohisan.apelieuser.domain.usecase.order.LoadOrder
+import com.gustavohisan.apelieuser.domain.usecase.order.LoadUserOrders
 import com.gustavohisan.apelieuser.domain.usecase.product.LoadProductData
 import com.gustavohisan.apelieuser.domain.usecase.register.RegisterUser
 import com.gustavohisan.apelieuser.domain.usecase.search.SearchStores
@@ -32,4 +36,12 @@ val domainModule = module {
     factory { EditProductInCart(get()) }
     factory { GetCartItemsFromUser(get()) }
     factory { InsertProductInCart(get()) }
+    factory { LogoutUser(get()) }
+    factory { DeleteAddress(get()) }
+    factory { GetUserAddressList(get()) }
+    factory { InsertAddress(get()) }
+    factory { SearchAddressByCep(get()) }
+    factory { UpdateAddress(get()) }
+    factory { LoadOrder() }
+    factory { LoadUserOrders(get()) }
 }

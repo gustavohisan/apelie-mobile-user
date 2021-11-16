@@ -27,6 +27,7 @@ dependencies {
     implementation project(":data:domain")
     implementation project(":data:repository")
     implementation project(":data:api")
+    implementation project(":data:addressapi")
     implementation project(":data:sharedpreferences")
     implementation project(":data:memory")
     implementation project(":features:startup:checkin")
@@ -39,6 +40,9 @@ dependencies {
     implementation project(":features:main:search")
     implementation project(":features:main:cart")
     implementation project(":features:main:profile")
+    implementation project(":features:main:address")
+    implementation project(":features:main:checkout")
+    implementation project(":features:main:orders")
     implementation project(":libraries:design")
     implementation project(":libraries:navigation")
 

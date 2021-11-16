@@ -25,4 +25,6 @@ interface UserStorageRepository {
      * @return if there is a stored token
      */
     fun hasStoredUser(): Boolean
+
+    fun removeUserToken(): Boolean
 }

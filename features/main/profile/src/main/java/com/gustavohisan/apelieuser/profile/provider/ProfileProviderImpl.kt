@@ -7,5 +7,5 @@ import com.gustavohisan.apelieuser.profile.presentation.Profile
 internal class ProfileProviderImpl: ProfileProvider {
 
     @Composable
-    override fun ProfileComposable() = Profile()
+    override fun ProfileComposable(onLogout: () -> Unit) = Profile(onLogout)
 }
