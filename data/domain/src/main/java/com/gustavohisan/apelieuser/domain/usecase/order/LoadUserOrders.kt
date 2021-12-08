@@ -19,6 +19,9 @@ class LoadUserOrders(private val orderRepository: OrderRepository) {
         if (orders.isEmpty()) {
             GetUserOrdersState.Empty
         } else {
-            GetUserOrdersState.Success(orders)
+            GetUserOrdersState.Success(orderOrders(orders))
         }
+
+    private fun orderOrders(orders: List<Order>) =
+        orders.sortedBy { order -> order.orderId }.reversed()
 }

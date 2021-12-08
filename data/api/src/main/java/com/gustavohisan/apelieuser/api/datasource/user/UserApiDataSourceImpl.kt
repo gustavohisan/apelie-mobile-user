@@ -11,13 +11,17 @@ import com.gustavohisan.apelieuser.api.model.register.RegisterState
 import com.gustavohisan.apelieuser.api.model.register.RegisterUserData
 import com.gustavohisan.apelieuser.api.factory.ApiFactory
 import com.gustavohisan.apelieuser.api.mapper.address.GetUserAddressesStateMapper
+import com.gustavohisan.apelieuser.api.mapper.order.GetOrderByIdStateMapper
 import com.gustavohisan.apelieuser.api.mapper.order.GetUserOrdersStateMapper
 import com.gustavohisan.apelieuser.api.model.address.AddressData
 import com.gustavohisan.apelieuser.api.model.address.EditAddressData
+import com.gustavohisan.apelieuser.api.model.orders.Rate
 import com.gustavohisan.apelieuser.api.model.address.GetUserAddressesState as ApiGetUserAddressesState
 import com.gustavohisan.apelieuser.api.model.orders.GetUserOrdersState as ApiGetUserOrdersState
+import com.gustavohisan.apelieuser.api.model.orders.GetOrderByIdState as ApiGetOrderByIdState
 import com.gustavohisan.apelieuser.repository.datasource.login.UserApiDataSource
 import com.gustavohisan.apelieuser.repository.model.address.GetUserAddressesState
+import com.gustavohisan.apelieuser.repository.model.order.GetOrderByIdState
 import com.gustavohisan.apelieuser.repository.model.order.GetUserOrdersState
 import timber.log.Timber
 import com.gustavohisan.apelieuser.repository.model.login.LoginState as RepoLoginState
@@ -35,7 +39,8 @@ internal class UserApiDataSourceImpl(
     private val loginStateMapper: LoginStateMapper,
     private val registerStateMapper: RegisterStateMapper,
     private val getUserAddressesStateMapper: GetUserAddressesStateMapper,
-    private val getUserOrdersStateMapper: GetUserOrdersStateMapper
+    private val getUserOrdersStateMapper: GetUserOrdersStateMapper,
+    private val getOrderByIdStateMapper: GetOrderByIdStateMapper
 ) : UserApiDataSource {
 
     private val endpoint = apiFactory.getRetrofitInstance().create(UserEndpoints::class.java)
@@ -45,7 +50,7 @@ internal class UserApiDataSourceImpl(
         Timber.d("validateLogin - requestCode = ${callback.code()}")
         return loginStateMapper.toRepo(
             when (callback.code()) {
-                403 -> LoginState.Error(LoginErrorType.WRONG_PASSWORD)
+                401 -> LoginState.Error(LoginErrorType.WRONG_PASSWORD)
                 200 -> LoginState.Success(callback.headers().get("Authorization").orEmpty())
                 else -> LoginState.Error(LoginErrorType.SERVER_UNAVAILABLE)
             }
@@ -73,7 +78,7 @@ internal class UserApiDataSourceImpl(
         return registerStateMapper.toRepo(
             when (callback.code()) {
                 201 -> RegisterState.Success
-                415 -> RegisterState.Error(RegisterErrorType.ALREADY_SUBSCRIBED)
+                409 -> RegisterState.Error(RegisterErrorType.ALREADY_SUBSCRIBED)
                 else -> RegisterState.Error(RegisterErrorType.SERVER_UNAVAILABLE)
             }
         )
@@ -157,5 +162,26 @@ internal class UserApiDataSourceImpl(
                 ApiGetUserOrdersState.Error
             }
         )
+    }
+
+    override suspend fun getOrderById(id: Int): GetOrderByIdState {
+        val callback = endpoint.getOrderById(id)
+        val body = callback.body()
+        Timber.d("getUserOrders - requestCode = ${callback.code()}")
+        return getOrderByIdStateMapper.toRepo(
+            if (callback.code() == 200 && body != null) {
+                ApiGetOrderByIdState.Success(body)
+            } else {
+                ApiGetOrderByIdState.Error
+            }
+        )
+    }
+
+    override suspend fun rateOrder(id: Int, rating: Int, description: String): Boolean {
+        Timber.d("rateOrder - id = $id - rating = $rating - description = $description")
+        val callback = endpoint.rateOrder(id, Rate(description, rating.toFloat()))
+        callback.body()
+        Timber.d("rateOrder - requestCode = ${callback.code()}")
+        return callback.isSuccessful
     }
 }

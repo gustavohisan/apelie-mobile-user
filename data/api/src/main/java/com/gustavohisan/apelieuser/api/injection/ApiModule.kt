@@ -16,6 +16,7 @@ import com.gustavohisan.apelieuser.api.mapper.cart.GetItemsFromCartStateMapper
 import com.gustavohisan.apelieuser.api.mapper.cart.InsertProductInCartStateMapper
 import com.gustavohisan.apelieuser.api.mapper.login.LoginErrorTypeMapper
 import com.gustavohisan.apelieuser.api.mapper.login.LoginStateMapper
+import com.gustavohisan.apelieuser.api.mapper.order.GetOrderByIdStateMapper
 import com.gustavohisan.apelieuser.api.mapper.order.GetUserOrdersStateMapper
 import com.gustavohisan.apelieuser.api.mapper.order.ItemListMapper
 import com.gustavohisan.apelieuser.api.mapper.order.OrderMapper
@@ -33,7 +34,7 @@ import org.koin.dsl.module
 val apiModule = module {
 
     // Data source
-    factory<UserApiDataSource> { UserApiDataSourceImpl(get(), get(), get(), get(), get()) }
+    factory<UserApiDataSource> { UserApiDataSourceImpl(get(), get(), get(), get(), get(), get()) }
     factory<StoreDataSource> { StoreDataSourceImpl(get(), get(), get(), get()) }
     factory<CartDataSource> { CartDataSourceImpl(get(), get(), get(), get(), get())}
 
@@ -58,7 +59,8 @@ val apiModule = module {
     factory { GetUserAddressesStateMapper(get()) }
     factory { GetUserOrdersStateMapper(get()) }
     factory { ItemListMapper(get()) }
-    factory { OrderMapper(get(), get()) }
+    factory { OrderMapper(get(), get(), get()) }
+    factory { GetOrderByIdStateMapper(get()) }
 
     // Provider
     single { ApiFactory(get(), get()) }

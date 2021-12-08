@@ -34,7 +34,7 @@ fun NavGraph(startDestination: String = Destinations.CHECKIN_ROUTE) {
         composable(Destinations.REGISTER_ROUTE) {
             Register(
                 onBackPressed = actions.openLoginScreen,
-                onRegisterNewUser = actions.openMainScreen
+                onRegisterNewUser = actions.openLoginScreen
             )
         }
 

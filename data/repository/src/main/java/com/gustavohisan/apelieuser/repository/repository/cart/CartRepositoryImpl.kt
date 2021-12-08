@@ -55,4 +55,6 @@ internal class CartRepositoryImpl(
             quantity
         )
     )
+
+    override suspend fun clearCart(): Boolean = cartDataSource.clearCart()
 }

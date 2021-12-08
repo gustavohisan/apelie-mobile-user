@@ -6,7 +6,6 @@ import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -179,7 +178,7 @@ private fun StoreHeader(
                             tint = ratingYellow,
                         )
                         Text(
-                            text = store.rating.toString(),
+                            text = "%.1f".format(store.rating),
                             maxLines = 1,
                             overflow = TextOverflow.Visible,
                             color = ratingYellow,
@@ -205,7 +204,11 @@ private fun StoreTabRow(
     listState: LazyListState,
     categoriesIndex: MutableList<Int>
 ) {
-    Column(modifier = Modifier.background(Color.White)) {
+    Column(
+        modifier = Modifier
+            .background(Color.White)
+            .fillMaxWidth()
+    ) {
         Crossfade(
             showTabRowText,
             modifier = Modifier
@@ -246,24 +249,49 @@ private fun StoreTabRow(
                 }
             }
         }
-        ScrollableTabRow(
-            backgroundColor = Color.White,
-            contentColor = mainBlue,
-            selectedTabIndex = selectedIndex,
-        ) {
-            tabs.forEachIndexed { index, tabText ->
-                Tab(
-                    modifier = Modifier.height(50.dp),
-                    selected = index == selectedIndex,
-                    selectedContentColor = mainBlue,
-                    unselectedContentColor = mainGrey,
-                    onClick = {
-                        setSelectedIndex(index)
-                        coroutineScope.launch {
-                            listState.animateScrollToItem(categoriesIndex[index])
-                        }
-                    }) {
-                    Text(text = tabText)
+        if (tabs.size > 3) {
+            ScrollableTabRow(
+                modifier = Modifier.fillMaxWidth(),
+                backgroundColor = Color.White,
+                contentColor = mainBlue,
+                selectedTabIndex = selectedIndex,
+            ) {
+                tabs.forEachIndexed { index, tabText ->
+                    Tab(
+                        modifier = Modifier.height(50.dp),
+                        selected = index == selectedIndex,
+                        selectedContentColor = mainBlue,
+                        unselectedContentColor = mainGrey,
+                        onClick = {
+                            setSelectedIndex(index)
+                            coroutineScope.launch {
+                                listState.animateScrollToItem(categoriesIndex[index])
+                            }
+                        }) {
+                        Text(text = tabText)
+                    }
+                }
+            }
+        } else {
+            TabRow(
+                backgroundColor = Color.White,
+                contentColor = mainBlue,
+                selectedTabIndex = selectedIndex
+            ) {
+                tabs.forEachIndexed { index, tabText ->
+                    Tab(
+                        modifier = Modifier.height(50.dp),
+                        selected = index == selectedIndex,
+                        selectedContentColor = mainBlue,
+                        unselectedContentColor = mainGrey,
+                        onClick = {
+                            setSelectedIndex(index)
+                            coroutineScope.launch {
+                                listState.animateScrollToItem(categoriesIndex[index])
+                            }
+                        }) {
+                        Text(text = tabText)
+                    }
                 }
             }
         }
@@ -399,7 +427,6 @@ private fun CategoryTitle(name: String) {
 
 @Composable
 private fun Product(product: Product, onProductClicked: (Int) -> Unit) {
-    val productImage = rememberImagePainter(data = product.images.first())
     Box(
         Modifier
             .padding(vertical = 15.dp, horizontal = 15.dp)
@@ -423,7 +450,7 @@ private fun Product(product: Product, onProductClicked: (Int) -> Unit) {
         Row {
             Column(
                 modifier = Modifier
-                    .fillMaxWidth(0.5f)
+                    .fillMaxWidth(if (product.images.isNotEmpty()) 0.5f else 1f)
                     .fillMaxHeight()
                     .padding(15.dp)
             ) {
@@ -444,22 +471,25 @@ private fun Product(product: Product, onProductClicked: (Int) -> Unit) {
                     fontSize = 12.sp,
                 )
             }
-            Image(
-                painter = productImage,
-                contentDescription = null,
-                contentScale = ContentScale.Crop,
-                alignment = Alignment.Center,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .fillMaxHeight()
-                    .padding(15.dp)
-                    .clip(RoundedCornerShape(10.dp))
-                    .placeholder(
-                        visible = (productImage.state is ImagePainter.State.Success).not(),
-                        color = Color.LightGray,
-                        highlight = PlaceholderHighlight.fade(Color.White)
-                    )
-            )
+            if (product.images.isNotEmpty()) {
+                val productImage = rememberImagePainter(data = product.images.firstOrNull())
+                Image(
+                    painter = productImage,
+                    contentDescription = null,
+                    contentScale = ContentScale.Crop,
+                    alignment = Alignment.Center,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .fillMaxHeight()
+                        .padding(15.dp)
+                        .clip(RoundedCornerShape(10.dp))
+                        .placeholder(
+                            visible = (productImage.state is ImagePainter.State.Success).not(),
+                            color = Color.LightGray,
+                            highlight = PlaceholderHighlight.fade(Color.White)
+                        )
+                )
+            }
         }
     }
 }

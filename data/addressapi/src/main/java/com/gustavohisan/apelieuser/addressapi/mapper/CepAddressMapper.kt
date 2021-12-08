@@ -7,9 +7,9 @@ internal class CepAddressMapper {
 
     fun toRepo(apiItem: ApiItem): RepoItem =
         RepoItem(
-            city = apiItem.city,
-            district = apiItem.district,
-            state = apiItem.state,
-            street = apiItem.street
+            city = apiItem.city ?: "",
+            district = apiItem.district ?: "",
+            state = apiItem.state ?: "",
+            street = apiItem.street ?: ""
         )
 }

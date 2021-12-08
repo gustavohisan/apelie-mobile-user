@@ -8,7 +8,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.CreditCard
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
@@ -65,6 +64,7 @@ private fun CheckoutLoader(
         is CheckoutItemsFromCartState.None -> {
         }
         is CheckoutItemsFromCartState.Success -> {
+            viewModel.resetState()
             onConfirmed()
         }
     }
@@ -158,12 +158,12 @@ private fun CheckoutScaffold(
                     )
                 }
                 val creditCardBorderColor by animateColorAsState(
-                    if (selectedPaymentMethod == "CreditCard") mainBlue else Color.White
+                    if (selectedPaymentMethod == "Credit_card") mainBlue else Color.White
                 )
                 Row(
                     Modifier
                         .padding(horizontal = 5.dp, vertical = 5.dp)
-                        .clickable(onClick = { selectedPaymentMethod = "CreditCard" })
+                        .clickable(onClick = { selectedPaymentMethod = "Credit_card" })
                         .border(3.dp, creditCardBorderColor, shape = RoundedCornerShape(10.dp))
                         .shadow(2.dp, shape = RoundedCornerShape(10.dp))
                         .width(180.dp)
@@ -285,4 +285,3 @@ private fun NewAddress(onRegisterAddressClicked: () -> Unit) {
         )
     }
 }
-

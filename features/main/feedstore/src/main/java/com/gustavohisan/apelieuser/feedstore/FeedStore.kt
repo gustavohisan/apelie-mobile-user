@@ -46,7 +46,7 @@ fun FeedStore(
     rating: Float,
     productImages: List<String>
 ) {
-    val listImages = productImages.map { rememberImagePainter(data = it) }
+    val filteredImages = productImages.filter { it.isNotBlank() }
     val bannerImage = rememberImagePainter(data = bannerUrl)
     val storeImage = rememberImagePainter(data = storeUrl)
     Box(
@@ -126,7 +126,7 @@ fun FeedStore(
                             tint = ratingYellow,
                         )
                         Text(
-                            text = rating.toString(),
+                            text = "%.1f".format(rating),
                             maxLines = 1,
                             overflow = TextOverflow.Visible,
                             color = ratingYellow,
@@ -136,17 +136,20 @@ fun FeedStore(
                     }
                 }
             }
-            LazyRow(modifier = Modifier.padding(vertical = 15.dp)) {
-                items(listImages) { image ->
-                    Image(
-                        modifier = Modifier
-                            .padding(horizontal = 10.dp)
-                            .clip(RoundedCornerShape(10.dp))
-                            .size(80.dp),
-                        contentScale = ContentScale.Crop,
-                        painter = image,
-                        contentDescription = null
-                    )
+            if (filteredImages.isNotEmpty()) {
+                val listImages = filteredImages.map { rememberImagePainter(data = it) }
+                LazyRow(modifier = Modifier.padding(vertical = 15.dp)) {
+                    items(listImages) { image ->
+                        Image(
+                            modifier = Modifier
+                                .padding(horizontal = 10.dp)
+                                .clip(RoundedCornerShape(10.dp))
+                                .size(80.dp),
+                            contentScale = ContentScale.Crop,
+                            painter = image,
+                            contentDescription = null
+                        )
+                    }
                 }
             }
         }

@@ -8,6 +8,7 @@ import com.gustavohisan.apelieuser.cart.mapper.EditProductInCartStateMapper
 import com.gustavohisan.apelieuser.cart.mapper.GetItemsFromCartStateMapper
 import com.gustavohisan.apelieuser.cart.model.EditProductInCartState
 import com.gustavohisan.apelieuser.cart.model.GetItemsFromCartState
+import com.gustavohisan.apelieuser.domain.usecase.cart.ClearCart
 import com.gustavohisan.apelieuser.domain.usecase.cart.EditProductInCart
 import com.gustavohisan.apelieuser.domain.usecase.cart.GetCartItemsFromUser
 import kotlinx.coroutines.Dispatchers
@@ -18,7 +19,8 @@ internal class CartViewModel(
     private val getCartItemsFromUser: GetCartItemsFromUser,
     private val getItemsFromCartStateMapper: GetItemsFromCartStateMapper,
     private val editProductInCart: EditProductInCart,
-    private val editProductInCartStateMapper: EditProductInCartStateMapper
+    private val editProductInCartStateMapper: EditProductInCartStateMapper,
+    private val clearCart: ClearCart
 ) : ViewModel() {
 
     private val _getItemFromCartState: MutableLiveData<GetItemsFromCartState> = MutableLiveData()
@@ -28,6 +30,10 @@ internal class CartViewModel(
     private val _editCartItem: MutableLiveData<EditProductInCartState> = MutableLiveData()
     val editCartItem: LiveData<EditProductInCartState>
         get() = _editCartItem
+
+    private val _clearCartItemsResult: MutableLiveData<Boolean> = MutableLiveData()
+    val clearCartItemsResult: LiveData<Boolean>
+        get() = _clearCartItemsResult
 
     fun getCartItems() {
         Timber.d("getCartItems")
@@ -49,5 +55,21 @@ internal class CartViewModel(
                 )
             )
         }
+    }
+
+    fun clearCartItems() {
+        Timber.d("clearCartItems")
+        _clearCartItemsResult.value = false
+        viewModelScope.launch(Dispatchers.IO) {
+            _clearCartItemsResult.postValue(clearCart())
+        }
+    }
+
+    fun resetEditCartState() {
+        _editCartItem.value = EditProductInCartState.None
+    }
+
+    fun resetClearCartState() {
+        _clearCartItemsResult.value = false
     }
 }

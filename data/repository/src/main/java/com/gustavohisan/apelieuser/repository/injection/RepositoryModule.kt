@@ -19,6 +19,7 @@ import com.gustavohisan.apelieuser.repository.mapper.cart.GetItemsFromCartStateM
 import com.gustavohisan.apelieuser.repository.mapper.cart.InsertProductInCartStateMapper
 import com.gustavohisan.apelieuser.repository.mapper.login.LoginErrorTypeMapper
 import com.gustavohisan.apelieuser.repository.mapper.login.LoginStateMapper
+import com.gustavohisan.apelieuser.repository.mapper.order.GetOrderByIdStateMapper
 import com.gustavohisan.apelieuser.repository.mapper.order.GetUserOrdersStateMapper
 import com.gustavohisan.apelieuser.repository.mapper.order.ItemListMapper
 import com.gustavohisan.apelieuser.repository.mapper.order.OrderMapper
@@ -51,7 +52,7 @@ val repositoryModule = module {
     factory<StoreRepository> { StoreRepositoryImpl(get(), get(), get(), get(), get()) }
     factory<CartRepository> { CartRepositoryImpl(get(), get(), get(), get(), get()) }
     factory<AddressRepository> { AddressRepositoryImpl(get(), get(), get(), get()) }
-    factory<OrderRepository> { OrderRepositoryImpl(get(), get()) }
+    factory<OrderRepository> { OrderRepositoryImpl(get(), get(), get()) }
 
     // Mapper
     factory { LoginStateMapper(get()) }
@@ -77,5 +78,6 @@ val repositoryModule = module {
     factory { GetUserAddressFromCepStateMapper(get()) }
     factory { GetUserOrdersStateMapper(get()) }
     factory { ItemListMapper(get()) }
-    factory { OrderMapper(get(), get()) }
+    factory { OrderMapper(get(), get(), get()) }
+    factory { GetOrderByIdStateMapper(get()) }
 }

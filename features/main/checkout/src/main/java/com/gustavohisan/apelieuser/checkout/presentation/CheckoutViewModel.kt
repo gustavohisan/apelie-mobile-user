@@ -51,4 +51,8 @@ internal class CheckoutViewModel(
             )
         }
     }
+
+    fun resetState() {
+        _checkoutCartState.value = CheckoutItemsFromCartState.None
+    }
 }

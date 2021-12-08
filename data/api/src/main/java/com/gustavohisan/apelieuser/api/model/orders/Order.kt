@@ -1,13 +1,14 @@
 package com.gustavohisan.apelieuser.api.model.orders
 
 import com.google.gson.annotations.SerializedName
+import com.gustavohisan.apelieuser.api.model.address.Address
 import com.gustavohisan.apelieuser.api.model.store.Store
 
 internal data class Order(
     @SerializedName("orderId")
     val orderId: Int,
     @SerializedName("trackingCode")
-    val trackingCode: String,
+    val trackingCode: String?,
     @SerializedName("status")
     val status: String,
     @SerializedName("paymentMethod")
@@ -19,5 +20,9 @@ internal data class Order(
     @SerializedName("store")
     val store: Store,
     @SerializedName("itemList")
-    val itemList: List<ItemList>
+    val itemList: List<ItemList>?,
+    @SerializedName("address")
+    val address: Address,
+    @SerializedName("review")
+    val review: Review?
 )

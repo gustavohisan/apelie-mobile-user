@@ -13,7 +13,7 @@ import org.koin.dsl.module
 val cartModule = module {
 
     factory<CartProvider> { CartProviderImpl() }
-    viewModel { CartViewModel(get(), get(), get(), get()) }
+    viewModel { CartViewModel(get(), get(), get(), get(), get()) }
     factory { CartItemMapper(get()) }
     factory { ProductMapper() }
     factory { GetItemsFromCartStateMapper(get()) }

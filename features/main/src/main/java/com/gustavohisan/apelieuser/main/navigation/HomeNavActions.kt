@@ -29,7 +29,9 @@ internal data class HomeNavActions(val navController: NavHostController) {
     }
 
     val navigateToOrders: () -> Unit = {
-        navController.navigate(Destinations.HomeSections.ORDERS.route)
+        navController.navigate(Destinations.HomeSections.ORDERS.route) {
+            popUpTo(0)
+        }
     }
 
     val onRegisterAddressClicked: () -> Unit = {

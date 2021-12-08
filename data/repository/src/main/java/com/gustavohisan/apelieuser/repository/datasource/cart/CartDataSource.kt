@@ -22,4 +22,6 @@ interface CartDataSource {
         description: String,
         quantity: Int
     ): EditProductInCartState
+
+    suspend fun clearCart(): Boolean
 }

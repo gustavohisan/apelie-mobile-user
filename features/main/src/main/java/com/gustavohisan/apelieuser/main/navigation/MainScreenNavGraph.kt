@@ -25,8 +25,8 @@ internal fun MainScreenNavGraph(
     addressProvider: AddressProvider = get(),
     checkoutProvider: CheckoutProvider = get(),
     onLogout: () -> Unit,
-//    orderProvider: OrderProvider = get(),
-//    ordersProvider: OrdersProvider = get()
+    orderProvider: OrderProvider = get(),
+    ordersProvider: OrdersProvider = get()
 ) {
     NavHost(navController = navController, startDestination = startDestination) {
         navigation(
@@ -43,7 +43,7 @@ internal fun MainScreenNavGraph(
                 cartProvider.CartComposable(actions.onCheckoutClicked)
             }
             composable(Destinations.HomeSections.ORDERS.route) {
-//                ordersProvider.OrdersComposable(actions.onOrderClicked)
+                ordersProvider.OrdersComposable(actions.onOrderClicked)
             }
             composable(Destinations.HomeSections.PROFILE.route) {
                 profileProvider.ProfileComposable(onLogout)
@@ -82,10 +82,10 @@ internal fun MainScreenNavGraph(
         ) { backStackEntry ->
             val arguments = requireNotNull(backStackEntry.arguments)
             val orderId = arguments.getInt(Destinations.ORDER_ID, 0)
-//            orderProvider.OrderPComposable(
-//                orderId = orderId,
-//                onBackClicked = actions.onBackClicked
-//            )
+            orderProvider.OrderComposable(
+                orderId = orderId,
+                onBackClicked = actions.onBackClicked
+            )
         }
 
         composable(Destinations.ADDRESS_ROUTE) {

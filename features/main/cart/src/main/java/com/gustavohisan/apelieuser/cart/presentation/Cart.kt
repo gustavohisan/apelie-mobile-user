@@ -20,7 +20,6 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -36,7 +35,6 @@ import com.gustavohisan.apelieuser.cart.model.EditProductInCartState
 import com.gustavohisan.apelieuser.cart.model.GetItemsFromCartState
 import com.gustavohisan.apelieuser.design.darkGrey
 import com.gustavohisan.apelieuser.design.mainBlue
-import com.gustavohisan.apelieuser.design.moneyGreen
 import com.gustavohisan.apelieuser.design.textGrey
 import org.koin.androidx.compose.getViewModel
 
@@ -56,7 +54,14 @@ private fun CartLoader(
     val editProductInCartState: EditProductInCartState by viewModel.editCartItem.observeAsState(
         EditProductInCartState.None
     )
-    viewModel.getCartItems()
+    val clearCartResult: Boolean by viewModel.clearCartItemsResult.observeAsState(false)
+    if (cartItemsState is GetItemsFromCartState.Loading) {
+        viewModel.getCartItems()
+    }
+    if (clearCartResult) {
+        viewModel.resetClearCartState()
+        viewModel.getCartItems()
+    }
     CartScaffold(
         cartItemsState = cartItemsState,
         viewModel = viewModel,
@@ -74,6 +79,7 @@ private fun CartScaffold(
 ) {
     when (editProductState) {
         is EditProductInCartState.Success -> {
+            viewModel.resetEditCartState()
             viewModel.getCartItems()
         }
         EditProductInCartState.Error -> {}
@@ -122,7 +128,7 @@ private fun CartScaffold(
                                             fontWeight = FontWeight.Bold,
                                         )
                                         TextButton(
-                                            onClick = {},
+                                            onClick = { viewModel.clearCartItems() },
                                             modifier = Modifier
                                                 .padding(10.dp)
                                                 .height(40.dp),

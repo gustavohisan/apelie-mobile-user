@@ -2,6 +2,7 @@ package com.gustavohisan.apelieuser.repository.datasource.login
 
 import com.gustavohisan.apelieuser.repository.model.address.GetUserAddressesState
 import com.gustavohisan.apelieuser.repository.model.login.LoginState
+import com.gustavohisan.apelieuser.repository.model.order.GetOrderByIdState
 import com.gustavohisan.apelieuser.repository.model.order.GetUserOrdersState
 import com.gustavohisan.apelieuser.repository.model.register.RegisterState
 
@@ -68,4 +69,8 @@ interface UserApiDataSource {
     suspend fun getUserAddresses(): GetUserAddressesState
 
     suspend fun getUserOrders(): GetUserOrdersState
+
+    suspend fun getOrderById(id: Int): GetOrderByIdState
+
+    suspend fun rateOrder(id: Int, rating: Int, description: String): Boolean
 }

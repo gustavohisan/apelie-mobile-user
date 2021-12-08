@@ -25,4 +25,7 @@ internal interface CartEndpoints {
 
     @PUT("cart")
     suspend fun editCartItem(@Body cartItemsData: EditCartItemsData): Response<ResponseBody>
+
+    @POST("cart/clear")
+    suspend fun clearCart(): Response<ResponseBody>
 }

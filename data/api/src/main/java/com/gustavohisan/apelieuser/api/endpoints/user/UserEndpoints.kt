@@ -5,7 +5,7 @@ import com.gustavohisan.apelieuser.api.model.address.AddressData
 import com.gustavohisan.apelieuser.api.model.address.EditAddressData
 import com.gustavohisan.apelieuser.api.model.login.LoginUserData
 import com.gustavohisan.apelieuser.api.model.orders.Order
-import com.gustavohisan.apelieuser.api.model.product.Product
+import com.gustavohisan.apelieuser.api.model.orders.Rate
 import com.gustavohisan.apelieuser.api.model.register.RegisterUserData
 import okhttp3.ResponseBody
 import retrofit2.Response
@@ -60,4 +60,10 @@ internal interface UserEndpoints {
 
     @GET("users/addresses")
     suspend fun getUserAddresses(): Response<List<Address>>
+
+    @GET("orders/{orderId}")
+    suspend fun getOrderById(@Path("orderId") id: Int): Response<Order>
+
+    @POST("orders/{orderId}/reviews")
+    suspend fun rateOrder(@Path("orderId") id: Int, @Body rate: Rate): Response<ResponseBody>
 }

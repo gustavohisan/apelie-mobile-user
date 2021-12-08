@@ -83,4 +83,10 @@ internal class CartDataSourceImpl(
             editProductInCartStateMapper.toRepo(EditProductInCartState.Error)
         }
     }
+
+    override suspend fun clearCart(): Boolean {
+        val callback = endpoint.clearCart()
+        Timber.d("clearCart = ${callback.isSuccessful}")
+        return callback.isSuccessful
+    }
 }

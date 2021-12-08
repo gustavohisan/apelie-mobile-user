@@ -5,5 +5,5 @@ import androidx.compose.runtime.Composable
 interface OrderProvider {
 
     @Composable
-    fun OrderPComposable(orderId: Int, onBackClicked: () -> Unit)
+    fun OrderComposable(orderId: Int, onBackClicked: () -> Unit)
 }

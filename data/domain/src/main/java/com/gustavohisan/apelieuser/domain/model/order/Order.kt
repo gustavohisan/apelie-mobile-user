@@ -1,5 +1,6 @@
 package com.gustavohisan.apelieuser.domain.model.order
 
+import com.gustavohisan.apelieuser.domain.model.address.Address
 import com.gustavohisan.apelieuser.domain.model.store.Store
 
 data class Order(
@@ -10,5 +11,7 @@ data class Order(
     val createdAt: String,
     val totalValue: Float,
     val store: Store,
-    val itemList: List<ItemList>
+    val itemList: List<ItemList>,
+    val address: Address,
+    val hasReview: Boolean
 )

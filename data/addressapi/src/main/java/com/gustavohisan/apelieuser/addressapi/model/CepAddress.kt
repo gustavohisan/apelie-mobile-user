@@ -4,11 +4,11 @@ import com.google.gson.annotations.SerializedName
 
 internal data class CepAddress(
     @SerializedName("logradouro")
-    val street: String,
+    val street: String?,
     @SerializedName("bairro")
-    val district: String,
+    val district: String?,
     @SerializedName("localidade")
-    val city: String,
+    val city: String?,
     @SerializedName("uf")
-    val state: String
+    val state: String?
 )
